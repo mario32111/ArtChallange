@@ -22,7 +22,7 @@ export class AppComponent implements OnInit{
     this.crearScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap");
   }
 
-  crearScript(dir: string) {  // Cambiar 'String' a 'string'
+  crearScript(dir: string) {
     const body = document.body;
       const script = document.createElement('script');
 
