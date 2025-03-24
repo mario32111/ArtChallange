@@ -1,0 +1,32 @@
+<div *ngIf="isVisible" class="modal modal-{{modalType}}">
+  <div class="modal-icon-select"><i class="fa fa-sort-asc" aria-hidden="true"></i></div>
+  <div class="modal-title">
+      <span>{{ modalType === 'comments' ? 'CHAT / MESSAGES' : modalType === 'friends' ? 'FRIEND REQUESTS' : 'YOUR ACCOUNT' }}</span>
+      <a [href]="modalType === 'comments' ? 'messages.html' : modalType === 'friends' ? 'friends.html' : 'settings.html'">
+          <i class="fa fa-ellipsis-h"></i>
+      </a>
+  </div>
+  <div class="modal-content">
+      <ul>
+          <li *ngIf="modalType === 'comments'">
+              <a href="#">
+                  <img src="../../../assets/images/user-7.jpg" alt="" />
+                  <span><b>Diana Jameson</b><br>Hi James! It’s Diana, I just wanted to let you know that we have to reschedule...<p>4 hours ago</p></span>
+              </a>
+          </li>
+          <li *ngIf="modalType === 'friends'">
+              <a href="#">
+                  <img src="../../../assets/images/user-2.jpg" alt="" />
+                  <span><b>Tony Stevens</b><br>4 Friends in Common</span>
+                  <button class="modal-content-accept">Accept</button><button class="modal-content-decline">Decline</button>
+              </a>
+          </li>
+          <li *ngIf="modalType === 'profile'">
+              <a href="settings.html">
+                  <i class="fa fa-tasks" aria-hidden="true"></i>
+                  <span><b>Profile Settings</b><br>Yours profile settings</span>
+              </a>
+          </li>
+      </ul>
+  </div>
+</div>

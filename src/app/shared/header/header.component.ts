@@ -1,11 +1,65 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  showMessagesModal: boolean = false;
+  showFriendsModal: boolean = false;
+  showProfileModal: boolean = false;
+  showMobileMenu: boolean = false;
 
+  messagesModalHover: boolean = false;
+  friendsModalHover: boolean = false;
+  profileModalHover: boolean = false;
+
+  toggleMessagesModal() {
+    this.closeAllModals();
+    this.showMessagesModal = !this.showMessagesModal;
+  }
+
+  toggleFriendsModal() {
+    this.closeAllModals();
+    this.showFriendsModal = !this.showFriendsModal;
+  }
+
+  toggleProfileModal() {
+    this.closeAllModals();
+    this.showProfileModal = !this.showProfileModal;
+  }
+
+  toggleMobileMenu() {
+    this.showMobileMenu = !this.showMobileMenu;
+  }
+
+  closeAllModals() {
+    this.showMessagesModal = false;
+    this.showFriendsModal = false;
+    this.showProfileModal = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeOnOutsideClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (
+      !target.closest('.modal-container') &&
+      !target.closest('.navbar_icons') &&
+      !target.closest('.navbar_user')
+    ) {
+      this.closeAllModals();
+    }
+  }
+
+  closeModalsOnLeave() {
+    setTimeout(() => {
+      if (!this.messagesModalHover) this.showMessagesModal = false;
+      if (!this.friendsModalHover) this.showFriendsModal = false;
+      if (!this.profileModalHover) this.showProfileModal = false;
+    }, 100);
+  }
 }
