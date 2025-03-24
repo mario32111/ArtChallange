@@ -1,24 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from '../../shared/modal/modal.component';
+import { HeaderSmallComponent } from '../../shared/header-small/header-small.component';
 
 @Component({
   selector: 'app-home',
-  /*   imports: [
-      HeaderComponent,
-    ], */
-imports: [HeaderComponent, CommonModule],
+  imports: [HeaderComponent, HeaderSmallComponent, CommonModule],
   standalone: true,
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  modalType: string = '';
-  showModal: boolean = false;
+  showSmallHeader = false;
 
-  toggleModal(type: string) {
-    this.modalType = type;
-    this.showModal = !this.showModal;
+  constructor() {
+    this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
   }
- }
+
+  // Detectar cambios de tamaño de pantalla
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  // Verificar si la pantalla es pequeña (< 768px por ejemplo)
+  checkScreenSize() {
+    const screenWidth = window.innerWidth;
+    this.showSmallHeader = screenWidth < 800; // Cambia a header pequeño si es menor a 768px
+  }
+}
