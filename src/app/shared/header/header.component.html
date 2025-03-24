@@ -1,1 +1,138 @@
-<div>header works!</div>
+<!-- Navbar -->
+<div class="navbar">
+  <div class="navbar_menuicon" (click)="toggleMobileMenu()">
+    <i class="fa fa-navicon"></i>
+  </div>
+
+  <div class="navbar_logo">
+    <img src="assets/images/logo.png" alt="Logo" />
+  </div>
+
+  <div class="navbar_page">
+    <span>> NEWSFEED</span>
+  </div>
+
+  <div class="navbar_search">
+    <form>
+      <input type="text" placeholder="Search people.." />
+      <button><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+
+  <div class="navbar_icons">
+    <ul>
+      <li (mouseenter)="toggleFriendsModal()" (mouseleave)="closeModalsOnLeave()">
+        <i class="fa fa-user-o"></i>
+        <span id="notification">5</span>
+      </li>
+
+      <li (mouseenter)="toggleMessagesModal()" (mouseleave)="closeModalsOnLeave()">
+        <i class="fa fa-comments-o"></i>
+        <span id="notification">2</span>
+      </li>
+
+      <a href="#" style="color: white">
+        <li><i class="fa fa-globe"></i></li>
+      </a>
+    </ul>
+  </div>
+
+  <div class="navbar_user" (mouseenter)="toggleProfileModal()" (mouseleave)="closeModalsOnLeave()">
+    <img src="assets/images/user.jpg" alt="User" />
+    <span id="navbar_user_top">Jonh Hamstrong<br /><p>User</p></span>
+    <i class="fa fa-angle-down"></i>
+  </div>
+</div>
+
+<!-- Modal de Mensajes -->
+<div
+  class="modal-container"
+  (mouseenter)="messagesModalHover = true"
+  (mouseleave)="messagesModalHover = false"
+>
+  <div class="modal modal-comments" *ngIf="showMessagesModal">
+    <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
+    <div class="modal-title">
+      <span>CHAT / MESSAGES</span>
+      <a href="messages.html"><i class="fa fa-ellipsis-h"></i></a>
+    </div>
+    <div class="modal-content">
+      <ul>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-7.jpg" alt="Diana" />
+            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to reschedule...<p>4 hours ago</p></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Amigos -->
+<div
+  class="modal-container"
+  (mouseenter)="friendsModalHover = true"
+  (mouseleave)="friendsModalHover = false"
+>
+  <div class="modal modal-friends" *ngIf="showFriendsModal">
+    <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
+    <div class="modal-title">
+      <span>FRIEND REQUESTS</span>
+      <a href="friends.html"><i class="fa fa-ellipsis-h"></i></a>
+    </div>
+    <div class="modal-content">
+      <ul>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-2.jpg" alt="Tony" />
+            <span><b>Tony Stevens</b><br />4 Friends in Common</span>
+            <button class="modal-content-accept">Accept</button>
+            <button class="modal-content-decline">Decline</button>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Perfil -->
+<div
+  class="modal-container"
+  (mouseenter)="profileModalHover = true"
+  (mouseleave)="profileModalHover = false"
+>
+  <div class="modal modal-profile" *ngIf="showProfileModal">
+    <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
+    <div class="modal-title">
+      <span>YOUR ACCOUNT</span>
+      <a href="settings.html"><i class="fa fa-cogs"></i></a>
+    </div>
+    <div class="modal-content">
+      <ul>
+        <li>
+          <a href="settings.html">
+            <i class="fa fa-tasks"></i>
+            <span><b>Profile Settings</b><br />Your profile settings</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Mobile Menu -->
+<div class="mobilemenu" *ngIf="showMobileMenu">
+  <div class="mobilemenu_profile">
+    <img id="mobilemenu_portada" src="assets/images/portada.jpg" />
+    <div class="mobilemenu_profile">
+      <img id="mobilemenu_profile_pic" src="assets/images/user.jpg" /><br />
+      <span>Jonh Hamstrong<br /><p>150k followers / 50 follow</p></span>
+    </div>
+    <div class="mobilemenu_menu">
+      <ul>
+        <li><a href="index.html" id="mobilemenu-selected"><i class="fa fa-globe"></i> Newsfeed</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
