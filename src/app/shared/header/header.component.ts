@@ -56,10 +56,8 @@ export class HeaderComponent {
   }
 
   closeModalsOnLeave() {
-    setTimeout(() => {
       if (!this.messagesModalHover) this.showMessagesModal = false;
       if (!this.friendsModalHover) this.showFriendsModal = false;
       if (!this.profileModalHover) this.showProfileModal = false;
-    }, 100);
   }
 }
