@@ -1,6 +1,7 @@
 /* Estilos para los modales */
 .modal {
-  position: absolute;
+  position: fixed;
+  border-radius: 0px 0px 12px 12px;
   top: 50px;
   right: 20px;
   background-color: white;
@@ -62,7 +63,7 @@
 .modal-content {
   width: 100%;
   background-color: white;
-  border-bottom: 5px solid #ff5e3a;
+  border-bottom: 5px solid #4A90E2;
 }
 
 .modal-content ul {
@@ -136,28 +137,29 @@
 }
 
 .modal-content-decline:hover {
-  background-color: #FF5E3A;
+  background-color: #38A9FF;
   color: white;
 }
 
 
 /* Nav */
-.navbar {height: 50px;width: 100%;background-color: #3F4257;color: white;display: flex;align-items:center;position: fixed;top:0px;}
+.navbar {height: 50px;width: 100%;background-color: #163953;color: white;display: flex;align-items:center;position: fixed;top:0px;}
 .navbar_logo {width: 10%;height: 50px;text-align: center;}
 .navbar_logo img {height: 100%;}
-.navbar_page {height: 50px;text-align: center;background-color: #4f5266;padding-left: 30px;padding-right: 30px;}
+.navbar_page {height: 50px;text-align: center;background-color: #163953;padding-left: 30px;padding-right: 30px;}
 .navbar_page span {height: 100%;line-height: 3;font-size: .995rem;letter-spacing: 1px;text-transform: uppercase;}
-.navbar_search {height: 50px;text-align: center;width: 40%;display: inline-block;line-height: 3}
-.navbar_search input {padding: 10px;border:none;background-color: #4f5266;color: white;width:70%;}
-.navbar_search button {padding: 10px;border:none;background-color: #4f5266;color: white;margin-left:-20px;cursor: pointer;}
+.navbar_search {height: 50px;text-align: center;width: 40%;display: inline-block;line-height: 3; }
+.navbar_search input {padding: 10px;border:none;background-color: #ffffff;color: rgb(105, 105, 105);width:70%; border-radius: 12px;}
+.navbar_search button {padding: 10px;border:none;background-color: #ffffff;color: rgb(160, 160, 160);margin-left:-20px;cursor: pointer; border-radius: 12px;}
 .navbar_search button:hover {background-color: #303347;}
 .navbar_icons {height: 50px;text-align: center;width: 22%;display: inline-block;}
 .navbar_icons ul {height: 50px;}
 .navbar_icons ul li {height: 50px;display: inline-block;padding-left: 15px;padding-right: 15px;font-size: 19px;line-height: 2.5;cursor: pointer;}
 .navbar_icons ul li:hover {background-color: #303347;}
-#notification {font-size: 10px;color: #fff;background-color: #7C5AC2;padding: 0.6px 5px;border-radius: 100px}
+#notification {font-size: 10px;color: #fff;background-color: #4A90E2;padding: 0.6px 5px;border-radius: 100px}
 .navbar_user {height: 50px;width: auto;display: flex;align-items:center;}
-.navbar_user img {height: 35px;width: 35px;border-radius: 500px;border: 3px solid #ff5e3a;}
+.navbar_user img {height: 35px;width: 35px;border-radius: 500px;border: 3px solid #4A90E2;}
+
 #navbar_user_top {font-size: 12px;margin-left: 10px;padding-right: 10px}
 #navbar_user_top {font-size: 13px;}
 #navbar_user_top p{font-size: 10px;font-weight: 200;color: #9a9fbf;}
