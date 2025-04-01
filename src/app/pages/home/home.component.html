@@ -5,40 +5,6 @@
 <app-header-small *ngIf="showSmallHeader"></app-header-small>
 
 <div class="all">
-
-  <div class="rowfixed"></div>
-  <div class="left_row">
-      <div class="left_row_profile">
-          <img id="portada" src="../../../assets/images/portada.jpg" />
-          <div class="left_row_profile">
-              <img id="profile_pic" src="../../../assets/images/user.jpg" />
-              <span>Jonh Hamstrong<br><p>150k followers / 50 follow</p></span>
-          </div>
-      </div>
-      <div class="rowmenu">
-          <ul>
-              <li><a href="index.html" id="rowmenu-selected"><i class="fa fa-globe"></i>Newsfeed</a></li>
-              <li><a href="profile.html"><i class="fa fa-user"></i>Profile</a></li>
-              <li><a href="friends.html"><i class="fa fa-users"></i>Friends</a></li>
-              <li class="primarymenu"><i class="fa fa-compass"></i>Explore</li>
-              <ul>
-                  <li style="border:none"><a href="#A">Activity</a></li>
-                  <li style="border:none"><a href="#">Friends</a></li>
-                  <li style="border:none"><a href="#">Groups</a></li>
-                  <li style="border:none"><a href="#">Pages</a></li>
-                  <li style="border:none"><a href="#">Saves</a></li>
-              </ul>
-              <li class="primarymenu"><i class="fa fa-user"></i>Rapid Access</li>
-              <ul>
-                  <li style="border:none"><a href="#">Your-Page.html</a></li>
-                  <li style="border:none"><a href="#">Your-Group.html</a></li>
-              </ul>
-          </ul>
-      </div>
-  </div>
-
-
-
   <div class="right_row">
       <div class="row">
           <div class="publish">
@@ -48,8 +14,8 @@
               </div>
               <form method="" action="/">
                   <div class="publish_textarea">
-                      <img class="border-radius-image" src="../../../assets/images/user.jpg" alt="" />
-                      <textarea type="text" placeholder="¿Whats up, Jonh?" style="resize: none;"></textarea>
+                      <img class="border-radius-image" src="../../../assets/images/yo.jpg" alt="" />
+                      <textarea type="text" placeholder="¿Whats up, Mario?" style="resize: none;"></textarea>
                   </div>
                   <div class="publish_icons">
                       <ul>
@@ -62,6 +28,32 @@
               </form>
           </div>
       </div>
+
+      <div class="row border-radius">
+        <div class="feed">
+            <div class="feed_title">
+                <img src="../../../assets/images/user-3.jpg" alt="" />
+                <span><b>Organizador1 de concursos</b> shared a <a href="feed.html">results</a><br><p>March 2 at 6:05pm</p></span>
+            </div>
+            <div class="feed_content">
+              <div>Ganadores del concurso "Dibuja a tu mascota"</div>
+            </div>
+            <div class="feed_footer">
+              <ul class="feed_footer_left">
+                  <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
+                  <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
+              </ul>
+              <ul class="feed_footer_right">
+                  <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
+                  <li class="hover-orange">
+                      <a href="feed.html" style="color:#515365;">
+                          <i class="fa fa-comments-o"></i> 74 comments
+                      </a>
+                  </li>
+              </ul>
+          </div>
+        </div>
+    </div>
 
       <div class="row border-radius">
           <div class="feed">
@@ -122,8 +114,8 @@
       <div class="row border-radius">
           <div class="feed">
               <div class="feed_title">
-                  <img src="../../../assets/images/user.jpg" alt="" />
-                  <span><b>Jonh Hamstrong</b> shared a <a href="feed.html">video</a><br><p>March 1 at 3:53pm</p></span>
+                  <img src="../../../assets/images/yo.jpg" alt="" />
+                  <span><b>Marito11</b> shared a <a href="feed.html">video</a><br><p>March 1 at 3:53pm</p></span>
               </div>
               <div class="feed_content">
                   <div class="feed_content_image">
@@ -216,24 +208,39 @@
   <div class="suggestions_row">
       <div class="row shadow">
           <div class="row_title">
-              <span>Friend Suggestions</span>
+              <span>Sugerencias de concursos</span>
               <a href="friends.html">see more..</a>
           </div>
           <div class="row_contain">
-              <img src="../../../assets/images/user-7.jpg" alt="" />
-              <span><b>Francine Smith</b><br>8 Friends in Common</span>
+              <img src="../../../assets/images/pintura.jpg" alt="" />
+              <span><b>Francine Smith</b><br>Pintura</span>
               <button>+</button>
           </div>
           <div class="row_contain">
-              <img src="../../../assets/images/user-2.jpg" alt="" />
-              <span><b>Hugh Wilson</b><br>6 Friends in Common</span>
+              <img src="../../../assets/images/dibujo.jpg" alt="" />
+              <span><b>Hugh Wilson</b><br>Dibujo tradicional</span>
               <button>+</button>
           </div>
           <div class="row_contain">
-              <img src="../../../assets/images/user-6.jpg" alt="" />
-              <span><b>Karen Masters</b><br>6 Friends in Common</span>
+              <img src="../../../assets/images/dibujo.jpg" alt="" />
+              <span><b>Karen Masters</b><br>Dibujo tradicional</span>
               <button>+</button>
           </div>
+          <div class="row_contain">
+            <img src="../../../assets/images/pintura.jpg" alt="" />
+            <span><b>Francine Smith</b><br>Pintura</span>
+            <button>+</button>
+        </div>
+        <div class="row_contain">
+            <img src="../../../assets/images/dibujo.jpg" alt="" />
+            <span><b>Hugh Wilson</b><br>Dibujo tradicional</span>
+            <button>+</button>
+        </div>
+        <div class="row_contain">
+            <img src="../../../assets/images/dibujo.jpg" alt="" />
+            <span><b>Karen Masters</b><br>Dibujo tradicional</span>
+            <button>+</button>
+        </div>
       </div>
 
       <div class="row shadow">
@@ -257,7 +264,7 @@
               <span>Marina Polson commented on Jason Mark’s <a href="" class="selected-orange">photo</a>..</span>
           </div>
           <div class="row_contain">
-              <img src="../../../assets/images/user.jpg" alt="" />
+              <img src="../../../assets/images/yo.jpg" alt="" />
               <span>Jake Parker  liked Nicholas Grissom’s <a href="" class="selected-orange">status update</a>..</span>
           </div>
           <div class="row_contain">

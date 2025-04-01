@@ -30,26 +30,26 @@
         <i class="fa fa-comments-o"></i>
         <span id="notification">2</span>
       </li>
-
       <a href="#" style="color: white">
-        <li><i class="fa fa-globe"></i></li>
+        <li><i class="fa fa-trophy"></i></li>
       </a>
+<!--       <a href="#" style="color: white">
+        <li><i class="fa fa-shopping-cart"></i></li>
+      </a> -->
     </ul>
   </div>
 
   <div class="navbar_user" (mouseenter)="toggleProfileModal()" (mouseleave)="closeModalsOnLeave()">
-    <img src="assets/images/user.jpg" alt="User" />
-    <span id="navbar_user_top">Jonh Hamstrong<br /><p>User</p></span>
+    <img src="assets/images/yo.jpg" alt="User" />
+    <span id="navbar_user_top">Marito11<br />
+      <p>User</p>
+    </span>
     <i class="fa fa-angle-down"></i>
   </div>
 </div>
 
 <!-- Modal de Mensajes -->
-<div
-  class="modal-container"
-  (mouseenter)="messagesModalHover = true"
-  (mouseleave)="messagesModalHover = false"
->
+<div class="modal-container" (mouseenter)="messagesModalHover = true" (mouseleave)="messagesModalHover = false">
   <div class="modal modal-comments" *ngIf="showMessagesModal">
     <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
     <div class="modal-title">
@@ -61,13 +61,15 @@
         <li>
           <a href="#">
             <img src="assets/images/user-7.jpg" alt="Diana" />
-            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to reschedule...<p>4 hours ago</p></span>
+            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to
+              reschedule...<p>4 hours ago</p></span>
           </a>
         </li>
         <li>
           <a href="#">
             <img src="assets/images/user-2.jpg" alt="Diana" />
-            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to reschedule...<p>4 hours ago</p></span>
+            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to
+              reschedule...<p>4 hours ago</p></span>
           </a>
         </li>
       </ul>
@@ -76,11 +78,7 @@
 </div>
 
 <!-- Modal de Amigos -->
-<div
-  class="modal-container"
-  (mouseenter)="friendsModalHover = true"
-  (mouseleave)="friendsModalHover = false"
->
+<div class="modal-container" (mouseenter)="friendsModalHover = true" (mouseleave)="friendsModalHover = false">
   <div class="modal modal-friends" *ngIf="showFriendsModal">
     <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
     <div class="modal-title">
@@ -115,11 +113,7 @@
 </div>
 
 <!-- Modal de Perfil -->
-<div
-  class="modal-container"
-  (mouseenter)="profileModalHover = true"
-  (mouseleave)="profileModalHover = false"
->
+<div class="modal-container" (mouseenter)="profileModalHover = true" (mouseleave)="profileModalHover = false">
   <div class="modal modal-profile" *ngIf="showProfileModal">
     <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
     <div class="modal-title">
