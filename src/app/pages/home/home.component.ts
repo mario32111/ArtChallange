@@ -2,10 +2,11 @@ import { Component, HostListener } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { CommonModule } from '@angular/common';
 import { HeaderSmallComponent } from '../../shared/header-small/header-small.component';
+import { CorrouselResultsComponent } from '../../shared/corrousel-results/corrousel-results.component';
 
 @Component({
   selector: 'app-home',
-  imports: [HeaderComponent, HeaderSmallComponent, CommonModule],
+  imports: [HeaderComponent, HeaderSmallComponent, CorrouselResultsComponent, CommonModule],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],

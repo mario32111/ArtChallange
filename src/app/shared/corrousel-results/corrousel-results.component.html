@@ -1,0 +1,27 @@
+<c-carousel>
+  <c-carousel-indicators></c-carousel-indicators>
+  <c-carousel-inner>
+    <c-carousel-item *ngFor="let slide of slides">
+      <img
+        alt="{{ slide.title }}"
+        class="d-block w-100"
+        loading="lazy"
+        src="{{ slide.src }}"
+      />
+      <c-carousel-caption class="d-none d-md-block fondoOscuro">
+        <h3>{{ slide.title }}</h3>
+        <p class="letraBlanca">{{ slide.subtitle }}</p>
+      </c-carousel-caption>
+    </c-carousel-item>
+  </c-carousel-inner>
+  <c-carousel-control
+  direction="prev"
+  caption="&lsaquo;"
+  class="fs-1">  <!-- fs-1 a fs-5 para diferentes tamaños -->
+</c-carousel-control>
+<c-carousel-control
+  direction="next"
+  caption="&rsaquo;"
+  class="fs-1">
+</c-carousel-control>
+</c-carousel>
