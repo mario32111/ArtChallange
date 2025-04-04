@@ -66,19 +66,19 @@ export class CorrouselResultsComponent implements OnInit {
   ngOnInit(): void {
     this.slides[0] = {
       id: 0,
-      src: '../../../assets/images/pp_2.jpg',
+      src: '../../../assets/images/mascota1.jpg',
       title: 'Primer lugar',
       subtitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
     };
     this.slides[1] = {
       id: 1,
-      src: '../../../assets/images/pp_2.jpg',
+      src: '../../../assets/images/mascota2.jpg',
       title: 'Segundo lugar',
       subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     };
     this.slides[2] = {
       id: 2,
-      src: '../../../assets/images/pp_3.jpg',
+      src: '../../../assets/images/mascota3.jpg',
       title: 'Tercer lugar',
       subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
     };

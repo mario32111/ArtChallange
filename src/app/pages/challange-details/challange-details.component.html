@@ -1,0 +1,9 @@
+<div class="contest-details" *ngIf="concurso">
+  <h2>{{ concurso.nombre }}</h2>
+  <img [src]="concurso.imagen" alt="{{ concurso.nombre }}">
+  <p><strong>Organizador:</strong> {{ concurso.organizador }}</p>
+  <p><strong>Categoría:</strong> {{ concurso.categoria }}</p>
+  <p><strong>Descripción:</strong> {{ concurso.descripcion }}</p>
+  <p><strong>Fecha límite:</strong> {{ concurso.fechaLimite }}</p>
+  <button (click)="unirseAlConcurso()">Unirse al Concurso</button>
+</div>
