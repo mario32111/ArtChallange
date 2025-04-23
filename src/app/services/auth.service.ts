@@ -7,7 +7,15 @@ import firebase from 'firebase/compat/app';
   providedIn: 'root' // Ensures singleton service
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor(private afAuth: AngularFireAuth) { }
+  async loginWithEmail(email: string, password: string) {
+    try {
+      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
+      return result.user;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   async loginWithGoogle() {
     try {
@@ -19,4 +27,15 @@ export class AuthService {
       throw error; // Re-throw for component handling
     }
   }
+
+  // auth.service.ts
+  async registerWithEmail(email: string, password: string) {
+    try {
+      const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      return result.user;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }
