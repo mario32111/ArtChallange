@@ -35,15 +35,25 @@
 }
 
 
-
-.msg1{
-  height: 18px;
-  color: red;
-  font-weight: bolder;
+/* Mensajes de error y éxito */
+.msg1 {
+  color: #e74c3c; /* Rojo suave */
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 4px;
+  display: block;
 }
 
-.msg2{
-  height: 20px;
-  color: blue;
-  font-weight: bolder;
+.msg2 {
+  color: #2ecc71; /* Verde éxito */
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* Input + mensaje de validación debajo */
+.input-group {
+  margin-bottom: 18px;
+  position: relative;
 }

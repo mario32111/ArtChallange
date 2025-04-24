@@ -33,3 +33,12 @@
 .center-link-login{
   padding-top: 30px;
 }
+
+/* Mensajes de error y éxito */
+.msg1 {
+  color: #e74c3c; /* Rojo suave */
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 4px;
+  display: block;
+}

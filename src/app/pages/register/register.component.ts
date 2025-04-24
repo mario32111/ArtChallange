@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
     rePassword: new FormControl('', [Validators.required])
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.formularioValidacion.get('rePassword')?.addValidators(this.passwordValidator());
@@ -47,9 +48,14 @@ export class RegisterComponent implements OnInit {
 
   //Funciones de autenticacion
   async loginWithGoogle() {
+    const { correo, password } = this.formularioValidacion.value;
+
     try {
       const user = await this.authService.loginWithGoogle();
       console.log('Usuario autenticado (Google):', user);
+      this.authService.loginWithEmail(correo!, password!);
+      this.router.navigate(['/home']);
+
     } catch (error) {
       console.error('Error al iniciar sesión con Google:', error);
     }
@@ -60,19 +66,31 @@ export class RegisterComponent implements OnInit {
     const { correo, password } = this.formularioValidacion.value;
 
     if (!this.formularioValidacion.valid) {
-      this.resultado = "Formulario Invalido"
+      this.resultado = "Alguno de los campos esta vacio"
       console.log(correo, password);
-      console.error('Correo o contraseña vacíos');
+      console.error('Alguno de los campos esta vacio');
       return;
     }
-    this.resultado = "Formulario Valido"
 
     try {
       const user = await this.authService.registerWithEmail(correo!, password!);
       console.log('Usuario registrado (Email):', user);
+      this.resultado = "Usuario registrado correctamente"
+      this.miClase = "msg2"; // Cambia la clase para mostrar el mensaje de éxito
+      this.authService.loginWithEmail(correo!, password!);
+      this.router.navigate(['/home']);
+
       // Redirige o muestra mensaje
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error al registrar usuario:', error);
+
+      if (error.code === 'auth/email-already-in-use') {
+        this.resultado = 'El usuario ya existe. Intenta con otro correo.';
+      } else {
+        this.resultado = 'Ocurrió un error al registrar el usuario. Intenta nuevamente.';
+      }
+
+      this.miClase = "msg1"; // clase para error
     }
   }
 
