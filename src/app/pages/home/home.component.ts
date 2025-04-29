@@ -5,6 +5,7 @@ import { HeaderSmallComponent } from '../../shared/header-small/header-small.com
 import { PostChallangeResultsComponent } from '../../shared/post-challange-results/post-challange-results.component';
 import { PostParticipationComponent } from '../../shared/post-participation/post-participation.component';
 import { PostRequerimentsComponent } from '../../shared/post-requeriments/post-requeriments.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ import { PostRequerimentsComponent } from '../../shared/post-requeriments/post-r
     PostChallangeResultsComponent,
     PostParticipationComponent,
     PostRequerimentsComponent,
+    RouterModule,
   ],
   standalone: true,
   templateUrl: './home.component.html',

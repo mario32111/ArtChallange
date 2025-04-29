@@ -1,4 +1,10 @@
 <div class="feedcomments">
+  <div class="new-comment">
+    <h4>Add a Comment</h4>
+    <textarea placeholder="Write your comment..." [(ngModel)]="newCommentText"></textarea>
+    <button (click)="addComment()">Post Comment</button>
+  </div>
+  
   <ul>
       <li>
           <div class="feedcomments-user">
@@ -27,4 +33,5 @@
           </div>
       </li>
   </ul>
+
 </div>
