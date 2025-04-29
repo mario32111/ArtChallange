@@ -1,0 +1,55 @@
+<div class="row border-radius">
+  <div class="feed">
+    <div class="feed_title">
+      <img src="../../../assets/images/user-6.jpg" alt="" />
+      <span><b>Organizador2</b> shared a <a href="feed.html">convocatoria</a><br>
+        <p>March 1 at 3:53pm</p>
+      </span>
+    </div>
+    <div class="feed_content">
+      <div class="container">
+        <h3>Convocatoria para el concurso Foto entre amigos</h3>
+
+        <h1>📢 ¡Llamando a todos los amantes de la fotografía y la amistad! 💙</h1>
+        <p>¿Tienes una foto que capture la esencia de la amistad? 🤩 ¡Este es tu momento!</p>
+        <p>Participa en nuestro concurso <span class="highlight">"Foto entre Amigos"</span> y gana premios increíbles. 🏆🎁</p>
+
+        <h2>📌 ¿Cómo participar?</h2>
+        <ul class="steps">
+            <li>📷 <strong>Toma una foto</strong> que refleje la amistad en su máxima expresión.</li>
+            <li>✨ Súbela a <strong>Instagram</strong> con el hashtag <span class="hashtag">#FotoEntreAmigos2024</span></li>
+            <li>📢 <strong>Etiquétanos</strong> en la publicación para que podamos verla.</li>
+        </ul>
+
+        <h2>🏆 Premios increíbles</h2>
+        <p>Para las fotos más <span class="highlight">creativas y emotivas</span>. ¡No te quedes fuera! 😍</p>
+
+        <p>⏳ <strong>Fecha límite de participación:</strong> <span class="highlight">[Inserta fecha]</span></p>
+        <p>📢 <strong>Anuncio de ganadores:</strong> <span class="highlight">[Inserta fecha]</span></p>
+
+        <div class="footer">
+            📸 ¡Etiqueta a tus amigos y únete a la diversión! 🙌😎
+            <br>🔗 Más info en <a href="#">[Inserta enlace]</a>
+        </div>
+    </div>
+      <div class="feed_content_image">
+        <a href="feed.html"><img src="../../../assets/images/photo-2.jpg" alt="" /></a>
+      </div>
+    </div>
+    <div class="feed_footer">
+      <ul class="feed_footer_left">
+        <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
+        <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
+      </ul>
+      <ul class="feed_footer_right">
+        <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
+        <li class="hover-orange">
+          <a (click)="toggleComments()"style="color:#515365;">
+            <i class="fa fa-comments-o"></i> 74 comments
+          </a>
+        </li>
+      </ul>
+    </div>
+    <app-comments  *ngIf="showComments"></app-comments>
+  </div>
+</div>

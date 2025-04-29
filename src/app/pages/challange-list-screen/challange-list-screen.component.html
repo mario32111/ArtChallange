@@ -17,10 +17,9 @@
 
 
 
-<!-- Mostrar detalles del concurso seleccionado -->
+
 <app-challange-details
   *ngIf="concursoSeleccionado"
-  [concurso]="concursoSeleccionado">
+  [concurso]="concursoSeleccionado"
+  (volver)="cerrarDetalles()"> <!-- ✅ Así sí funciona -->
 </app-challange-details>
-
-<button *ngIf="concursoSeleccionado" (click)="cerrarDetalles()">Volver</button>

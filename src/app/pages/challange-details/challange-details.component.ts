@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input  } from '@angular/core';
+import { Component, EventEmitter, Input, Output  } from '@angular/core';
 
 @Component({
   selector: 'app-challange-details',
@@ -10,7 +10,12 @@ import { Component, Input  } from '@angular/core';
 })
 export class ChallangeDetailsComponent {
   @Input() concurso: any;
+  @Output() volver = new EventEmitter<void>(); // 🔁 Evento que se enviará al padre
 
+  emitirVolver() {
+    this.volver.emit(); // ⬅️ Emitimos el evento al padre
+  }
+  
   unirseAlConcurso() {
     alert(`Te has unido al concurso: ${this.concurso.nombre}`);
   }

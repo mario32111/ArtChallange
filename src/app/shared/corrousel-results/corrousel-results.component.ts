@@ -23,7 +23,6 @@ import {
     /* Estilos específicos */
     :host{
       c-carousel {
-    border-radius: 1rem !important; /* Bordes redondeados */
     overflow: hidden; /* Asegura que las imágenes también se redondeen */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Sombra opcional */
     margin: 24px; /* Centra el carrusel en su contenedor */

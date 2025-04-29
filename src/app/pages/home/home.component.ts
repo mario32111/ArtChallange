@@ -2,17 +2,27 @@ import { Component, HostListener } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { CommonModule } from '@angular/common';
 import { HeaderSmallComponent } from '../../shared/header-small/header-small.component';
-import { CorrouselResultsComponent } from '../../shared/corrousel-results/corrousel-results.component';
+import { PostChallangeResultsComponent } from '../../shared/post-challange-results/post-challange-results.component';
+import { PostParticipationComponent } from '../../shared/post-participation/post-participation.component';
+import { PostRequerimentsComponent } from '../../shared/post-requeriments/post-requeriments.component';
 
 @Component({
   selector: 'app-home',
-  imports: [HeaderComponent, HeaderSmallComponent, CorrouselResultsComponent, CommonModule],
+  imports: [
+    HeaderComponent,
+    HeaderSmallComponent,
+    CommonModule,
+    PostChallangeResultsComponent,
+    PostParticipationComponent,
+    PostRequerimentsComponent,
+  ],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
   showSmallHeader = false;
+  mostrarContenido = true;
 
   constructor() {
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
@@ -22,6 +32,11 @@ export class HomeComponent {
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.checkScreenSize();
+  }
+
+
+  toggleContenido() {
+    this.mostrarContenido = !this.mostrarContenido;
   }
 
   // Verificar si la pantalla es pequeña (< 768px por ejemplo)

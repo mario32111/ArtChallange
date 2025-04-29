@@ -1,0 +1,29 @@
+<div class="row border-radius">
+  <div class="feed">
+    <div class="feed_title">
+      <img src="../../../assets/images/user-3.jpg" alt="" />
+      <span><b>Organizador1 de concursos</b> shared a <a href="feed.html">results</a><br>
+        <p>March 2 at 6:05pm</p>
+      </span>
+    </div>
+    <div class="feed_content">
+      <p>Ganadores del concurso <a href="feed.html">Dibuja a tu mascota</a></p>
+      <app-corrousel-results></app-corrousel-results>
+    </div>
+    <div class="feed_footer">
+      <ul class="feed_footer_left">
+        <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
+        <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
+      </ul>
+      <ul class="feed_footer_right">
+        <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
+        <li class="hover-orange">
+          <a (click)="toggleComments()"style="color:#515365;">
+            <i class="fa fa-comments-o"></i> 74 comments
+          </a>
+        </li>
+      </ul>
+    </div>
+    <app-comments  *ngIf="showComments"></app-comments>
+  </div>
+</div>

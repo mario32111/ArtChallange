@@ -13,11 +13,11 @@ import { ChallangeDetailsComponent } from '../challange-details/challange-detail
 })
 export class ChallangeListScreenComponent {
   concursosRecomendados = [
-    { nombre: 'Arte Digital 2025', organizador: 'ArtHub', categoria: 'Digital', imagen: '../../../assets/images/dibujo.jpg' },
-    { nombre: 'Pintura Moderna', organizador: 'Galería X', categoria: 'Pintura', imagen: '../../../assets/images/pintura.jpg' },
-    { nombre: 'Escultura Creativa', organizador: 'Museo Creativo', categoria: 'Escultura', imagen: '../../../assets/images/pintura.jpg' },
-    { nombre: 'Fotografía Urbana', organizador: 'PhotoWorld', categoria: 'Fotografía', imagen: '../../../assets/images/dibujo.jpg'},
-    { nombre: 'Diseño Gráfico', organizador: 'GraphicLab', categoria: 'Diseño', imagen: '../../../assets/images/dibujo.jpg' }
+    { inscripcionCosto:'50',startDate:'1-1-1', endDate: '1-1-1',premios: 'Dineritooo',descripcion: 'Insertar descripcion',nombre: 'Arte Digital 2025', organizador: 'ArtHub', categoria: 'Digital', imagen: '../../../assets/images/dibujo.jpg' },
+    { inscripcionCosto:'50',startDate:'1-1-1', endDate: '1-1-1',premios: 'Dineritooo',descripcion: 'Insertar descripcion',nombre: 'Pintura Moderna', organizador: 'Galería X', categoria: 'Pintura', imagen: '../../../assets/images/pintura.jpg' },
+    { inscripcionCosto:'50',startDate:'1-1-1', endDate: '1-1-1',premios: 'Dineritooo',descripcion: 'Insertar descripcion',nombre: 'Escultura Creativa', organizador: 'Museo Creativo', categoria: 'Escultura', imagen: '../../../assets/images/pintura.jpg' },
+    { inscripcionCosto:'50',startDate:'1-1-1', endDate: '1-1-1',premios: 'Dineritooo',descripcion: 'Insertar descripcion',nombre: 'Fotografía Urbana', organizador: 'PhotoWorld', categoria: 'Fotografía', imagen: '../../../assets/images/dibujo.jpg'},
+    { inscripcionCosto:'50',startDate:'1-1-1', endDate: '1-1-1',premios: 'Dineritooo',descripcion: 'Insertar descripcion',nombre: 'Diseño Gráfico', organizador: 'GraphicLab', categoria: 'Diseño', imagen: '../../../assets/images/dibujo.jpg' }
   ];
 
 

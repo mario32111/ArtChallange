@@ -1,75 +1,167 @@
 .contest-section {
-  padding: 10px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  width: 70%;
-  margin: 80px auto;
-  max-width: 800px;
+  padding: 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffffff, #f1f4f9);
+  width: 90%;
+  margin: 60px auto;
+  max-width: 1000px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.6s ease-in-out;
+}
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 h2 {
-  color: #333;
-  font-size: 20px;
+  color: #222;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 600;
 }
 
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Distribuye los elementos */
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-wrap: wrap;
+}
+
+li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
 }
 
 img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 10px;
+  border: 2px solid #007bff;
+  transition: transform 0.3s;
+}
+
+li:hover img {
+  transform: scale(1.05);
 }
 
 .info {
-  margin-left: 50px;
+  margin-left: 30px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* Ocupará el espacio disponible */
+  flex-grow: 1;
+  min-width: 180px;
 }
 
 h3 {
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
 }
 
 p {
-  margin: 2px 0;
-  font-size: 12px;
-  color: gray;
+  margin: 4px 0;
+  font-size: 13px;
+  color: #666;
 }
 
 span {
   font-size: 14px;
-  font-weight: bold;
-  color: #007bff;
+  font-weight: 600;
+  color: #28a745;
+  margin-top: 4px;
 }
 
 button {
-  padding: 8px 12px;
-  width: 150px;
+  padding: 10px 16px;
+  min-width: 120px;
   border: none;
-  background-color: #007bff;
-  color: white;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
   font-size: 14px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  margin-left: auto; /* Empuja el botón hacia la derecha */
+  transition: background 0.3s ease, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+  margin-top: 10px;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(135deg, #0056b3, #003d80);
+  transform: scale(1.03);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* 🔄 RESPONSIVE BREAKPOINTS */
+
+@media (max-width: 768px) {
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .info {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+
+  button {
+    align-self: flex-end;
+    width: 100%;
+  }
+
+  img {
+    align-self: center;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contest-section {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  span {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
 }

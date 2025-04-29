@@ -1,9 +1,18 @@
 <div class="contest-details" *ngIf="concurso">
+  <!-- Botón flecha para volver -->
+  <button class="back-arrow" (click)="emitirVolver()" aria-label="Volver">
+    <i class="fa fa-arrow-left"></i>
+  </button>
+
   <h2>{{ concurso.nombre }}</h2>
   <img [src]="concurso.imagen" alt="{{ concurso.nombre }}">
-  <p><strong>Organizador:</strong> {{ concurso.organizador }}</p>
-  <p><strong>Categoría:</strong> {{ concurso.categoria }}</p>
-  <p><strong>Descripción:</strong> {{ concurso.descripcion }}</p>
-  <p><strong>Fecha límite:</strong> {{ concurso.fechaLimite }}</p>
+  <div class="contest-meta">
+    <p><strong>Organizador:</strong> {{ concurso.organizador }}</p>
+    <p><strong>Categoría:</strong> {{ concurso.categoria }}</p>
+    <p><strong>Descripción:</strong> {{ concurso.descripcion }}</p>
+    <p><strong>Fecha límite:</strong> {{ concurso.endDate }}</p>
+    <p><strong>Premios:</strong> {{ concurso.premios }}</p>
+    <p><strong>Costo de inscripción:</strong> {{ concurso.inscripcionCosto }}</p>
+  </div>
   <button (click)="unirseAlConcurso()">Unirse al Concurso</button>
 </div>
