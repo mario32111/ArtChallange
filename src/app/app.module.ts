@@ -2,18 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
-// ✅ Firebase con compatibilidad (modo clásico)
+// Usa SOLO la versión COMPAT
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
-// ✅ Routing
 import { AppRoutingModule } from './app-routing.module';
-
-// ✅ Componentes
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-
-// ✅ Environment
-import { environment } from '../app/envitoments/envitoment';
+import { environment } from './envitoments/envitoment'; // Corrige la ruta
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -23,12 +20,13 @@ import { environment } from '../app/envitoments/envitoment';
   imports: [
     BrowserModule,
     AppRoutingModule,
-
-    // ✅ Inicializa Firebase de forma compatible con NgModules
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [
+    UserService // Añade el servicio aquí
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
