@@ -25,11 +25,17 @@ export class LoginComponent {
     private userService: UserService // Añade UserService aquí
   ) {}
 
+  ngOnInit() {
+    this.userService.getAllUsers().subscribe((users: any) => {
+      console.log('Usuarios:', users);
+    }
+    );
+  }
   async createTestUser() {
     const testUser: User= {
-      uid: 'test_' + Math.random().toString(36).slice(2, 9),
-      email: 'test@example.com',
-      username: 'testuser'
+      uid: 'maritooooo_' + Math.random().toString(36).slice(2, 9),
+      email: 'mARIO@example.com',
+      username: 'MARIOuser'
     };
 
     try {

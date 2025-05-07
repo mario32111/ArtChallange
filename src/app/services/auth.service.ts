@@ -1,41 +1,23 @@
 // auth.service.ts
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/compat/app';
+import { Auth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from '@angular/fire/auth';
 
 @Injectable({
-  providedIn: 'root' // Ensures singleton service
+  providedIn: 'root'
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private auth: Auth) {} // Inyecta Auth de Firebase v9
+
   async loginWithEmail(email: string, password: string) {
-    try {
-      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
-      return result.user;
-    } catch (error) {
-      throw error;
-    }
+    return signInWithEmailAndPassword(this.auth, email, password);
   }
 
   async loginWithGoogle() {
-    try {
-      const result = await this.afAuth.signInWithPopup(
-        new firebase.auth.GoogleAuthProvider()
-      );
-      return result.user;
-    } catch (error) {
-      throw error; // Re-throw for component handling
-    }
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(this.auth, provider);
   }
 
-  // auth.service.ts
   async registerWithEmail(email: string, password: string) {
-    try {
-      const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
-      return result.user;
-    } catch (error) {
-      throw error;
-    }
+    return createUserWithEmailAndPassword(this.auth, email, password);
   }
-
 }
