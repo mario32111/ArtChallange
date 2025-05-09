@@ -25,12 +25,9 @@ export class LoginComponent {
     private userService: UserService // Añade UserService aquí
   ) {}
 
-  ngOnInit() {
-    this.userService.getUserByUid("maritooooo_7njfcgb").subscribe((users: any) => {
-      console.log('Usuarios:', users);
-    }
-    );
-  }
+
+/*
+  //* Este método es para crear un usuario de prueba
   async createTestUser() {
     const testUser: User= {
       uid: 'maritooooo_' + Math.random().toString(36).slice(2, 9),
@@ -44,7 +41,7 @@ export class LoginComponent {
     } catch (error) {
       console.error('Error creación:', error);
     }
-  }
+  } */
 
   async loginWithEmail() {
     try {

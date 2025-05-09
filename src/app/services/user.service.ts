@@ -48,7 +48,7 @@ export class UserService {
   }
 
   /*
-  //?El otro metodo de getAllUsers, por si se requiere
+  //*El otro metodo de getAllUsers, por si se requiere
     getAllUsers(): Observable<any[]> {
     const usersCollection = collection(this.firestore, 'usuarios');
     return collectionData(usersCollection, { idField: 'uid' }) as Observable<any[]>;
