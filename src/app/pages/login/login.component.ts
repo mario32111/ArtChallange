@@ -26,7 +26,7 @@ export class LoginComponent {
   ) {}
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe((users: any) => {
+    this.userService.getUserByUid("maritooooo_7njfcgb").subscribe((users: any) => {
       console.log('Usuarios:', users);
     }
     );
