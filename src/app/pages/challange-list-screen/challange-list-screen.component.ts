@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importar CommonModule
 import { HeaderComponent } from '../../shared/header/header.component';
 import { ChallangeDetailsComponent } from '../challange-details/challange-details.component';
+import { Concurso } from '../../interfaces/challange.model';
 
 
 @Component({
@@ -12,17 +13,66 @@ import { ChallangeDetailsComponent } from '../challange-details/challange-detail
   styleUrl: './challange-list-screen.component.css'
 })
 export class ChallangeListScreenComponent {
-  concursosRecomendados = [
-    { inscripcionCosto:'50',startDate:'1-1-1', endDate: '1-1-1',premios: 'Dineritooo',descripcion: 'Insertar descripcion',nombre: 'Arte Digital 2025', organizador: 'ArtHub', categoria: 'Digital', imagen: '../../../assets/images/dibujo.jpg' },
-    { inscripcionCosto:'50',startDate:'1-1-1', endDate: '1-1-1',premios: 'Dineritooo',descripcion: 'Insertar descripcion',nombre: 'Pintura Moderna', organizador: 'Galería X', categoria: 'Pintura', imagen: '../../../assets/images/pintura.jpg' },
-    { inscripcionCosto:'50',startDate:'1-1-1', endDate: '1-1-1',premios: 'Dineritooo',descripcion: 'Insertar descripcion',nombre: 'Escultura Creativa', organizador: 'Museo Creativo', categoria: 'Escultura', imagen: '../../../assets/images/pintura.jpg' },
-    { inscripcionCosto:'50',startDate:'1-1-1', endDate: '1-1-1',premios: 'Dineritooo',descripcion: 'Insertar descripcion',nombre: 'Fotografía Urbana', organizador: 'PhotoWorld', categoria: 'Fotografía', imagen: '../../../assets/images/dibujo.jpg'},
-    { inscripcionCosto:'50',startDate:'1-1-1', endDate: '1-1-1',premios: 'Dineritooo',descripcion: 'Insertar descripcion',nombre: 'Diseño Gráfico', organizador: 'GraphicLab', categoria: 'Diseño', imagen: '../../../assets/images/dibujo.jpg' }
+  concursosRecomendados: Concurso[] = [
+    {
+      inscripcionCosto: '150',
+      startDate: '2025-03-01',
+      endDate: '2025-04-15',
+      premios: '1er lugar: $5,000 MXN, 2do: $3,000 MXN',
+      descripcion: 'Concurso enfocado en obras digitales con temática futurista.',
+      nombre: 'Arte Digital 2025',
+      organizador: 'ArtHub',
+      categoria: 'Digital',
+      imagen: '../../../assets/images/dibujo.jpg'
+    },
+    {
+      inscripcionCosto: '100',
+      startDate: '2025-05-10',
+      endDate: '2025-06-20',
+      premios: '1er lugar: Exposición en Galería X y $10,000 MXN',
+      descripcion: 'Pinturas modernas que desafíen los estilos tradicionales.',
+      nombre: 'Pintura Moderna',
+      organizador: 'Galería X',
+      categoria: 'Pintura',
+      imagen: '../../../assets/images/pintura.jpg'
+    },
+    {
+      inscripcionCosto: '80',
+      startDate: '2025-07-01',
+      endDate: '2025-08-15',
+      premios: '1er lugar: Trofeo + $7,000 MXN',
+      descripcion: 'Esculturas innovadoras con materiales reciclados.',
+      nombre: 'Escultura Creativa',
+      organizador: 'Museo Creativo',
+      categoria: 'Escultura',
+      imagen: '../../../assets/images/escultura.jpg'
+    },
+    {
+      inscripcionCosto: '120',
+      startDate: '2025-09-05',
+      endDate: '2025-10-10',
+      premios: 'Publicación en revista + $6,000 MXN',
+      descripcion: 'Fotografía urbana que capture la esencia de las ciudades modernas.',
+      nombre: 'Fotografía Urbana',
+      organizador: 'PhotoWorld',
+      categoria: 'Fotografía',
+      imagen: '../../../assets/images/fotografia.jpg'
+    },
+    {
+      inscripcionCosto: '90',
+      startDate: '2025-11-01',
+      endDate: '2025-12-10',
+      premios: 'Curso avanzado en diseño gráfico y $4,000 MXN',
+      descripcion: 'Diseño gráfico con impacto visual y mensaje social.',
+      nombre: 'Diseño Gráfico',
+      organizador: 'GraphicLab',
+      categoria: 'Diseño',
+      imagen: '../../../assets/images/diseno.jpg'
+    }
   ];
 
-
   concursoSeleccionado: any = null;
-
+  
   verMas(concurso: any) {
     this.concursoSeleccionado = concurso;
   }
