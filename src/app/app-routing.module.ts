@@ -10,20 +10,20 @@ import { ChallangeListScreenComponent } from './pages/challange-list-screen/chal
 import { ChallangeDetailsComponent } from './pages/challange-details/challange-details.component';
 import { ConcursoFormComponent } from './pages/concurso-form/concurso-form.component';
 import { UploadComponent } from './shared/upload/upload.component';
+import { AuthGuard } from './auth.guard'; // ajusta el path si es necesario
 
 const routes: Routes = [
-  { path: 'home' , component: HomeComponent },
-  { path: 'login' , component: LoginComponent },
-  { path: 'register' , component: RegisterComponent },
-  { path: 'challanges' , component: ChallangeListScreenComponent },
-  { path: 'challangeDetails' , component: ChallangeDetailsComponent },
-  { path: 'newChallange' , component: ConcursoFormComponent },
-  { path: 'a' , component: UploadComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'challanges', component: ChallangeListScreenComponent, canActivate: [AuthGuard] },
+  { path: 'challangeDetails', component: ChallangeDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'newChallange', component: ConcursoFormComponent, canActivate: [AuthGuard] },
+  { path: 'a', component: UploadComponent, canActivate: [AuthGuard] },
 
-
-  { path: '' , pathMatch: 'full', redirectTo: '/login' },
-  { path: '**', component: NotFoundComponent },
-]
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
+  { path: '**', component: NotFoundComponent }
+];
 
 @NgModule({
   declarations: [],
