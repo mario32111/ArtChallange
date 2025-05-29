@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importar CommonModule
 import { HeaderComponent } from '../../shared/header/header.component';
 import { ChallangeDetailsComponent } from '../challange-details/challange-details.component';
 import { Concurso } from '../../interfaces/challange.model';
+import { ChallangeService } from '../../services/challange.service';
 
 
 @Component({
@@ -12,7 +13,24 @@ import { Concurso } from '../../interfaces/challange.model';
   templateUrl: './challange-list-screen.component.html',
   styleUrl: './challange-list-screen.component.css'
 })
-export class ChallangeListScreenComponent {
+export class ChallangeListScreenComponent implements OnInit {
+  constructor(private service: ChallangeService) {}
+
+  ngOnInit(): void {
+/*          this.insertarConcursos();
+ */
+
+    this.service.getAllChallanges().subscribe(
+      (data: Concurso[]) => {
+         console.log('Concursos obtenidos:', data);
+          this.concursosRecomendados = data;
+      },
+      (error) => {
+        console.error('Error al obtener los concursos:', error);
+      }
+    );
+
+  }
   concursosRecomendados: Concurso[] = [
     {
       inscripcionCosto: '150',
@@ -45,7 +63,7 @@ export class ChallangeListScreenComponent {
       nombre: 'Escultura Creativa',
       organizador: 'Museo Creativo',
       categoria: 'Escultura',
-      imagen: '../../../assets/images/escultura.jpg'
+      imagen: '../../../assets/images/pintura.jpg'
     },
     {
       inscripcionCosto: '120',
@@ -56,7 +74,7 @@ export class ChallangeListScreenComponent {
       nombre: 'Fotografía Urbana',
       organizador: 'PhotoWorld',
       categoria: 'Fotografía',
-      imagen: '../../../assets/images/fotografia.jpg'
+      imagen: '../../../assets/images/pintura.jpg'
     },
     {
       inscripcionCosto: '90',
@@ -67,12 +85,20 @@ export class ChallangeListScreenComponent {
       nombre: 'Diseño Gráfico',
       organizador: 'GraphicLab',
       categoria: 'Diseño',
-      imagen: '../../../assets/images/diseno.jpg'
+      imagen: '../../../assets/images/pintura.jpg'
     }
   ];
 
   concursoSeleccionado: any = null;
-  
+
+
+    insertarConcursos(): void {
+    this.concursosRecomendados.forEach((concurso) => {
+      this.service.createChallange(concurso)
+        .then((response) => console.log('Concurso creado:', response))
+        .catch((error) => console.error('Error al crear concurso:', error));
+    });
+  }
   verMas(concurso: any) {
     this.concursoSeleccionado = concurso;
   }

@@ -9,6 +9,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ChallangeListScreenComponent } from './pages/challange-list-screen/challange-list-screen.component';
 import { ChallangeDetailsComponent } from './pages/challange-details/challange-details.component';
 import { ConcursoFormComponent } from './pages/concurso-form/concurso-form.component';
+import { UploadComponent } from './shared/upload/upload.component';
 
 const routes: Routes = [
   { path: 'home' , component: HomeComponent },
@@ -17,8 +18,10 @@ const routes: Routes = [
   { path: 'challanges' , component: ChallangeListScreenComponent },
   { path: 'challangeDetails' , component: ChallangeDetailsComponent },
   { path: 'newChallange' , component: ConcursoFormComponent },
+  { path: 'a' , component: UploadComponent },
 
-  { path: '' , pathMatch: 'full', redirectTo: 'home' },
+
+  { path: '' , pathMatch: 'full', redirectTo: '/login' },
   { path: '**', component: NotFoundComponent },
 ]
 

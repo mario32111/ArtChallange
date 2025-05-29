@@ -1,12 +1,13 @@
 // auth.service.ts
 import { Injectable } from '@angular/core';
 import { Auth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private auth: Auth) {} // Inyecta Auth de Firebase v9
+  constructor(private auth: Auth, private userService: UserService) { } // Inyecta Auth de Firebase v9
 
   async loginWithEmail(email: string, password: string) {
     return signInWithEmailAndPassword(this.auth, email, password);
@@ -14,10 +15,12 @@ export class AuthService {
 
   async loginWithGoogle() {
     const provider = new GoogleAuthProvider();
-    return signInWithPopup(this.auth, provider);
+    const cred = signInWithPopup(this.auth, provider);
+    return (await cred).user.uid
   }
 
   async registerWithEmail(email: string, password: string) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+    const cred = createUserWithEmailAndPassword(this.auth, email, password);
+    return (await cred).user.uid
   }
 }

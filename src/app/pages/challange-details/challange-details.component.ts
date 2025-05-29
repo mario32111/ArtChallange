@@ -15,7 +15,7 @@ export class ChallangeDetailsComponent {
   emitirVolver() {
     this.volver.emit(); // ⬅️ Emitimos el evento al padre
   }
-  
+
   unirseAlConcurso() {
     alert(`Te has unido al concurso: ${this.concurso.nombre}`);
   }
