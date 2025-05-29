@@ -44,8 +44,8 @@
   </div>
 
   <div class="form-group">
-    <label>Imagen (URL o ruta):</label>
-    <input formControlName="imagen" placeholder="Ej. https://..." />
+    <label>Imagen:</label>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
   </div>
 
   <strong [ngClass]="miClase">{{ resultado }}</strong>
