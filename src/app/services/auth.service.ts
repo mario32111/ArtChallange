@@ -16,7 +16,7 @@ export class AuthService {
   async loginWithGoogle() {
     const provider = new GoogleAuthProvider();
     const cred = signInWithPopup(this.auth, provider);
-    return (await cred).user.uid
+    return cred;
   }
 
   async registerWithEmail(email: string, password: string) {

@@ -81,33 +81,32 @@ export class ConcursoFormComponent {
   }
 
 
-async onSubmit() {
-  if (!this.concursoForm.valid) {
-    this.resultado = "Alguno de los campos está vacío";
-    this.miClase = "msg1";
-    console.error('Alguno de los campos está vacío');
-    return;
+  async onSubmit() {
+    if (!this.concursoForm.valid) {
+      this.resultado = "Alguno de los campos está vacío";
+      this.miClase = "msg1";
+      console.error('Alguno de los campos está vacío');
+      return;
+    }
+
+    try {
+      const imageUrl = await this.uploadImage(); // ✅ esperamos la URL
+      const challangeData = {
+        ...this.concursoForm.value,
+        imagen: imageUrl // ✅ actualizamos el valor en el objeto
+      };
+      console.log('Datos del concurso:', challangeData);
+      await this.service.createChallange(challangeData);
+
+      console.log('Concurso creado exitosamente:', challangeData);
+      this.resultado = "Concurso creado exitosamente";
+      this.miClase = "msg2";
+      this.router.navigate(['/home']);
+
+    } catch (error) {
+      console.error('Error al crear el concurso:', error);
+      this.resultado = 'Error al crear el concurso';
+      this.miClase = "msg1";
+    }
   }
-
-  try {
-    const imageUrl = await this.uploadImage(); // ✅ esperamos la URL
-    const challangeData = {
-      ...this.concursoForm.value,
-      imagen: imageUrl // ✅ actualizamos el valor en el objeto
-    };
-    console.log('Datos del concurso:', challangeData);
-    await this.service.createChallange(challangeData);
-
-    console.log('Concurso creado exitosamente:', challangeData);
-    this.resultado = "Concurso creado exitosamente";
-    this.miClase = "msg2";
-    this.router.navigate(['/home']);
-
-  } catch (error) {
-    console.error('Error al crear el concurso:', error);
-    this.resultado = 'Error al crear el concurso';
-    this.miClase = "msg1";
-  }
-}
-
 }

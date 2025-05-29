@@ -7,10 +7,10 @@ import { map } from 'rxjs/operators'; // Asegúrate de importar 'map' de RxJS
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore) { }
 
   createUser(userData: any): Promise<void> {
-    const userDoc = doc(this.firestore, 'usuarios', userData.uid);
+    const userDoc = doc(this.firestore, 'users', userData.uid);
     return setDoc(userDoc, userData);
   }
 
@@ -27,9 +27,9 @@ export class UserService {
   }
 
 
-   // Obtener un usuario por su UID
+  // Obtener un usuario por su UID
   getUserByUid(uid: string): Observable<any> {
-    const usersCollection = collection(this.firestore, 'usuarios');
+    const usersCollection = collection(this.firestore, 'users');
     const usersQuery = query(usersCollection, where('uid', '==', uid)); // Buscamos el campo 'uid' con el valor proporcionado
     return from(getDocs(usersQuery)).pipe(
       map((querySnapshot) => {
