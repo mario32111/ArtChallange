@@ -1,3 +1,9 @@
+<!-- Header grande para pantallas grandes -->
+<app-header *ngIf="!showSmallHeader"></app-header>
+
+<!-- Header pequeño para pantallas pequeñas -->
+<app-header-small *ngIf="showSmallHeader"></app-header-small>
+
 <div class="contest-details" *ngIf="concurso">
   <!-- Botón flecha para volver -->
   <button class="back-arrow" (click)="emitirVolver()" aria-label="Volver">

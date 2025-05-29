@@ -35,15 +35,15 @@ export class HomeComponent {
   onResize() {
     this.checkScreenSize();
   }
-
-
-  toggleContenido() {
-    this.mostrarContenido = !this.mostrarContenido;
-  }
-
   // Verificar si la pantalla es pequeña (< 768px por ejemplo)
   checkScreenSize() {
     const screenWidth = window.innerWidth;
     this.showSmallHeader = screenWidth < 800; // Cambia a header pequeño si es menor a 768px
   }
+
+  toggleContenido() {
+    this.mostrarContenido = !this.mostrarContenido;
+  }
+
+
 }
