@@ -8,7 +8,7 @@
     <img src="assets/images/logo-blanco.png" alt="Logo" />
   </div>
 
-  
+
   <div class="navbar_page">
     <span>> FEED</span>
   </div>
@@ -42,7 +42,7 @@
 
   <div class="navbar_user" (mouseenter)="toggleProfileModal()" (mouseleave)="closeModalsOnLeave()">
     <img [src]="imgUrl" alt="User" />
-    <span id="navbar_user_top">Marito11<br />
+    <span id="navbar_user_top">{{ userName }}<br />
       <p>User</p>
     </span>
     <i class="fa fa-angle-down"></i>

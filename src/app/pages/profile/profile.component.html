@@ -1,0 +1,224 @@
+<!-- Header grande para pantallas grandes -->
+<app-header *ngIf="!showSmallHeader"></app-header>
+
+<!-- Header pequeño para pantallas pequeñas -->
+<app-header-small *ngIf="showSmallHeader"></app-header-small>
+
+    <div class="all">
+        <div class="right_row">
+            <div class="row border-radius">
+                <div class="feed">
+                    <div class="feed_title">
+                        <span><a href="profile.html" id="select_profile_menu"><b>Profile</b></a> | <a href="about.html"><b>About</b></a> | <a href="photos.html"><b>Photos</b></a></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="publish">
+                    <div class="row_title">
+                        <span><i class="fa fa-newspaper-o" aria-hidden="true"></i> Status</span>
+
+                    </div>
+                    <form method="" action="/">
+                        <div class="publish_textarea">
+                            <img class="border-radius-image" [src]="imgUrl" alt="" />
+                            <textarea type="text" placeholder="¿Whats up, {{ userName }}" style="resize: none;"></textarea>
+                        </div>
+                        <div class="publish_icons">
+                            <ul>
+                                <li><i class="fa fa-camera"></i></li>
+                                <li><i class="fa fa-video-camera"></i></li>
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
+                            </ul>
+                            <button>Publish</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row border-radius">
+                <div class="feed">
+                    <div class="feed_title">
+                        <img [src]="imgUrl" alt="" />
+                        <span><b>{{ userName }}</b> shared a <a href="feed.html">photo</a><br><p>March 2 at 6:05pm</p></span>
+                    </div>
+                    <div class="feed_content">
+                        <div class="feed_content_image">
+                            <a href="feed.html"><img [src]="imgUrl" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="feed_footer">
+                        <ul class="feed_footer_left">
+                            <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
+                            <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
+                        </ul>
+                        <ul class="feed_footer_right">
+                                <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
+                                <a href="feed.html" style="color:#515365;"><li class="hover-orange"><i class="fa fa-comments-o"></i> 74 comments</li></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row border-radius">
+                <div class="feed">
+                    <div class="feed_title">
+                        <img src="images/user.jpg" alt="" />
+                        <span><b>Jonh Hamstrong</b> shared a <a href="feed.html">video</a><br><p>March 1 at 3:53pm</p></span>
+                    </div>
+                    <div class="feed_content">
+                        <div class="feed_content_image">
+                            <iframe src="https://www.youtube.com/embed/jR8L9UyExH4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="feed_footer">
+                        <ul class="feed_footer_left">
+                            <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 1k</li>
+                            <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
+                        </ul>
+                        <ul class="feed_footer_right">
+                                <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 177</li>
+                                <a href="feed.html" style="color:#515365;"><li class="hover-orange"><i class="fa fa-comments-o"></i> 12 comments</li></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row border-radius">
+                <div class="feed">
+                    <div class="feed_title">
+                        <img src="images/user-6.jpg" alt="" />
+                        <span><b>Valentine Krashe</b> for <a href="profile.html">Jonh Hamstrong</a><br><p>April 1 at 7:01am</p></span>
+                    </div>
+                    <div class="feed_content">
+                        <div class="feed_content_image">
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+                        </div>
+                    </div>
+                    <div class="feed_footer">
+                        <ul class="feed_footer_left">
+                            <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 159</li>
+                            <li><span><b>Jimmy, Andrea</b> and 157 more liked this</span></li>
+                        </ul>
+                        <ul class="feed_footer_right">
+                                <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
+                                <a href="feed.html" style="color:#515365;"><li class="hover-orange"><i class="fa fa-comments-o"></i> 14 comments</li></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+                <a href=""><div class="loadmorefeed">
+                    <i class="fa fa-ellipsis-h"></i>
+                </div></a>
+        </div>
+
+        <div class="suggestions_row">
+
+
+            <div class="row shadow">
+                <div class="row_title">
+                    <span>Last photos</span>
+                    <a href="#">see all..</a>
+                </div>
+                <div class="row_contain_profilephotos">
+                    <ul>
+                        <li><a href="#"><img src="../../../assets/images/pp_1.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_2.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_3.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_4.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_5.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_6.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_3.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_1.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_1.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_2.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_6.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="../../../assets/images/pp_4.jpg" alt="" /></a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="row shadow">
+                <div class="row_title">
+                    <span>Friends in Common</span>
+                    <a href="friends.html">17 more..</a>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/user-7.jpg" alt="" />
+                    <span><b>Francine Smith</b><br>8 Friends in Common</span>
+                    <button>+</button>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/user-2.jpg" alt="" />
+                    <span><b>Hugh Wilson</b><br>6 Friends in Common</span>
+                    <button>+</button>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/user-6.jpg" alt="" />
+                    <span><b>Karen Masters</b><br>6 Friends in Common</span>
+                    <button>+</button>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/user-7.jpg" alt="" />
+                    <span><b>Francine Smith</b><br>8 Friends in Common</span>
+                    <button>+</button>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/user-2.jpg" alt="" />
+                    <span><b>Hugh Wilson</b><br>6 Friends in Common</span>
+                    <button>+</button>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/user-6.jpg" alt="" />
+                    <span><b>Karen Masters</b><br>6 Friends in Common</span>
+                    <button>+</button>
+                </div>
+            </div>
+
+            <div class="row shadow">
+                <div class="row_title">
+                    <span>Recent Activity's</span>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/user.jpg" alt="" />
+                    <span>Jonh Hamstrong commented on Jason Mark’s <a href="" class="selected-orange">photo</a>..</span>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/user.jpg" alt="" />
+                    <span>Jonh Hamstrong liked Nicholas Grissom’s <a href="" class="selected-orange">status update</a>..</span>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/user.jpg" alt="" />
+                    <span>Jonh Hamstrong added 20 new photos to her <a href="" class="selected-orange">gallery album</a>..</span>
+                </div>
+            </div>
+
+
+            <div class="row shadow">
+                <div class="row_title">
+                    <span>Favourite Pages</span>
+                    <a href="#">see all..</a>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/group-1.png" alt="" />
+                    <span><a href=""><b>The Marina Bar</b></a><br>Restaurant / Bar</span>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/group-2.jpg" alt="" />
+                    <span><a href=""><b>Caverna Roch</b></a><br>Rock / Band</span>
+                </div>
+                <div class="row_contain">
+                    <img src="../../../assets/images/group-3.png" alt="" />
+                    <span><a href=""><b>Pixel Digital Design</b></a><br>Company</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
