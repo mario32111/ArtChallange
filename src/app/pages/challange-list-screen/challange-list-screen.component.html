@@ -1,4 +1,8 @@
-<app-header></app-header>
+<!-- Header grande para pantallas grandes -->
+<app-header *ngIf="!showSmallHeader"></app-header>
+
+<!-- Header pequeño para pantallas pequeñas -->
+<app-header-small *ngIf="showSmallHeader"></app-header-small>
 
 <div class="contest-section" *ngIf="!concursoSeleccionado">
   <h2>Concursos Recomendados</h2>

@@ -5,6 +5,7 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators, Forms
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -25,7 +26,9 @@ export class RegisterComponent implements OnInit {
     rePassword: new FormControl('', [Validators.required])
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService,
+    private router: Router,
+    private userService: UserService) { }
 
   ngOnInit(): void {
     this.formularioValidacion.get('rePassword')?.addValidators(this.passwordValidator());
@@ -51,11 +54,12 @@ export class RegisterComponent implements OnInit {
     const { correo, password } = this.formularioValidacion.value;
 
     try {
-      const user = await this.authService.loginWithGoogle();
-      console.log('Usuario autenticado (Google):', user);
+      const userData = await this.authService.loginWithGoogle();
+      console.log('Usuario autenticado (Google):', userData);
       this.authService.loginWithEmail(correo!, password!);
-      this.router.navigate(['/home']);
 
+      this.router.navigate(['/home']);
+      await this.registerUserInFirestore(userData);
     } catch (error) {
       console.error('Error al iniciar sesión con Google:', error);
     }
@@ -77,7 +81,18 @@ export class RegisterComponent implements OnInit {
       console.log('Usuario registrado (Email):', user);
       this.resultado = "Usuario registrado correctamente"
       this.miClase = "msg2"; // Cambia la clase para mostrar el mensaje de éxito
-      this.authService.loginWithEmail(correo!, password!);
+      const res = this.authService.loginWithEmail(correo!, password!);
+      const uid = (await res).user.uid;
+      const userData = {
+        user: {
+          uid: uid,
+          email: correo,
+          displayName: this.formularioValidacion.get('nombre')?.value,
+          photoURL: 'https://i.ibb.co/FbRMYtMx/user-Image.jpg' // Puedes agregar una URL de foto si es necesario
+        }
+      };
+      await this.registerUserInFirestore(userData);
+
       this.router.navigate(['/home']);
 
       // Redirige o muestra mensaje
@@ -92,6 +107,19 @@ export class RegisterComponent implements OnInit {
 
       this.miClase = "msg1"; // clase para error
     }
+  }
+
+  async registerUserInFirestore(data: any) {
+    this.userService.createUser({
+      uid: data.user.uid,
+      email: data.user.email,
+      displayName: data.user.displayName,
+      photoURL: data.user.photoURL
+    }).then(() => {
+      console.log('Usuario creado en Firestore');
+    }).catch((error) => {
+      console.error('Error al crear usuario en Firestore:', error);
+    });
   }
 
 }

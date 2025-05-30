@@ -1,34 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router'; // Añade esto
 import { AppComponent } from './app.component';
-
-// ✅ Firebase con compatibilidad (modo clásico)
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-
-// ✅ Routing
 import { AppRoutingModule } from './app-routing.module';
-
-// ✅ Componentes
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { environment } from './envitoments/envitoment';
+import { UserService } from './services/user.service';
 
-// ✅ Environment
-import { environment } from '../app/envitoments/envitoment';
+// Firebase v9 (modular)
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-
-    // ✅ Inicializa Firebase de forma compatible con NgModules
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
+    AppRoutingModule, // Asegúrate de que esto incluya RouterModule.forRoot([])
+    RouterModule, // Añade esto para resolver el error de router-outlet
   ],
-  providers: [],
+  providers: [
+    UserService,
+    // Firebase v9 providers (van aquí, no en imports)
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

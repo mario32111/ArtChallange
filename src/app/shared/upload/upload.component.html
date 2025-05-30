@@ -1,0 +1,26 @@
+<!-- upload.component.html -->
+<div class="upload-container">
+  <h2>Subir imagen a ImgBB</h2>
+
+  <input type="file" (change)="onFileSelected($event)" accept="image/*">
+
+  <button (click)="uploadImage()" [disabled]="!selectedFile || isLoading">
+    {{ isLoading ? 'Subiendo...' : 'Subir imagen' }}
+  </button>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="uploadResponse" class="success-message">
+    <h3>¡Imagen subida con éxito!</h3>
+    <p>URL de la imagen:</p>
+    <a [href]="uploadResponse.data.url" target="_blank">{{ uploadResponse.data.url }}</a>
+    <img [src]="uploadResponse.data.url" alt="Imagen subida" style="max-width: 100%; margin-top: 10px;">
+
+    <div *ngIf="uploadResponse.data.delete_url">
+      <p>URL para eliminar:</p>
+      <a [href]="uploadResponse.data.delete_url" target="_blank">{{ uploadResponse.data.delete_url }}</a>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@
     <i class="fa fa-navicon"></i>
   </div>
 
-  <div class="navbar_logo">
+  <div class="navbar_logo" [routerLink]="['/']" style="cursor: pointer;">
     <img src="assets/images/logo-blanco.png" alt="Logo" />
   </div>
 
@@ -33,14 +33,14 @@
       <a href="#" style="color: white">
         <li><i class="fa fa-trophy"></i></li>
       </a>
-<!--       <a href="#" style="color: white">
+      <!--       <a href="#" style="color: white">
         <li><i class="fa fa-shopping-cart"></i></li>
       </a> -->
     </ul>
   </div>
 
   <div class="navbar_user" (mouseenter)="toggleProfileModal()" (mouseleave)="closeModalsOnLeave()">
-    <img src="assets/images/yo.jpg" alt="User" />
+    <img [src]="imgUrl" alt="User" />
     <span id="navbar_user_top">Marito11<br />
       <p>User</p>
     </span>
@@ -126,6 +126,12 @@
           <a href="settings.html">
             <i class="fa fa-tasks"></i>
             <span><b>Profile Settings</b><br />Your profile settings</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/login']" (click)="logout()" routerLinkActive="router-link-active" >
+            <i class="fa fa-sign-out"></i>
+            <span><b>sign out</b></span>
           </a>
         </li>
       </ul>
