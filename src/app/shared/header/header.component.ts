@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
+import { getParsedLocalStorageItem } from '../../../utils/storage.utils';
+import { AuthResponse } from '../../interfaces/auth.interface';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +19,11 @@ export class HeaderComponent {
   messagesModalHover: boolean = false;
   friendsModalHover: boolean = false;
   profileModalHover: boolean = false;
+
+
+  userData = getParsedLocalStorageItem<AuthResponse>('user');
+  imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
+
 
   toggleMessagesModal() {
     this.closeAllModals();
@@ -56,8 +63,8 @@ export class HeaderComponent {
   }
 
   closeModalsOnLeave() {
-      if (!this.messagesModalHover) this.showMessagesModal = false;
-      if (!this.friendsModalHover) this.showFriendsModal = false;
-      if (!this.profileModalHover) this.showProfileModal = false;
+    if (!this.messagesModalHover) this.showMessagesModal = false;
+    if (!this.friendsModalHover) this.showFriendsModal = false;
+    if (!this.profileModalHover) this.showProfileModal = false;
   }
 }

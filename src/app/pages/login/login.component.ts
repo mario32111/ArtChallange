@@ -77,6 +77,8 @@ export class LoginComponent implements OnInit {
       const user = await this.authService.loginWithGoogle();
       console.log('Usuario autenticado (Google):', user);
       this.router.navigate(['/home']);
+      localStorage.setItem('user', JSON.stringify(user));
+
     } catch (error) {
       console.error('Error al iniciar sesión con Google:', error);
     }

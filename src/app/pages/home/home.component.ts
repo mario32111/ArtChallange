@@ -1,3 +1,4 @@
+
 import { Component, HostListener } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { CommonModule } from '@angular/common';
@@ -6,7 +7,8 @@ import { PostChallangeResultsComponent } from '../../shared/post-challange-resul
 import { PostParticipationComponent } from '../../shared/post-participation/post-participation.component';
 import { PostRequerimentsComponent } from '../../shared/post-requeriments/post-requeriments.component';
 import { RouterModule } from '@angular/router';
-
+import { getParsedLocalStorageItem } from '../../../utils/storage.utils';
+import { AuthResponse } from '../../interfaces/auth.interface';
 @Component({
   selector: 'app-home',
   imports: [
@@ -25,9 +27,12 @@ import { RouterModule } from '@angular/router';
 export class HomeComponent {
   showSmallHeader = false;
   mostrarContenido = true;
+  userData = getParsedLocalStorageItem<AuthResponse>('user');
+  imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
 
   constructor() {
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
+    console.log('IMG URL:', this.imgUrl);
   }
 
   // Detectar cambios de tamaño de pantalla
