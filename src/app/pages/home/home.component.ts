@@ -9,6 +9,9 @@ import { PostRequerimentsComponent } from '../../shared/post-requeriments/post-r
 import { RouterModule } from '@angular/router';
 import { getParsedLocalStorageItem } from '../../../utils/storage.utils';
 import { AuthResponse } from '../../interfaces/auth.interface';
+import { ChallangeService } from '../../services/challange.service';
+import { Concurso } from '../../interfaces/challange.model';
+
 @Component({
   selector: 'app-home',
   imports: [
@@ -30,10 +33,29 @@ export class HomeComponent {
   userData = getParsedLocalStorageItem<AuthResponse>('user');
   imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
 
-  constructor() {
+  constructor(private service: ChallangeService) {
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
     console.log('IMG URL:', this.imgUrl);
   }
+  ngOnInit(): void {
+    /*          this.insertarConcursos();
+     */
+
+    this.service.getAllChallanges().subscribe(
+      (data: Concurso[]) => {
+        console.log('Concursos obtenidos:', data);
+        this.concursosRecomendados = data;
+      },
+      (error) => {
+        console.error('Error al obtener los concursos:', error);
+      }
+    );
+
+  }
+  concursosRecomendados: Concurso[] = [];
+  concursoSeleccionado: any = null;
+
+  
 
   // Detectar cambios de tamaño de pantalla
   @HostListener('window:resize', ['$event'])
