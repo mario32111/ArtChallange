@@ -33,7 +33,7 @@
       <a href="#" style="color: white">
         <li><i class="fa fa-trophy"></i></li>
       </a>
-<!--       <a href="#" style="color: white">
+      <!--       <a href="#" style="color: white">
         <li><i class="fa fa-shopping-cart"></i></li>
       </a> -->
     </ul>
@@ -126,6 +126,12 @@
           <a href="settings.html">
             <i class="fa fa-tasks"></i>
             <span><b>Profile Settings</b><br />Your profile settings</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/login']" (click)="logout()" routerLinkActive="router-link-active" >
+            <i class="fa fa-sign-out"></i>
+            <span><b>sign out</b></span>
           </a>
         </li>
       </ul>

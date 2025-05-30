@@ -50,12 +50,6 @@ export class LoginComponent implements OnInit {
     } */
 
 
-  /*
-    ?POR IMPLEMENTAR
-    logout() {
-      localStorage.removeItem('user');
-      return this.auth.signOut(); // o lo que uses
-    } */
   async loginWithEmail() {
     try {
       const user = await this.authService.loginWithEmail(this.email, this.password);

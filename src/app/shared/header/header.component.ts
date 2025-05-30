@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { getParsedLocalStorageItem } from '../../../utils/storage.utils';
 import { AuthResponse } from '../../interfaces/auth.interface';
+import { AuthService } from '../../services/auth.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
@@ -23,8 +25,13 @@ export class HeaderComponent {
 
   userData = getParsedLocalStorageItem<AuthResponse>('user');
   imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
+  constructor(private auth: AuthService) {
+  }
 
-
+  logout() {
+    localStorage.removeItem('user');
+    return this.auth.logOut(); // o lo que uses
+  }
   toggleMessagesModal() {
     this.closeAllModals();
     this.showMessagesModal = !this.showMessagesModal;

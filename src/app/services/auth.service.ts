@@ -1,6 +1,6 @@
 // auth.service.ts
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -22,5 +22,12 @@ export class AuthService {
   async registerWithEmail(email: string, password: string) {
     const cred = createUserWithEmailAndPassword(this.auth, email, password);
     return (await cred).user.uid
+  }
+
+    // 🔴 Agrega este método:
+  async logOut(): Promise<void> {
+    await signOut(this.auth);
+    // Aquí podrías limpiar el localStorage si lo estás usando:
+    localStorage.removeItem('user');
   }
 }
