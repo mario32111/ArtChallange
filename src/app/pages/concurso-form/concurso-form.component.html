@@ -1,0 +1,54 @@
+<app-header></app-header>
+
+<form [formGroup]="concursoForm" (ngSubmit)="onSubmit()" novalidate>
+  <h2>Registrar Concurso</h2>
+
+  <div class="form-group">
+    <label>Nombre:</label>
+    <input formControlName="nombre" placeholder="Ej. Concurso Nacional de Robótica" />
+  </div>
+
+  <div class="form-group">
+    <label>Organizador:</label>
+    <input formControlName="organizador" placeholder="Ej. Instituto de Tecnología" />
+  </div>
+
+  <div class="form-group">
+    <label>Categoría:</label>
+    <input formControlName="categoria" placeholder="Ej. Tecnología" />
+  </div>
+
+  <div class="form-group">
+    <label>Costo de Inscripción:</label>
+    <input formControlName="inscripcionCosto" type="number" placeholder="Ej. 500" />
+  </div>
+
+  <div class="form-group">
+    <label>Fecha de Inicio:</label>
+    <input formControlName="startDate" type="date" />
+  </div>
+
+  <div class="form-group">
+    <label>Fecha de Finalización:</label>
+    <input formControlName="endDate" type="date" />
+  </div>
+
+  <div class="form-group">
+    <label>Premios:</label>
+    <input formControlName="premios" placeholder="Ej. Laptop, Dinero, Beca" />
+  </div>
+
+  <div class="form-group">
+    <label>Descripción:</label>
+    <textarea formControlName="descripcion" rows="4" placeholder="Describe los detalles del concurso..."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Imagen:</label>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+  </div>
+
+  <strong [ngClass]="miClase">{{ resultado }}</strong>
+
+  <button type="submit">Agregar Concurso</button>
+</form>

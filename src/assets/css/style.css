@@ -48,7 +48,10 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 
 /* MENU */
 .rowmenu {width: 90%;margin: 0px auto;display: block;bottom: 0px;overflow-x: hidden;height: 26vw;}
-.rowmenu ul {padding-left: 20px;background}
+.rowmenu ul {
+  padding-left: 20px;
+  background: #fff;
+}
 .rowmenu li {display: block;font-size: 19px;cursor: pointer;font-size: 12px;padding-bottom: 10px;padding-top: 10px;border-bottom: 1px solid #e6ecf5;cursor: inherit;}
 .rowmenu li a{color: #a3a3a3;cursor: pointer;}
 .rowmenu li i {padding-right: 10px}
@@ -84,7 +87,6 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 .feed_title a b{color: #3F4257;}
 .feed_title a b:hover{color: #4A90E2;}
 .feed_title span p {font-size: .675rem;}
-.feed_content {}
 .feed_content p{ margin-left: 24px;}
 
 .feed_content_image {width: 95%;margin: 10px auto;display: block;}

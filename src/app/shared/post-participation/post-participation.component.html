@@ -1,0 +1,33 @@
+<div class="row border-radius">
+  <div class="feed">
+    <div class="feed_title">
+      <img src="../../../assets/images/user-7.jpg" alt="" />
+      <span><b>Marina Valentine</b> shared a <a href="feed.html">participation</a> in <a
+          href="feed.html">concurso</a> <br>
+        <p>March 2 at 6:05pm</p>
+      </span>
+    </div>
+    <div class="feed_content">
+      <p>Tengo el placer de compoartir mi pintura sobre sdsdadadadadadadadadadsda</p>
+
+      <div class="feed_content_image">
+        <a href="feed.html"><img src="../../../assets/images/photo-1.jpg" alt="" /></a>
+      </div>
+    </div>
+    <div class="feed_footer">
+      <ul class="feed_footer_left">
+        <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
+        <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
+      </ul>
+      <ul class="feed_footer_right">
+        <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
+        <li class="hover-orange">
+          <a (click)="toggleComments()"style="color:#515365;">
+            <i class="fa fa-comments-o"></i> 74 comments
+          </a>
+        </li>
+      </ul>
+    </div>
+    <app-comments  *ngIf="showComments"></app-comments>
+  </div>
+</div>

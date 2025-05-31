@@ -1,34 +1,137 @@
 .contest-details {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 70%;
-  margin: 80px auto;
   max-width: 800px;
+  width: 90%;
+  margin: 60px auto;
+  padding: 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffffff, #f0f4f8);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.contest-details h2 {
+  font-size: 28px;
+  color: #222;
+  margin-bottom: 20px;
+  font-weight: 700;
 }
 
 .contest-details img {
   width: 100%;
-  height: auto;
   max-height: 300px;
-  border-radius: 8px;
-  margin-bottom: 15px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.contest-meta p {
+  font-size: 15px;
+  color: #555;
+  margin: 10px 0;
+}
+
+.contest-meta strong {
+  color: #333;
 }
 
 .contest-details button {
-  background-color: #007bff;
+  margin-top: 24px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
   color: white;
+  background: linear-gradient(135deg, #007bff, #0056b3);
   border: none;
-  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
+  transition: background 0.3s ease, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
 }
 
 .contest-details button:hover {
+  background: linear-gradient(135deg, #0056b3, #003d80);
+  transform: scale(1.03);
+}
+
+.contest-details button:active {
+  transform: scale(0.97);
+}
+
+/* 📱 Responsive Styles */
+@media (max-width: 768px) {
+  .contest-details {
+    padding: 16px;
+  }
+
+  .contest-details h2 {
+    font-size: 22px;
+  }
+
+  .contest-meta p {
+    font-size: 14px;
+  }
+
+  .contest-details button {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contest-details {
+    padding: 12px;
+  }
+
+  .contest-details h2 {
+    font-size: 20px;
+  }
+
+  .contest-meta p {
+    font-size: 13px;
+  }
+
+  .contest-details button {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+
+.back-arrow {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 40px;
+  height: 40px;
+  background: #007bff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s;
+}
+
+.back-arrow i {
+  font-size: 20px;
+  color: white;
+}
+
+.back-arrow:hover {
   background-color: #0056b3;
+}
+
+.contest-details {
+  position: relative; /* ✅ Esto es importante para posicionar la flecha */
 }

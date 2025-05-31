@@ -1,0 +1,125 @@
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+  margin-top: 5rem;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+  font-size: 15px;
+}
+
+input, textarea {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Mensajes */
+.msg1 {
+  color: #e74c3c;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.msg2 {
+  color: #2ecc71;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  input, textarea {
+    font-size: 14px;
+    padding: 0.7rem;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  form {
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input, textarea {
+    font-size: 13.5px;
+    padding: 0.65rem;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 0.75rem;
+  }
+}

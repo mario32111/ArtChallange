@@ -1,0 +1,44 @@
+/* Estilos para el botón de Google */
+.google-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #666;
+  font-family: Poppins-Regular, sans-serif;
+  font-size: 14px;
+  transition: all 0.4s;
+  margin-top: 10px;
+}
+
+.google-btn:hover {
+  background-color: #f8f8f8;
+  border-color: #ccc;
+}
+
+.google-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.google-btn span {
+  font-weight: bold;
+}
+
+.center-link-login{
+  padding-top: 30px;
+}
+
+/* Mensajes de error y éxito */
+.msg1 {
+  color: #e74c3c; /* Rojo suave */
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 4px;
+  display: block;
+}

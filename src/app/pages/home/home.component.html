@@ -14,7 +14,7 @@
         </div>
         <form method="" action="/">
           <div class="publish_textarea">
-            <img class="border-radius-image" src="../../../assets/images/yo.jpg" alt="" />
+            <img class="border-radius-image" [src]="imgUrl" alt="" />
             <textarea type="text" placeholder="¿Whats up, Mario?" style="resize: none;"></textarea>
           </div>
           <div class="publish_icons">
@@ -28,128 +28,19 @@
         </form>
       </div>
     </div>
+    <app-post-requeriments></app-post-requeriments>
+
+    <app-post-challange-results></app-post-challange-results>
+
+    <app-post-participation></app-post-participation>
+
+    <!-- *Publicaciones normales -->
+
 
     <div class="row border-radius">
       <div class="feed">
         <div class="feed_title">
-          <img src="../../../assets/images/user-3.jpg" alt="" />
-          <span><b>Organizador1 de concursos</b> shared a <a href="feed.html">results</a><br>
-            <p>March 2 at 6:05pm</p>
-          </span>
-        </div>
-        <div class="feed_content">
-          <p>Ganadores del concurso <a href="feed.html">Dibuja a tu mascota</a></p>
-          <app-corrousel-results></app-corrousel-results>
-        </div>
-        <div class="feed_footer">
-          <ul class="feed_footer_left">
-            <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
-            <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
-          </ul>
-          <ul class="feed_footer_right">
-            <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
-            <li class="hover-orange">
-              <a href="feed.html" style="color:#515365;">
-                <i class="fa fa-comments-o"></i> 74 comments
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="row border-radius">
-      <div class="feed">
-        <div class="feed_title">
-          <img src="../../../assets/images/user-7.jpg" alt="" />
-          <span><b>Marina Valentine</b> shared a <a href="feed.html">participation</a> in <a
-              href="feed.html">concurso</a> <br>
-            <p>March 2 at 6:05pm</p>
-          </span>
-        </div>
-        <div class="feed_content">
-          <p>Tengo el placer de compoartir mi pintura sobre sdsdadadadadadadadadadsda</p>
-
-          <div class="feed_content_image">
-            <a href="feed.html"><img src="../../../assets/images/photo-1.jpg" alt="" /></a>
-          </div>
-        </div>
-        <div class="feed_footer">
-          <ul class="feed_footer_left">
-            <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
-            <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
-          </ul>
-          <ul class="feed_footer_right">
-            <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
-            <li class="hover-orange">
-              <a href="feed.html" style="color:#515365;">
-                <i class="fa fa-comments-o"></i> 74 comments
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="row border-radius">
-      <div class="feed">
-        <div class="feed_title">
-          <img src="../../../assets/images/user-6.jpg" alt="" />
-          <span><b>Organizador2</b> shared a <a href="feed.html">convocatoria</a><br>
-            <p>March 1 at 3:53pm</p>
-          </span>
-        </div>
-        <div class="feed_content">
-          <div class="container">
-            <h3>Convocatoria para el concurso Foto entre amigos</h3>
-
-            <h1>📢 ¡Llamando a todos los amantes de la fotografía y la amistad! 💙</h1>
-            <p>¿Tienes una foto que capture la esencia de la amistad? 🤩 ¡Este es tu momento!</p>
-            <p>Participa en nuestro concurso <span class="highlight">"Foto entre Amigos"</span> y gana premios increíbles. 🏆🎁</p>
-
-            <h2>📌 ¿Cómo participar?</h2>
-            <ul class="steps">
-                <li>📷 <strong>Toma una foto</strong> que refleje la amistad en su máxima expresión.</li>
-                <li>✨ Súbela a <strong>Instagram</strong> con el hashtag <span class="hashtag">#FotoEntreAmigos2024</span></li>
-                <li>📢 <strong>Etiquétanos</strong> en la publicación para que podamos verla.</li>
-            </ul>
-
-            <h2>🏆 Premios increíbles</h2>
-            <p>Para las fotos más <span class="highlight">creativas y emotivas</span>. ¡No te quedes fuera! 😍</p>
-
-            <p>⏳ <strong>Fecha límite de participación:</strong> <span class="highlight">[Inserta fecha]</span></p>
-            <p>📢 <strong>Anuncio de ganadores:</strong> <span class="highlight">[Inserta fecha]</span></p>
-
-            <div class="footer">
-                📸 ¡Etiqueta a tus amigos y únete a la diversión! 🙌😎
-                <br>🔗 Más info en <a href="#">[Inserta enlace]</a>
-            </div>
-        </div>
-          <div class="feed_content_image">
-            <a href="feed.html"><img src="../../../assets/images/photo-2.jpg" alt="" /></a>
-          </div>
-        </div>
-        <div class="feed_footer">
-          <ul class="feed_footer_left">
-            <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
-            <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
-          </ul>
-          <ul class="feed_footer_right">
-            <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
-            <li class="hover-orange">
-              <a href="feed.html" style="color:#515365;">
-                <i class="fa fa-comments-o"></i> 74 comments
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="row border-radius">
-      <div class="feed">
-        <div class="feed_title">
-          <img src="../../../assets/images/yo.jpg" alt="" />
+          <img [src]="imgUrl" alt="" />
           <span><b>Marito11</b> shared a <a href="feed.html">video</a><br>
             <p>March 1 at 3:53pm</p>
           </span>
@@ -253,7 +144,7 @@
     <div class="row shadow">
       <div class="row_title">
         <span>Sugerencias de concursos</span>
-        <a href="friends.html">see more..</a>
+        <a [routerLink]="['/challanges']">see more..</a>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/pintura.jpg" alt="" />
@@ -308,7 +199,7 @@
         <span>Marina Polson commented on Jason Mark’s <a href="" class="selected-orange">photo</a>..</span>
       </div>
       <div class="row_contain">
-        <img src="../../../assets/images/yo.jpg" alt="" />
+        <img [src]="imgUrl" alt="" />
         <span>Jake Parker liked Nicholas Grissom’s <a href="" class="selected-orange">status update</a>..</span>
       </div>
       <div class="row_contain">
