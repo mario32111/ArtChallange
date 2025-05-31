@@ -141,14 +141,13 @@
   color: white;
 }
 
-
 /* Nav */
 .navbar {z-index: 1000; height: 50px;width: 100%;background-color: #163953;color: white;display: flex;align-items:center;position: fixed;top:0px;}
 .navbar_logo {width: 10%;height: 50px;text-align: center;}
 .navbar_logo img {height: 90%; margin: 3px;}
 .navbar_page {height: 50px;text-align: center;background-color: #163953;padding-left: 30px;padding-right: 30px;}
 .navbar_page span {height: 100%;line-height: 3;font-size: .995rem;letter-spacing: 1px;text-transform: uppercase;}
-.navbar_search {height: 50px;text-align: center;width: 40%;display: inline-block;line-height: 3; }
+.navbar_search {height: 50px;text-align: center;width: 40%;display: inline-block;line-height: 3; position: relative;} /* Added position: relative */
 .navbar_search input {padding: 10px;border:none;background-color: #ffffff;color: rgb(105, 105, 105);width:70%; border-radius: 12px;}
 .navbar_search button {padding: 10px;border:none;background-color: #ffffff;color: rgb(160, 160, 160);margin-left:-20px;cursor: pointer; border-radius: 12px;}
 .navbar_search button:hover {background-color: #303347;}
@@ -166,5 +165,47 @@
 .navbar_user i {color: #ff5e3a;}
 .navbar_menuicon {display: none;}
 
+/* New: Styles for Search Results Dropdown */
+.search-results-dropdown {
+  position: absolute;
+  top: 45px; /* Adjust as needed to align with the input */
+  left: 80px;
+  width: 80%; /* Adjust to match your input width or desired width */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999; /* Ensure it's above other elements but below modals */
+  max-height: 300px; /* Limit height and allow scrolling */
+  max-width: 410px; /* Adjust width as needed */
+  overflow-y: auto;
+}
 
+.search-results-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
+.search-results-dropdown ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #515365;
+}
+
+.search-results-dropdown ul li:hover {
+  background-color: #EDF2F6;
+}
+
+.search-results-dropdown ul li img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.search-results-dropdown ul li span {
+  font-size: 14px;
+}
