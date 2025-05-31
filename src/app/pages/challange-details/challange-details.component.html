@@ -5,10 +5,11 @@
 <app-header-small *ngIf="showSmallHeader"></app-header-small>
 
 <div class="contest-details" *ngIf="concurso">
-  <!-- Botón flecha para volver -->
+  <!--Botón flecha para volver 
   <button class="back-arrow" (click)="emitirVolver()" aria-label="Volver">
     <i class="fa fa-arrow-left"></i>
-  </button>
+  </button>-->
+
 
   <h2>{{ concurso.nombre }}</h2>
   <img [src]="concurso.imagen" alt="{{ concurso.nombre }}">
@@ -20,5 +21,8 @@
     <p><strong>Premios:</strong> {{ concurso.premios }}</p>
     <p><strong>Costo de inscripción:</strong> {{ concurso.inscripcionCosto }}</p>
   </div>
-  <button (click)="unirseAlConcurso()">Unirse al Concurso</button>
+
+  <!-- Adapted button -->
+  <button *ngIf="!isSignedUp" (click)="unirseAlConcurso()">Unirse al concurso</button>
+  <p *ngIf="isSignedUp">¡Ya estás inscrito en este concurso!</p>
 </div>

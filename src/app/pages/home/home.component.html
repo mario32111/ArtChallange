@@ -141,116 +141,23 @@
   </div>
 
   <div class="suggestions_row">
+        <!-- MODIFY THIS DIV TO SHOW THE 6 "CONCURSOS" -->
     <div class="row shadow">
       <div class="row_title">
         <span>Sugerencias de concursos</span>
         <a [routerLink]="['/challanges']">see more..</a>
       </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/pintura.jpg" alt="" />
-        <span><b>Francine Smith</b><br>Pintura</span>
-        <button>+</button>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/dibujo.jpg" alt="" />
-        <span><b>Hugh Wilson</b><br>Dibujo tradicional</span>
-        <button>+</button>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/dibujo.jpg" alt="" />
-        <span><b>Karen Masters</b><br>Dibujo tradicional</span>
-        <button>+</button>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/pintura.jpg" alt="" />
-        <span><b>Francine Smith</b><br>Pintura</span>
-        <button>+</button>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/dibujo.jpg" alt="" />
-        <span><b>Hugh Wilson</b><br>Dibujo tradicional</span>
-        <button>+</button>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/dibujo.jpg" alt="" />
-        <span><b>Karen Masters</b><br>Dibujo tradicional</span>
-        <button>+</button>
-      </div>
-    </div>
-
-    <div class="row shadow">
-      <div class="row_title">
-        <span>Activity Feed</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-7.jpg" alt="" />
-        <span>Marina Polson commented on Jason Mark’s <a href="" class="selected-orange">photo</a>..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-2.jpg" alt="" />
-        <span>Jake Parker liked Nicholas Grissom’s <a href="" class="selected-orange">status update</a>..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-3.jpg" alt="" />
-        <span>Mary Jane Stark added 20 new photos to her <a href="" class="selected-orange">gallery album</a>..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-6.jpg" alt="" />
-        <span>Marina Polson commented on Jason Mark’s <a href="" class="selected-orange">photo</a>..</span>
-      </div>
-      <div class="row_contain">
-        <img [src]="imgUrl" alt="" />
-        <span>Jake Parker liked Nicholas Grissom’s <a href="" class="selected-orange">status update</a>..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-4.jpg" alt="" />
-        <span>Mary Jane Stark added 20 new photos to her <a href="" class="selected-orange">gallery album</a>..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-5.jpg" alt="" />
-        <span>Marina Polson commented on Jason Mark’s <a href="" class="selected-orange">photo</a>..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-2.jpg" alt="" />
-        <span>Jake Parker liked Nicholas Grissom’s <a href="" class="selected-orange">status update</a>..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-7.jpg" alt="" />
-        <span>Mary Jane Stark added 20 new photos to her <a href="" class="selected-orange">gallery album</a>..</span>
-      </div>
+      <ng-container *ngFor="let concurso of concursosRecomendados.slice(0, 6)">
+        <div class="row_contain">
+          <img [src]="concurso.imagen" alt="" />
+          <span><b>{{ concurso.nombre }}</b><br>{{ concurso.categoria }}</span>
+          <button (click)="verDetalleConcurso(concurso)">Detalles</button>
+        </div>
+      </ng-container>
     </div>
 
 
-    <div class="row shadow">
-      <div class="row_title">
-        <span>Pages You May Like</span>
-        <a href="#">see more..</a>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-1.png" alt="" />
-        <span><a href=""><b>The Marina Bar</b></a><br>Restaurant / Bar</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-2.jpg" alt="" />
-        <span><a href=""><b>Caverna Roch</b></a><br>Rock / Band</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-3.png" alt="" />
-        <span><a href=""><b>Pixel Digital Design</b></a><br>Company</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-1.png" alt="" />
-        <span><a href=""><b>The Marina Bar</b></a><br>Restaurant / Bar</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-2.jpg" alt="" />
-        <span><a href=""><b>Caverna Roch</b></a><br>Rock / Band</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-3.png" alt="" />
-        <span><a href=""><b>Pixel Digital Design</b></a><br>Company</span>
-      </div>
-    </div>
+
   </div>
 </div>
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>

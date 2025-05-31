@@ -4,13 +4,13 @@
   </div>
 
   <div class="navbar_logo" [routerLink]="['/']" style="cursor: pointer;">
-    <img src="assets/images/logo-blanco.png" alt="Logo" />
+    <img src="/assets/images/logo-blanco.png" alt="Logo" />
   </div>
 
   <div class="navbar_page">
     <span>> FEED</span>
   </div>
-
+  
   <div class="navbar_search">
     <form>
       <input
@@ -45,10 +45,16 @@
         <i class="fa fa-comments-o"></i>
         <span id="notification">2</span>
       </li>
-      <a href="#" style="color: white">
-        <li><i class="fa fa-trophy"></i></li>
-      </a>
-      </ul>
+
+    <a style="color: white; cursor: pointer">
+      <li>
+        <i class="fa fa-trophy" routerLink="/Concursousuario"></i>
+      </li>
+    </a>
+      <!--       <a href="#" style="color: white">
+        <li><i class="fa fa-shopping-cart"></i></li>
+      </a> -->
+    </ul>
   </div>
 
   <div class="navbar_user" (mouseenter)="toggleProfileModal()" (mouseleave)="closeModalsOnLeave()">

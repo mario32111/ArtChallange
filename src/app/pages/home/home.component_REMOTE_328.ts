@@ -38,8 +38,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private service: ChallangeService, private router: Router) {
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
-/*     console.log(this.userName);
- */  }
+    console.log('IMG URL:', this.imgUrl);
+  }
   ngOnInit(): void {
     /*          this.insertarConcursos();
      */
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
   concursosRecomendados: Concurso[] = [];
   concursoSeleccionado: any = null;
 
-
+  
 
   // Detectar cambios de tamaño de pantalla
   @HostListener('window:resize', ['$event'])
