@@ -1,17 +1,16 @@
-<!-- Navbar -->
-<div class="navbar bg-white shadow-sm py-2 px-4 rounded-bottom d-flex align-items-center justify-content-between">
-  <div class="navbar_menuicon" (click)="toggleMobileMenu()">=======
 <div class="navbar">
   <div class="navbar_menuicon" (click)="toggleMobileMenu()">
     <i class="fa fa-navicon"></i>
   </div>
+
   <div class="navbar_logo" [routerLink]="['/']" style="cursor: pointer;">
-    <img src="assets/images/logo-blanco.png" alt="Logo" class="img-fluid" />
+    <img src="assets/images/logo-blanco.png" alt="Logo" />
   </div>
 
   <div class="navbar_page">
     <span>> FEED</span>
   </div>
+
   <div class="navbar_search">
     <form>
       <input
@@ -34,25 +33,30 @@
       </ul>
     </div>
   </div>
+
   <div class="navbar_icons">
-    <ul class="list-inline mb-0 d-flex align-items-center">
-      <li class="list-inline-item position-relative" (mouseenter)="toggleFriendsModal()" (mouseleave)="closeModalsOnLeave()">
+    <ul>
+      <li (mouseenter)="toggleFriendsModal()" (mouseleave)="closeModalsOnLeave()">
         <i class="fa fa-user-o"></i>
-        <span id="notification" class="badge bg-danger position-absolute top-0 start-100 translate-middle">5</span>
+        <span id="notification">5</span>
       </li>
-      <li class="list-inline-item position-relative" (mouseenter)="toggleMessagesModal()" (mouseleave)="closeModalsOnLeave()">
+
+      <li (mouseenter)="toggleMessagesModal()" (mouseleave)="closeModalsOnLeave()">
         <i class="fa fa-comments-o"></i>
-        <span id="notification" class="badge bg-danger position-absolute top-0 start-100 translate-middle">2</span>
+        <span id="notification">2</span>
       </li>
-      <a href="#" style="color: white" class="list-inline-item"><li><i class="fa fa-trophy"></i></li></a>
-    </ul>
+      <a href="#" style="color: white">
+        <li><i class="fa fa-trophy"></i></li>
+      </a>
+      </ul>
   </div>
-  <div class="navbar_user d-flex align-items-center" (mouseenter)="toggleProfileModal()" (mouseleave)="closeModalsOnLeave()">
-    <img [src]="imgUrl" alt="User" class="rounded-circle me-2 border border-2 border-primary" style="width: 40px; height: 40px;" />
-    <span id="navbar_user_top" class="fw-semibold">{{ userName }}<br />
-      <p class="text-muted small mb-0">Usuario</p>
+
+  <div class="navbar_user" (mouseenter)="toggleProfileModal()" (mouseleave)="closeModalsOnLeave()">
+    <img [src]="imgUrl" alt="User" />
+    <span id="navbar_user_top">{{userName}}<br />
+      <p>User</p>
     </span>
-    <i class="fa fa-angle-down ms-2"></i>
+    <i class="fa fa-angle-down"></i>
   </div>
 </div>
 
@@ -146,24 +150,26 @@
 
 <!-- Modal de Mensajes -->
 <div class="modal-container" (mouseenter)="messagesModalHover = true" (mouseleave)="messagesModalHover = false">
-  <div class="modal modal-comments shadow rounded" *ngIf="showMessagesModal">
+  <div class="modal modal-comments" *ngIf="showMessagesModal">
     <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
-    <div class="modal-title border-bottom pb-2 mb-2 d-flex align-items-center justify-content-between">
-      <span class="fw-bold text-primary">TU CUENTA</span>
-      <a href="settings.html"><i class="fa fa-cogs"></i></a>
+    <div class="modal-title">
+      <span>CHAT / MESSAGES</span>
+      <a href="messages.html"><i class="fa fa-ellipsis-h"></i></a>
     </div>
     <div class="modal-content">
-      <ul class="list-unstyled">
-        <li class="mb-2">
-          <a href="#" class="d-flex align-items-center">
-            <img src="assets/images/user-7.jpg" alt="Diana" class="rounded-circle me-2" style="width: 40px; height: 40px;" />
-            <span><b>Diana Jameson</b><br /><span class="text-muted small">Hi James! It’s Diana, I just wanted to let you know que tenemos que reagendar...<p class="text-muted small">hace 4 horas</p></span></span>
+      <ul>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-7.jpg" alt="Diana" />
+            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to
+              reschedule...<p>4 hours ago</p></span>
           </a>
         </li>
         <li>
-          <a href="#" class="d-flex align-items-center">
-            <img src="assets/images/user-2.jpg" alt="Diana" class="rounded-circle me-2" style="width: 40px; height: 40px;" />
-            <span><b>Diana Jameson</b><br /><span class="text-muted small">Hi James! It’s Diana, I just wanted to let you know que tenemos que reagendar...<p class="text-muted small">hace 4 horas</p></span></span>
+          <a href="#">
+            <img src="assets/images/user-2.jpg" alt="Diana" />
+            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to
+              reschedule...<p>4 hours ago</p></span>
           </a>
         </li>
       </ul>
@@ -176,7 +182,7 @@
   <div class="modal modal-friends" *ngIf="showFriendsModal">
     <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
     <div class="modal-title">
-      <span>SOLICITUDES DE AMISTAD</span>
+      <span>FRIEND REQUESTS</span>
       <a href="friends.html"><i class="fa fa-ellipsis-h"></i></a>
     </div>
     <div class="modal-content">
@@ -184,9 +190,9 @@
         <li>
           <a href="#">
             <img src="assets/images/user-2.jpg" alt="Tony" />
-            <span><b>Tony Stevens</b><br />4 Amigos en común</span>
-            <button class="modal-content-accept">Aceptar</button>
-            <button class="modal-content-decline">Rechazar</button>
+            <span><b>Tony Stevens</b><br />4 Friends in Common</span>
+            <button class="modal-content-accept">Accept</button>
+            <button class="modal-content-decline">Decline</button>
           </a>
         </li>
       </ul>
@@ -196,9 +202,9 @@
         <li>
           <a href="#">
             <img src="assets/images/user-7.jpg" alt="Tony" />
-            <span><b>Tony Stevens</b><br />4 Amigos en común</span>
-            <button class="modal-content-accept">Aceptar</button>
-            <button class="modal-content-decline">Rechazar</button>
+            <span><b>Tony Stevens</b><br />4 Friends in Common</span>
+            <button class="modal-content-accept">Accept</button>
+            <button class="modal-content-decline">Decline</button>
           </a>
         </li>
       </ul>
@@ -211,7 +217,7 @@
   <div class="modal modal-profile" *ngIf="showProfileModal">
     <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
     <div class="modal-title">
-      <span>TU CUENTA</span>
+      <span>YOUR ACCOUNT</span>
       <a href="settings.html"><i class="fa fa-cogs"></i></a>
     </div>
     <div class="modal-content">
@@ -219,13 +225,13 @@
         <li>
           <a href="settings.html">
             <i class="fa fa-tasks"></i>
-            <span><b>Configuración de Perfil</b><br />Configuración de tu perfil</span>
+            <span><b>Profile Settings</b><br />Your profile settings</span>
           </a>
         </li>
         <li>
           <a [routerLink]="['/login']" (click)="logout()" routerLinkActive="router-link-active">
             <i class="fa fa-sign-out"></i>
-            <span><b>cerrar sesión</b></span>
+            <span><b>sign out</b></span>
           </a>
         </li>
       </ul>
