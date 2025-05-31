@@ -1,4 +1,3 @@
-<!-- Navbar -->
 <div class="navbar">
   <div class="navbar_menuicon" (click)="toggleMobileMenu()">
     <i class="fa fa-navicon"></i>
@@ -8,16 +7,31 @@
     <img src="assets/images/logo-blanco.png" alt="Logo" />
   </div>
 
-
   <div class="navbar_page">
     <span>> FEED</span>
   </div>
 
   <div class="navbar_search">
     <form>
-      <input type="text" placeholder="Search people.." />
+      <input
+        [(ngModel)]="searchBarValue"
+        name="searchBar"
+        type="text"
+        placeholder="Search people.."
+        (input)="onSearchInputChange()"
+        (focus)="showSearchResults = searchBarValue.length > 0"
+      />
       <button><i class="fa fa-search"></i></button>
     </form>
+
+    <div class="search-results-dropdown" *ngIf="showSearchResults && searchResults.length > 0">
+      <ul>
+        <li *ngFor="let user of searchResults" (click)="selectSearchResult(user)">
+          <img [src]="user.imageUrl" alt="{{ user.name }}" />
+          <span>{{ user.name }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div class="navbar_icons">
@@ -34,18 +48,103 @@
       <a href="#" style="color: white">
         <li><i class="fa fa-trophy"></i></li>
       </a>
-      <!--       <a href="#" style="color: white">
-        <li><i class="fa fa-shopping-cart"></i></li>
-      </a> -->
-    </ul>
+      </ul>
   </div>
 
   <div class="navbar_user" (mouseenter)="toggleProfileModal()" (mouseleave)="closeModalsOnLeave()">
     <img [src]="imgUrl" alt="User" />
-    <span id="navbar_user_top">{{ userName }}<br />
+    <span id="navbar_user_top">{{userName}}<br />
       <p>User</p>
     </span>
     <i class="fa fa-angle-down"></i>
+  </div>
+</div>
+
+<div class="modal-container" (mouseenter)="messagesModalHover = true" (mouseleave)="messagesModalHover = false">
+  <div class="modal modal-comments" *ngIf="showMessagesModal">
+    <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
+    <div class="modal-title">
+      <span>CHAT / MESSAGES</span>
+      <a href="messages.html"><i class="fa fa-ellipsis-h"></i></a>
+    </div>
+    <div class="modal-content">
+      <ul>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-7.jpg" alt="Diana" />
+            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to
+              reschedule...<p>4 hours ago</p></span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-2.jpg" alt="Diana" />
+            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to
+              reschedule...<p>4 hours ago</p></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal-container" (mouseenter)="friendsModalHover = true" (mouseleave)="friendsModalHover = false">
+  <div class="modal modal-friends" *ngIf="showFriendsModal">
+    <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
+    <div class="modal-title">
+      <span>FRIEND REQUESTS</span>
+      <a href="friends.html"><i class="fa fa-ellipsis-h"></i></a>
+    </div>
+    <div class="modal-content">
+      <ul>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-2.jpg" alt="Tony" />
+            <span><b>Tony Stevens</b><br />4 Friends in Common</span>
+            <button class="modal-content-accept">Accept</button>
+            <button class="modal-content-decline">Decline</button>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="modal-content">
+      <ul>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-7.jpg" alt="Tony" />
+            <span><b>Tony Stevens</b><br />4 Friends in Common</span>
+            <button class="modal-content-accept">Accept</button>
+            <button class="modal-content-decline">Decline</button>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal-container" (mouseenter)="profileModalHover = true" (mouseleave)="profileModalHover = false">
+  <div class="modal modal-profile" *ngIf="showProfileModal">
+    <div class="modal-icon-select"><i class="fa fa-sort-asc"></i></div>
+    <div class="modal-title">
+      <span>YOUR ACCOUNT</span>
+      <a href="settings.html"><i class="fa fa-cogs"></i></a>
+    </div>
+    <div class="modal-content">
+      <ul>
+        <li>
+          <a href="settings.html">
+            <i class="fa fa-tasks"></i>
+            <span><b>Profile Settings</b><br />Your profile settings</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/login']" (click)="logout()" routerLinkActive="router-link-active">
+            <i class="fa fa-sign-out"></i>
+            <span><b>sign out</b></span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -130,7 +229,7 @@
           </a>
         </li>
         <li>
-          <a [routerLink]="['/login']" (click)="logout()" routerLinkActive="router-link-active" >
+          <a [routerLink]="['/login']" (click)="logout()" routerLinkActive="router-link-active">
             <i class="fa fa-sign-out"></i>
             <span><b>sign out</b></span>
           </a>
