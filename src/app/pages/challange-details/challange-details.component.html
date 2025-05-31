@@ -4,15 +4,14 @@
 <!-- Header pequeño para pantallas pequeñas -->
 <app-header-small *ngIf="showSmallHeader"></app-header-small>
 
-<div class="contest-details" *ngIf="concurso">
+<div class="contest-details card shadow-lg p-4 mb-4 bg-white rounded" *ngIf="concurso">
   <!-- Botón flecha para volver -->
-  <button class="back-arrow" (click)="emitirVolver()" aria-label="Volver">
+  <button class="back-arrow btn btn-light border shadow-sm mb-3" (click)="emitirVolver()" aria-label="Volver">
     <i class="fa fa-arrow-left"></i>
   </button>
-
-  <h2>{{ concurso.nombre }}</h2>
-  <img [src]="concurso.imagen" alt="{{ concurso.nombre }}">
-  <div class="contest-meta">
+  <h2 class="fw-bold text-primary mb-3">{{ concurso.nombre }}</h2>
+  <img [src]="concurso.imagen" alt="{{ concurso.nombre }}" class="img-fluid rounded mb-3" style="max-width: 400px;">
+  <div class="contest-meta mb-3">
     <p><strong>Organizador:</strong> {{ concurso.organizador }}</p>
     <p><strong>Categoría:</strong> {{ concurso.categoria }}</p>
     <p><strong>Descripción:</strong> {{ concurso.descripcion }}</p>
@@ -20,5 +19,5 @@
     <p><strong>Premios:</strong> {{ concurso.premios }}</p>
     <p><strong>Costo de inscripción:</strong> {{ concurso.inscripcionCosto }}</p>
   </div>
-  <button (click)="unirseAlConcurso()">Unirse al Concurso</button>
+  <button (click)="unirseAlConcurso()" class="btn btn-success rounded-pill px-4">Unirse al Concurso</button>
 </div>
