@@ -27,8 +27,8 @@
     <div class="search-results-dropdown" *ngIf="showSearchResults && searchResults.length > 0">
       <ul>
         <li *ngFor="let user of searchResults" (click)="selectSearchResult(user)">
-          <img [src]="user.imageUrl" alt="{{ user.name }}" />
-          <span>{{ user.name }}</span>
+          <img [src]="user.photoURL" alt="{{ user.displayName }}" />
+          <span>{{ user.displayName }}</span>
         </li>
       </ul>
     </div>

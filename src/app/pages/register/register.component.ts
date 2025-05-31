@@ -110,6 +110,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async registerUserInFirestore(data: any) {
+    console.log('Registrando usuario en Firestore:', data.user);
     this.userService.createUser({
       uid: data.user.uid,
       email: data.user.email,
