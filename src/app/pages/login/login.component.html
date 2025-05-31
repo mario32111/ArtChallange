@@ -5,16 +5,16 @@
         <a href="index.html"><img src="./../../../assets/images/logo2.png" alt=""></a>
       </div>
       <form class="login100-form validate-form" (ngSubmit)="loginWithEmail()">
-        <span class="login100-form-title">Member Login</span>
+        <span class="login100-form-title">Iniciar sesión</span>
 
         <div class="wrap-input100 validate-input">
-          <input class="input100" type="text" name="email" [(ngModel)]="email" placeholder="Email" required>
+          <input class="input100" type="text" name="email" [(ngModel)]="email" placeholder="Correo electrónico" required>
           <span class="focus-input100"></span>
           <span class="symbol-input100"><i class="fa fa-envelope" aria-hidden="true"></i></span>
         </div>
 
         <div class="wrap-input100 validate-input">
-          <input class="input100" type="password" name="password" [(ngModel)]="password" placeholder="Password" required>
+          <input class="input100" type="password" name="password" [(ngModel)]="password" placeholder="Contraseña" required>
           <span class="focus-input100"></span>
           <span class="symbol-input100"><i class="fa fa-lock" aria-hidden="true"></i></span>
         </div>
@@ -23,16 +23,16 @@
           <strong class="msg1">{{ resultado }}</strong>
         </div>
 
-        <div class="container-login100-form-btn">
-          <button type="submit" class="login100-form-btn">Login</button>
+        <div class="container-login100-form-btn d-flex justify-content-center mt-4">
+          <button type="submit" class="login100-form-btn btn btn-primary rounded-pill px-4 shadow">Iniciar sesión</button>
         </div>
 
         <!-- Botón Google -->
-        <div class="text-center p-t-20">
-          <p class="txt1">Or login with</p>
-          <a (click)="loginWithGoogle()" class="google-btn" style="cursor: pointer;">
+        <div class="text-center p-t-20 mt-3">
+          <p class="txt1">O inicia sesión con</p>
+          <a (click)="loginWithGoogle()" class="google-btn d-flex align-items-center justify-content-center" style="cursor: pointer;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo">
-            <span>Login with Google</span>
+            <span>Iniciar sesión con Google</span>
           </a>
         </div>
 

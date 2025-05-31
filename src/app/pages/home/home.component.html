@@ -7,23 +7,22 @@
 <div class="all">
   <div class="right_row">
     <div class="row">
-      <div class="publish">
-        <div class="row_title">
-          <span><i class="fa fa-newspaper-o" aria-hidden="true"></i> Status</span>
-
+      <div class="publish card shadow-lg p-4 mb-4 bg-white rounded">
+        <div class="row_title mb-3">
+          <span><i class="fa fa-newspaper-o me-2" aria-hidden="true"></i> Estado</span>
         </div>
         <form method="" action="/">
-          <div class="publish_textarea">
-            <img class="border-radius-image" [src]="imgUrl" alt="" />
-            <textarea type="text" placeholder="¿Whats up, Mario?" style="resize: none;"></textarea>
+          <div class="publish_textarea d-flex align-items-center mb-3">
+            <img class="border-radius-image me-3" [src]="imgUrl" alt="" />
+            <textarea type="text" class="form-control" placeholder="¿Qué pasa, Mario?" style="resize: none;"></textarea>
           </div>
-          <div class="publish_icons">
-            <ul>
-              <li><i class="fa fa-camera"></i></li>
-              <li><i class="fa fa-video-camera"></i></li>
-              <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
+          <div class="publish_icons d-flex justify-content-between align-items-center">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item"><i class="fa fa-camera"></i></li>
+              <li class="list-inline-item"><i class="fa fa-video-camera"></i></li>
+              <li class="list-inline-item"><i class="fa fa-map-marker" aria-hidden="true"></i></li>
             </ul>
-            <button>Publish</button>
+            <button class="btn btn-primary rounded-pill px-4 shadow-sm">Publicar</button>
           </div>
         </form>
       </div>
@@ -37,30 +36,30 @@
     <!-- *Publicaciones normales -->
 
 
-    <div class="row border-radius">
+    <div class="row border-radius card shadow-sm mb-4 bg-white">
       <div class="feed">
-        <div class="feed_title">
-          <img [src]="imgUrl" alt="" />
-          <span><b>Marito11</b> shared a <a href="feed.html">video</a><br>
-            <p>March 1 at 3:53pm</p>
+        <div class="feed_title d-flex align-items-center mb-2">
+          <img [src]="imgUrl" alt="" class="me-2" />
+          <span><b>Marito11</b> compartió un <a href="feed.html">video</a><br>
+            <p class="text-muted small">1 de marzo a las 3:53pm</p>
           </span>
         </div>
         <div class="feed_content">
           <div class="feed_content_image">
             <iframe src="https://www.youtube.com/embed/jR8L9UyExH4" frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-100 rounded"></iframe>
           </div>
         </div>
-        <div class="feed_footer">
-          <ul class="feed_footer_left">
-            <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
-            <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
+        <div class="feed_footer d-flex justify-content-between align-items-center mt-2">
+          <ul class="feed_footer_left list-inline mb-0">
+            <li class="hover-orange selected-orange list-inline-item"><i class="fa fa-heart"></i> 22k</li>
+            <li class="list-inline-item"><span><b>Jimmy, Andrea</b> y 47 más les gustó esto</span></li>
           </ul>
-          <ul class="feed_footer_right">
-            <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
-            <li class="hover-orange">
+          <ul class="feed_footer_right list-inline mb-0">
+            <li class="hover-orange selected-orange list-inline-item"><i class="fa fa-share"></i> 7k</li>
+            <li class="hover-orange list-inline-item">
               <a href="feed.html" style="color:#515365;">
-                <i class="fa fa-comments-o"></i> 74 comments
+                <i class="fa fa-comments-o"></i> 74 comentarios
               </a>
             </li>
           </ul>
@@ -73,7 +72,7 @@
       <div class="feed">
         <div class="feed_title">
           <img src="../../../assets/images/user-6.jpg" alt="" />
-          <span><b>Valentine Krashe</b> shared a <a href="feed.html">photo</a><br>
+          <span><b>Valentine Krashe</b> compartió una <a href="feed.html">foto</a><br>
             <p>March 1 at 3:53pm</p>
           </span>
         </div>
@@ -85,13 +84,13 @@
         <div class="feed_footer">
           <ul class="feed_footer_left">
             <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
-            <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
+            <li><span><b>Jimmy, Andrea</b> y 47 más les gustó esto</span></li>
           </ul>
           <ul class="feed_footer_right">
             <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
             <li class="hover-orange">
               <a href="feed.html" style="color:#515365;">
-                <i class="fa fa-comments-o"></i> 74 comments
+                <i class="fa fa-comments-o"></i> 74 comentarios
               </a>
             </li>
           </ul>
@@ -118,13 +117,13 @@
         <div class="feed_footer">
           <ul class="feed_footer_left">
             <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 159</li>
-            <li><span><b>Jimmy, Andrea</b> and 157 more liked this</span></li>
+            <li><span><b>Jimmy, Andrea</b> y 157 más les gustó esto</span></li>
           </ul>
           <ul class="feed_footer_right">
             <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
             <li class="hover-orange">
               <a href="feed.html" style="color:#515365;">
-                <i class="fa fa-comments-o"></i> 54 comments
+                <i class="fa fa-comments-o"></i> 54 comentarios
               </a>
             </li>
           </ul>
@@ -144,7 +143,7 @@
     <div class="row shadow">
       <div class="row_title">
         <span>Sugerencias de concursos</span>
-        <a [routerLink]="['/challanges']">see more..</a>
+        <a [routerLink]="['/challanges']">ver más..</a>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/pintura.jpg" alt="" />
@@ -180,51 +179,51 @@
 
     <div class="row shadow">
       <div class="row_title">
-        <span>Activity Feed</span>
+        <span>Actividad Reciente</span>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/user-7.jpg" alt="" />
-        <span>Marina Polson commented on Jason Mark’s <a href="" class="selected-orange">photo</a>..</span>
+        <span>Marina Polson comentó en la <a href="" class="selected-orange">foto</a> de Jason Mark..</span>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/user-2.jpg" alt="" />
-        <span>Jake Parker liked Nicholas Grissom’s <a href="" class="selected-orange">status update</a>..</span>
+        <span>Jake Parker le dio me gusta a la <a href="" class="selected-orange">actualización de estado</a> de Nicholas Grissom..</span>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/user-3.jpg" alt="" />
-        <span>Mary Jane Stark added 20 new photos to her <a href="" class="selected-orange">gallery album</a>..</span>
+        <span>Mary Jane Stark agregó 20 nuevas fotos a su <a href="" class="selected-orange">álbum de galería</a>..</span>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/user-6.jpg" alt="" />
-        <span>Marina Polson commented on Jason Mark’s <a href="" class="selected-orange">photo</a>..</span>
+        <span>Marina Polson comentó en la <a href="" class="selected-orange">foto</a> de Jason Mark..</span>
       </div>
       <div class="row_contain">
         <img [src]="imgUrl" alt="" />
-        <span>Jake Parker liked Nicholas Grissom’s <a href="" class="selected-orange">status update</a>..</span>
+        <span>Jake Parker le dio me gusta a la <a href="" class="selected-orange">actualización de estado</a> de Nicholas Grissom..</span>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/user-4.jpg" alt="" />
-        <span>Mary Jane Stark added 20 new photos to her <a href="" class="selected-orange">gallery album</a>..</span>
+        <span>Mary Jane Stark agregó 20 nuevas fotos a su <a href="" class="selected-orange">álbum de galería</a>..</span>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/user-5.jpg" alt="" />
-        <span>Marina Polson commented on Jason Mark’s <a href="" class="selected-orange">photo</a>..</span>
+        <span>Marina Polson comentó en la <a href="" class="selected-orange">foto</a> de Jason Mark..</span>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/user-2.jpg" alt="" />
-        <span>Jake Parker liked Nicholas Grissom’s <a href="" class="selected-orange">status update</a>..</span>
+        <span>Jake Parker le dio me gusta a la <a href="" class="selected-orange">actualización de estado</a> de Nicholas Grissom..</span>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/user-7.jpg" alt="" />
-        <span>Mary Jane Stark added 20 new photos to her <a href="" class="selected-orange">gallery album</a>..</span>
+        <span>Mary Jane Stark agregó 20 nuevas fotos a su <a href="" class="selected-orange">álbum de galería</a>..</span>
       </div>
     </div>
 
 
     <div class="row shadow">
       <div class="row_title">
-        <span>Pages You May Like</span>
-        <a href="#">see more..</a>
+        <span>Páginas que Puede Que Te Gusten</span>
+        <a href="#">ver más..</a>
       </div>
       <div class="row_contain">
         <img src="../../../assets/images/group-1.png" alt="" />

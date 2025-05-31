@@ -1,54 +1,43 @@
 <app-header></app-header>
 
-<form [formGroup]="concursoForm" (ngSubmit)="onSubmit()" novalidate>
-  <h2>Registrar Concurso</h2>
-
-  <div class="form-group">
-    <label>Nombre:</label>
-    <input formControlName="nombre" placeholder="Ej. Concurso Nacional de Robótica" />
+<form [formGroup]="concursoForm" (ngSubmit)="onSubmit()" class="card shadow-lg p-4 mb-4 bg-white rounded">
+  <h2 class="fw-bold text-primary mb-4">Agregar Concurso</h2>
+  <div class="form-group mb-3">
+    <label>Nombre del Concurso:</label>
+    <input formControlName="nombre" placeholder="Ej. Concurso de Fotografía" class="form-control rounded-pill" />
   </div>
-
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label>Organizador:</label>
-    <input formControlName="organizador" placeholder="Ej. Instituto de Tecnología" />
+    <input formControlName="organizador" placeholder="Ej. Universidad, Empresa" class="form-control rounded-pill" />
   </div>
-
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label>Categoría:</label>
-    <input formControlName="categoria" placeholder="Ej. Tecnología" />
+    <input formControlName="categoria" placeholder="Ej. Fotografía, Pintura" class="form-control rounded-pill" />
   </div>
-
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label>Costo de Inscripción:</label>
-    <input formControlName="inscripcionCosto" type="number" placeholder="Ej. 500" />
+    <input formControlName="inscripcionCosto" placeholder="Ej. 100" class="form-control rounded-pill" />
   </div>
-
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label>Fecha de Inicio:</label>
-    <input formControlName="startDate" type="date" />
+    <input formControlName="startDate" type="date" class="form-control rounded-pill" />
   </div>
-
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label>Fecha de Finalización:</label>
-    <input formControlName="endDate" type="date" />
+    <input formControlName="endDate" type="date" class="form-control rounded-pill" />
   </div>
-
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label>Premios:</label>
-    <input formControlName="premios" placeholder="Ej. Laptop, Dinero, Beca" />
+    <input formControlName="premios" placeholder="Ej. Laptop, Dinero, Beca" class="form-control rounded-pill" />
   </div>
-
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label>Descripción:</label>
-    <textarea formControlName="descripcion" rows="4" placeholder="Describe los detalles del concurso..."></textarea>
+    <textarea formControlName="descripcion" rows="4" placeholder="Describe los detalles del concurso..." class="form-control"></textarea>
   </div>
-
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label>Imagen:</label>
-    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control" />
   </div>
-
   <strong [ngClass]="miClase">{{ resultado }}</strong>
-
-  <button type="submit">Agregar Concurso</button>
+  <button type="submit" class="btn btn-primary rounded-pill px-4 mt-3">Agregar Concurso</button>
 </form>
