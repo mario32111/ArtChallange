@@ -1,4 +1,5 @@
 export interface Concurso {
+  id?: string;
   inscripcionCosto: string;
   startDate: string;
   endDate: string;

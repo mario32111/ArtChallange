@@ -1,5 +1,5 @@
 
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { CommonModule } from '@angular/common';
 import { HeaderSmallComponent } from '../../shared/header-small/header-small.component';
@@ -11,9 +11,6 @@ import { getParsedLocalStorageItem } from '../../../utils/storage.utils';
 import { AuthResponse } from '../../interfaces/auth.interface';
 import { ChallangeService } from '../../services/challange.service';
 import { Concurso } from '../../interfaces/challange.model';
-import { Router } from '@angular/router';
-
-
 
 @Component({
   selector: 'app-home',
@@ -30,20 +27,20 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   showSmallHeader = false;
   mostrarContenido = true;
   userData = getParsedLocalStorageItem<AuthResponse>('user');
   imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
 
-  constructor(private service: ChallangeService, private router: Router) {
+  constructor(private service: ChallangeService) {
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
-/*     console.log(this.userName);
- */  }
+    console.log('IMG URL:', this.imgUrl);
+  }
   ngOnInit(): void {
     /*          this.insertarConcursos();
      */
-    
+
     this.service.getAllChallanges().subscribe(
       (data: Concurso[]) => {
         console.log('Concursos obtenidos:', data);
@@ -58,7 +55,7 @@ export class HomeComponent implements OnInit {
   concursosRecomendados: Concurso[] = [];
   concursoSeleccionado: any = null;
 
-
+  
 
   // Detectar cambios de tamaño de pantalla
   @HostListener('window:resize', ['$event'])
@@ -73,10 +70,6 @@ export class HomeComponent implements OnInit {
 
   toggleContenido() {
     this.mostrarContenido = !this.mostrarContenido;
-  }
-  
-  verDetalleConcurso(concurso: Concurso) {
-    this.router.navigate(['/challangeDetails', concurso.id]);
   }
 
 

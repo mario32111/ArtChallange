@@ -5,7 +5,7 @@
 <app-header-small *ngIf="showSmallHeader"></app-header-small>
 
 <div class="contest-section" *ngIf="!concursoSeleccionado">
-  <h2>Concursos Recomendados</h2>
+  <h2>Tus Concursos</h2>
   <ul>
     <li *ngFor="let concurso of concursosRecomendados">
       <img [src]="concurso.imagen" alt="{{ concurso.nombre }}">
@@ -14,16 +14,7 @@
         <p>{{ concurso.organizador }}</p>
         <span>{{ concurso.categoria }}</span>
       </div>
-      
-      <div class="button-group">
       <button (click)="verDetalleConcurso(concurso)">Detalles</button>        
-      <button 
-        *ngIf="concurso.id && !signedUpChallangeIds.includes(concurso.id)"
-        (click)="inscribirse(concurso)">
-        Inscribirme
-      </button>
-
-      </div>
     </li>
   </ul>
 </div>

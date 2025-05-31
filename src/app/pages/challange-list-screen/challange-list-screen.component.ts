@@ -5,6 +5,12 @@ import { ChallangeDetailsComponent } from '../challange-details/challange-detail
 import { Concurso } from '../../interfaces/challange.model';
 import { ChallangeService } from '../../services/challange.service';
 import { HeaderSmallComponent } from '../../shared/header-small/header-small.component';
+import { inject } from '@angular/core';
+import { Auth, user } from '@angular/fire/auth';
+import { firstValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -15,13 +21,15 @@ import { HeaderSmallComponent } from '../../shared/header-small/header-small.com
   styleUrl: './challange-list-screen.component.css'
 })
 export class ChallangeListScreenComponent implements OnInit {
-  constructor(private service: ChallangeService) {
+  constructor(private service: ChallangeService,private auth: Auth, private router: Router) {
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
 
   }
 
 
   showSmallHeader = false;
+  signedUpChallangeIds: string[] = [];
+
 
   // Detectar cambios de tamaño de pantalla
   @HostListener('window:resize', ['$event'])
@@ -37,6 +45,7 @@ export class ChallangeListScreenComponent implements OnInit {
   ngOnInit(): void {
     /*          this.insertarConcursos();
      */
+    this.loadUserChallanges();
 
     this.service.getAllChallanges().subscribe(
       (data: Concurso[]) => {
@@ -60,9 +69,47 @@ export class ChallangeListScreenComponent implements OnInit {
         .catch((error) => console.error('Error al crear concurso:', error));
     });
   }
-  verMas(concurso: any) {
-    this.concursoSeleccionado = concurso;
+
+  verDetalleConcurso(concurso: Concurso) {
+    this.router.navigate(['/challangeDetails', concurso.id]);
   }
+
+  async inscribirse(concurso: any) {
+  try {
+    const user$ = user(this.auth);
+    const userData = await firstValueFrom(user$);
+
+    if (!userData) {
+      alert('Debes iniciar sesión para inscribirte.');
+      return;
+    }
+
+    const uid = userData.uid;
+
+    this.service.isUserSignedUp(uid, concurso.id).subscribe(async (alreadySigned) => {
+      if (alreadySigned) {
+        alert('Ya estás inscrito en este concurso.');
+      } else {
+        await this.service.signUpUserToChallange(uid, concurso.id);
+        alert('¡Inscripción exitosa!');
+      }
+    });
+  } catch (error) {
+    console.error('Error al inscribirse:', error);
+    alert('Hubo un error al intentar inscribirte.');
+  }
+  }
+
+  async loadUserChallanges() {
+  const userData = await firstValueFrom(user(this.auth));
+  if (userData) {
+    this.service.getUserChallanges(userData.uid).subscribe(ids => {
+      this.signedUpChallangeIds = ids;
+    });
+  }
+  }
+
+
 
   cerrarDetalles() {
     this.concursoSeleccionado = null;

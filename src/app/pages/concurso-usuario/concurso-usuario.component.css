@@ -164,17 +164,4 @@ button:active {
     font-size: 13px;
     padding: 8px 12px;
   }
-
 }
-
-.button-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px; /* Space between buttons */
-  margin-top: 10px;
-}
-
-.button-group button {
-  width: 100%; /* Optional: make buttons full width */
-}
-

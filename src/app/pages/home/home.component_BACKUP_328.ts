@@ -35,8 +35,12 @@ export class HomeComponent implements OnInit {
   mostrarContenido = true;
   userData = getParsedLocalStorageItem<AuthResponse>('user');
   imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
+<<<<<<< HEAD
+  constructor(private service: ChallangeService) {
+=======
 
   constructor(private service: ChallangeService, private router: Router) {
+>>>>>>> feature/ivanFeatures
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
 /*     console.log(this.userName);
  */  }
