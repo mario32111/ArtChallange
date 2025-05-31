@@ -32,11 +32,10 @@ export class HomeComponent {
   mostrarContenido = true;
   userData = getParsedLocalStorageItem<AuthResponse>('user');
   imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
-
   constructor(private service: ChallangeService) {
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
-    console.log('IMG URL:', this.imgUrl);
-  }
+/*     console.log(this.userName);
+ */  }
   ngOnInit(): void {
     /*          this.insertarConcursos();
      */
@@ -55,7 +54,7 @@ export class HomeComponent {
   concursosRecomendados: Concurso[] = [];
   concursoSeleccionado: any = null;
 
-  
+
 
   // Detectar cambios de tamaño de pantalla
   @HostListener('window:resize', ['$event'])

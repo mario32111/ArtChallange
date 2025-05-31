@@ -11,6 +11,7 @@ import { ChallangeDetailsComponent } from './pages/challange-details/challange-d
 import { ConcursoFormComponent } from './pages/concurso-form/concurso-form.component';
 import { UploadComponent } from './shared/upload/upload.component';
 import { AuthGuard } from './auth.guard'; // ajusta el path si es necesario
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'challangeDetails', component: ChallangeDetailsComponent, canActivate: [AuthGuard] },
   { path: 'newChallange', component: ConcursoFormComponent, canActivate: [AuthGuard] },
   { path: 'a', component: UploadComponent, canActivate: [AuthGuard] },
+  { path: 'personalProfile', component: ProfileComponent, canActivate: [AuthGuard] },
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

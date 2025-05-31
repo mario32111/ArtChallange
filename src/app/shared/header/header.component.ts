@@ -25,6 +25,8 @@ export class HeaderComponent {
 
   userData = getParsedLocalStorageItem<AuthResponse>('user');
   imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
+  userName = this.userData?.user?.providerData?.[0]?.displayName || 'Usuario Anónimo';
+
   constructor(private auth: AuthService) {
   }
 
