@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'challangeDetails/:id', component: ChallangeDetailsComponent, canActivate: [AuthGuard] },
   { path: 'newChallange', component: ConcursoFormComponent, canActivate: [AuthGuard] },
   { path: 'a', component: UploadComponent, canActivate: [AuthGuard] },
-  { path: 'personalProfile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'personalProfile/:uid', component: ProfileComponent, canActivate: [AuthGuard] },
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

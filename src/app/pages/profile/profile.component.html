@@ -23,8 +23,8 @@
                     </div>
                     <form method="" action="/">
                         <div class="publish_textarea">
-                            <img class="border-radius-image" [src]="imgUrl" alt="" />
-                            <textarea type="text" placeholder="¿Whats up, {{ userName }}" style="resize: none;"></textarea>
+                            <img class="border-radius-image" [src]="userProfileData.photoURL" alt="" />
+                            <textarea type="text" placeholder="¿Whats up, {{ userProfileData.displayName }}" style="resize: none;"></textarea>
                         </div>
                         <div class="publish_icons">
                             <ul>
@@ -41,12 +41,12 @@
             <div class="row border-radius">
                 <div class="feed">
                     <div class="feed_title">
-                        <img [src]="imgUrl" alt="" />
-                        <span><b>{{ userName }}</b> shared a <a href="feed.html">photo</a><br><p>March 2 at 6:05pm</p></span>
+                        <img [src]="userProfileData.photoURL" alt="" />
+                        <span><b>{{ userProfileData.displayName }}</b> shared a <a href="feed.html">photo</a><br><p>March 2 at 6:05pm</p></span>
                     </div>
                     <div class="feed_content">
                         <div class="feed_content_image">
-                            <a href="feed.html"><img [src]="imgUrl" alt="" /></a>
+                            <a href="feed.html"><img [src]="userProfileData.photoURL" alt="" /></a>
                         </div>
                     </div>
                     <div class="feed_footer">

@@ -1,9 +1,10 @@
+// header.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { getParsedLocalStorageItem } from '../../../utils/storage.utils';
 import { AuthResponse } from '../../interfaces/auth.interface';
 import { AuthService } from '../../services/auth.service';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; // Asegúrate de importar Router
 import { FormsModule } from '@angular/forms';
 import { debounceTime, Subject } from 'rxjs';
 import { ProfileService } from '../../services/profile.service';
@@ -37,7 +38,8 @@ export class HeaderComponent {
 
   constructor(
     private auth: AuthService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private router: Router // Inyecta el Router
   ) {
     this.searchSubject.pipe(debounceTime(300)).subscribe(searchValue => {
       this.performSearch(searchValue);
@@ -96,7 +98,6 @@ export class HeaderComponent {
 
   onSearchInputChange() {
     this.searchSubject.next(this.searchBarValue);
-    // Mostrar resultados solo si hay algo escrito
     this.showSearchResults = this.searchBarValue.length > 0;
   }
 
@@ -107,18 +108,15 @@ export class HeaderComponent {
       return;
     }
 
-    // Llamar al servicio y manejar la respuesta asíncrona
     this.profileService.getUsersByUsername(searchValue).subscribe({
       next: (users) => {
-        // Asigna directamente los usuarios obtenidos del servicio
-        // Si el servicio ya filtra por "empieza por", no necesitas un filtro adicional aquí.
         this.searchResults = users;
-        this.showSearchResults = this.searchResults.length > 0; // Solo muestra si hay resultados
+        this.showSearchResults = this.searchResults.length > 0;
         console.log('Search results:', this.searchResults);
       },
       error: (error) => {
         console.error('Error fetching users:', error);
-        this.searchResults = []; // Limpia los resultados en caso de error
+        this.searchResults = [];
         this.showSearchResults = false;
       },
       complete: () => {
@@ -128,8 +126,11 @@ export class HeaderComponent {
   }
 
   selectSearchResult(user: any) {
-    console.log('Selected user:', user.name); // Asumiendo que 'name' es una propiedad en tu objeto de usuario
-    this.searchBarValue = user.name; // O user.username, dependiendo de tu modelo
+    console.log('Selected user:', user.displayName);
+    this.searchBarValue = user.displayName;
     this.showSearchResults = false;
+
+    // CAMBIO AQUI: Navega a '/personalProfile' y pasa el 'uid' del usuario
+    this.router.navigate(['/personalProfile', user.uid]);
   }
 }
