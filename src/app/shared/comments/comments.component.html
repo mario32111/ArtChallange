@@ -1,37 +1,42 @@
 <div class="feedcomments">
-  <div class="new-comment">
+  <div class="new-comment row border-radius shadow">
     <h4>Add a Comment</h4>
-    <textarea placeholder="Write your comment..." [(ngModel)]="newCommentText"></textarea>
-    <button (click)="addComment()">Post Comment</button>
+    <div class="comment-input-area"> <textarea placeholder="Write your comment..." [(ngModel)]="newCommentText"></textarea>
+      <button (click)="addComment()">Post Comment</button>
+    </div>
   </div>
-  
+
   <ul>
-      <li>
-          <div class="feedcomments-user">
-              <img src="./../../../assets/images/user-6.jpg" />
-              <span><b>Mathilda Brinker</b><br><p>38 mins ago</p></span>
-          </div>
-          <div class="feedcomments-comment">
-              <p>Ratione voluptatem sequi en lod nesciunt. Neque porro quisquam est, quinder dolorem ipsum quia dolor sit amet, consectetur adipisci velit en lorem ipsum duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-          </div>
-          <div class="feedcomments-foot">
-              <i class="fa fa-heart"></i><span>3 likes</span>
-              <p><a href="#"><i class="fa fa-reply"></i> reply</a></p>
-          </div>
-      </li>
-      <li>
-          <div class="feedcomments-user">
-              <img src="./../../../assets/images/user.jpg" />
-              <span><b>Jonh Hamstrong</b><br><p>1 hour ago</p></span>
-          </div>
-          <div class="feedcomments-comment">
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
-          </div>
-          <div class="feedcomments-foot">
-              <i class="fa fa-heart"></i><span>44 likes</span>
-              <p><a href="#"><i class="fa fa-reply"></i> reply</a></p>
-          </div>
-      </li>
+    <li>
+      <div class="comment-card row border-radius shadow">
+        <div class="feedcomments-user">
+          <img src="./../../../assets/images/user-6.jpg" />
+          <span><b>Mathilda Brinker</b><br><p>38 mins ago</p></span>
+        </div>
+        <div class="feedcomments-comment">
+          <p>Ratione voluptatem sequi en lod nesciunt. Neque porro quisquam est, quinder dolorem ipsum quia dolor sit amet, consectetur adipisci velit en lorem ipsum duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+        </div>
+        <div class="feedcomments-foot">
+          <i class="fa fa-heart"></i><span>3 likes</span>
+          <p><a href="#"><i class="fa fa-reply"></i> reply</a></p>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="comment-card row border-radius shadow">
+        <div class="feedcomments-user">
+          <img src="./../../../assets/images/user.jpg" />
+          <span><b>Jonh Hamstrong</b><br><p>1 hour ago</p></span>
+        </div>
+        <div class="feedcomments-comment">
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
+        </div>
+        <div class="feedcomments-foot">
+          <i class="fa fa-heart"></i><span>44 likes</span>
+          <p><a href="#"><i class="fa fa-reply"></i> reply</a></p>
+        </div>
+      </div>
+    </li>
   </ul>
 
 </div>
