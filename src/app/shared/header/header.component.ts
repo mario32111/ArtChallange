@@ -30,6 +30,8 @@ export class HeaderComponent {
   onSearchBarFocus: boolean = false;
   showSearchResults: boolean = false;
   searchResults: any[] = [];
+
+  isScrolled = false; // Nueva propiedad para el efecto de scr
   private searchSubject = new Subject<string>();
 
   userData = getParsedLocalStorageItem<AuthResponse>('user');
@@ -46,6 +48,16 @@ export class HeaderComponent {
     });
   }
 
+   // HostListener para detectar el scroll en la ventana
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    // Si el scroll vertical es mayor a 50px (puedes ajustar este valor)
+    if (window.scrollY > 50) {
+      this.isScrolled = true;
+    } else {
+      this.isScrolled = false;
+    }
+  }
   logout() {
     localStorage.removeItem('user');
     return this.auth.logOut();
