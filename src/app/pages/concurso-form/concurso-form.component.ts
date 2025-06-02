@@ -103,7 +103,7 @@ export class ConcursoFormComponent {
 
   // Getter para acceder fácilmente a las instruccionesParticipacion como FormArray
   get instruccionesParticipacion(): FormArray {
-    return this.concursoForm.get('instruccionesParticipacion${') as FormArray;
+    return this.concursoForm.get('instruccionesParticipacion') as FormArray;
   }
 
   // Método para crear un nuevo control de instrucción

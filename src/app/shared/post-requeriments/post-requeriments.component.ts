@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommentsComponent } from '../comments/comments.component';
 import { CommonModule } from '@angular/common';
+import { PostsService } from '../../services/posts.service';
 
 @Component({
   selector: 'app-post-requeriments',
@@ -11,6 +12,9 @@ import { CommonModule } from '@angular/common';
 })
 export class PostRequerimentsComponent {
   showComments = false;
+
+  constructor(private postsService: PostsService){
+  }
 
   toggleComments() {
     this.showComments= !this.showComments;
