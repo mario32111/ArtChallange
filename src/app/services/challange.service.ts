@@ -12,10 +12,12 @@ import { ChallangeDocument } from '../interfaces/challange.model';
 export class ChallangeService {
   constructor(private firestore: Firestore) { }
 
-  createChallange(challangeData: ChallangeDocument): Promise<any> {
+  createChallange(challangeData: ChallangeDocument): Promise<string> {
     const challangesCollection = collection(this.firestore, 'challanges');
-    return addDoc(challangesCollection, challangeData);
+    return addDoc(challangesCollection, challangeData)
+      .then((docRef) => docRef.id); // aquí extraemos y devolvemos el ID
   }
+
 
   getAllChallanges(): Observable<any[]> {
     const challangesCollection = collection(this.firestore, 'challanges');
@@ -31,45 +33,45 @@ export class ChallangeService {
 
   //Buscar concursos por ID
   getChallangeById(challangeId: string): Observable<any> {
-  const challangeDoc = doc(this.firestore, 'challanges', challangeId);
-  return from(getDoc(challangeDoc)).pipe(
-    map(docSnap => {
-      if (!docSnap.exists()) throw new Error('Challange not found');
-      return {
-        id: docSnap.id,
-        ...docSnap.data()
-      };
-    })
-  );
-}
+    const challangeDoc = doc(this.firestore, 'challanges', challangeId);
+    return from(getDoc(challangeDoc)).pipe(
+      map(docSnap => {
+        if (!docSnap.exists()) throw new Error('Challange not found');
+        return {
+          id: docSnap.id,
+          ...docSnap.data()
+        };
+      })
+    );
+  }
 
-//registrar usuairo a concurso
-signUpUserToChallange(uid: string, challangeId: string): Promise<any> {
-  const userChallangesCollection = collection(this.firestore, 'userChallanges');
-  return addDoc(userChallangesCollection, {
-    uid,
-    challangeId,
-    signedAt: new Date().toISOString()
-  });
-}
+  //registrar usuairo a concurso
+  signUpUserToChallange(uid: string, challangeId: string): Promise<any> {
+    const userChallangesCollection = collection(this.firestore, 'userChallanges');
+    return addDoc(userChallangesCollection, {
+      uid,
+      challangeId,
+      signedAt: new Date().toISOString()
+    });
+  }
 
-//en caso de que el usuario ya esta inscrito
-isUserSignedUp(uid: string, challangeId: string): Observable<boolean> {
-  const userChallangesRef = collection(this.firestore, 'userChallanges');
-  const q = query(userChallangesRef, where('uid', '==', uid), where('challangeId', '==', challangeId));
+  //en caso de que el usuario ya esta inscrito
+  isUserSignedUp(uid: string, challangeId: string): Observable<boolean> {
+    const userChallangesRef = collection(this.firestore, 'userChallanges');
+    const q = query(userChallangesRef, where('uid', '==', uid), where('challangeId', '==', challangeId));
 
-  return from(getDocs(q)).pipe(
-    map(snapshot => !snapshot.empty)
-  );
-}
+    return from(getDocs(q)).pipe(
+      map(snapshot => !snapshot.empty)
+    );
+  }
 
-// Concurso de usuario
-getUserChallanges(uid: string): Observable<string[]> {
-  const userChallangesRef = collection(this.firestore, 'userChallanges');
-  const q = query(userChallangesRef, where('uid', '==', uid));
-  return from(getDocs(q)).pipe(
-    map(snapshot => snapshot.docs.map(doc => doc.data()['challangeId']))
-  );
-}
+  // Concurso de usuario
+  getUserChallanges(uid: string): Observable<string[]> {
+    const userChallangesRef = collection(this.firestore, 'userChallanges');
+    const q = query(userChallangesRef, where('uid', '==', uid));
+    return from(getDocs(q)).pipe(
+      map(snapshot => snapshot.docs.map(doc => doc.data()['challangeId']))
+    );
+  }
 
 }

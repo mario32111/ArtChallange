@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { ImageUploadService } from '../../services/image-upload.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PostsService } from '../../services/posts.service';
 
 @Component({
   selector: 'app-concurso-form',
@@ -28,7 +29,8 @@ export class ConcursoFormComponent {
   constructor(private fb: FormBuilder,
     private service: ChallangeService,
     private router: Router,
-    private imageUploadService: ImageUploadService) {
+    private imageUploadService: ImageUploadService,
+    private postService: PostsService) {
     this.concursoForm = this.fb.group({
       nombre: ['', Validators.required],
       slogan: [''], // Nuevo campo: opcional
@@ -176,20 +178,35 @@ export class ConcursoFormComponent {
 
       const challangeData = {
         ...rawFormValue,
-        imagen: imageUrl, // Renombrado de 'imagen' a 'imagenPrincipalUrl'
-        premios: premiosArray, // Asigna el array transformado
-        etiquetasRedes: etiquetasArray, // Asigna el array transformado
-        instruccionesParticipacion: instruccionesArray, // Asigna el array transformado
-        createdAt: new Date(), // Nuevo: Fecha de creación
-        updatedAt: new Date(), // Nuevo: Fecha de última actualización
-        estado: 'abierto' // Establece un estado inicial por defecto
+        imagen: imageUrl,
+        premios: premiosArray,
+        etiquetasRedes: etiquetasArray,
+        instruccionesParticipacion: instruccionesArray,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        estado: 'abierto'
       };
 
 
       console.log('Datos del concurso a guardar:', challangeData);
-      await this.service.createChallange(challangeData);
+      const res = await this.service.createChallange(challangeData);
+      console.log('Concurso creado exitosamente:', res);
 
-      console.log('Concurso creado exitosamente:', challangeData);
+      this.postService.createConvocatoriaPost({
+        tipo: 'concurso',
+        concursoRef: res, // Referencia al ID del concurso
+        autorId: 'usuario123', // Reemplaza con el ID del usuario autenticado
+        autorNombre: 'Usuario Ejemplo', // Reemplaza con el nombre del usuario autenticado
+        fechaPublicacion: new Date(),
+        likes: [],
+        comentarios: [],
+        hashtags: [], // Puedes agregar hashtags si es necesario
+        etiquetas: [], // Puedes agregar etiquetas si es necesario
+        creadoEn: new Date(),
+        actualizadoEn: new Date()
+      }, res);
+
+
       this.resultado = "Concurso creado exitosamente";
       this.miClase = "msg2";
       this.router.navigate(['/home']);
