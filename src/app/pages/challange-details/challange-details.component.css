@@ -1,17 +1,19 @@
+/* contest-details: Contenedor principal de los detalles */
 .contest-details {
-  max-width: 800px;
-  width: 90%;
-  margin: 60px auto;
-  padding: 24px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #ffffff, #f0f4f8);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  animation: fadeIn 0.5s ease-in-out;
+  max-width: 900px; /* Un poco más de ancho */
+  width: 92%; /* Más ancho en general */
+  margin: 70px auto; /* Más espacio arriba */
+  padding: 40px; /* Más padding */
+  border-radius: 25px; /* Bordes más redondeados */
+  background: linear-gradient(155deg, #ffffff, #f7f9fc); /* Gradiente suave */
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12), 0 8px 18px rgba(0, 0, 0, 0.06); /* Sombra más pronunciada */
+  animation: fadeIn 0.6s ease-out;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   position: relative;
+  border: 1px solid #e9eff6; /* Borde muy sutil */
 }
 
 @keyframes fadeIn {
@@ -20,165 +22,260 @@
 }
 
 .contest-details h2 {
-  font-size: 28px;
-  color: #222;
-  margin-bottom: 10px;
-  font-weight: 700;
+  font-size: 38px; /* Mucho más grande */
+  color: #2c3e50; /* Azul oscuro */
+  margin-bottom: 12px;
+  font-weight: 800; /* Más peso */
+  letter-spacing: -0.8px;
 }
 
 .contest-details .slogan {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 20px;
+  font-size: 20px; /* Más grande */
+  color: #7f8c8d; /* Gris suave */
+  margin-bottom: 30px; /* Más espacio */
   font-style: italic;
+  max-width: 700px; /* Limitar ancho del slogan */
+  line-height: 1.5;
 }
 
 .contest-details img {
   width: 100%;
-  max-height: 300px;
+  max-height: 400px; /* Mayor altura */
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  border-radius: 18px; /* Bordes más suaves */
+  margin-bottom: 35px; /* Más espacio */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra más fuerte */
+  border: 1px solid #e0e6ed;
 }
 
 .contest-meta {
   width: 100%;
-  text-align: left; /* Align text within contest-meta to the left */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre secciones de meta */
 }
 
 .contest-meta p {
-  font-size: 15px;
+  font-size: 16px; /* Más grande */
   color: #555;
-  margin: 8px 0;
-  line-height: 1.5;
+  margin: 0; /* Resetear margin */
+  line-height: 1.6;
 }
 
 .contest-meta strong {
-  color: #333;
-  margin-right: 5px;
+  color: #34495e;
+  margin-right: 8px;
+  font-weight: 600;
 }
 
 .contest-meta a {
-  color: #007bff;
+  color: #667eea; /* Color del gradiente */
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
 }
 
 .contest-meta a:hover {
+  color: #764ba2;
   text-decoration: underline;
 }
 
 .contest-meta h3 {
-  font-size: 18px;
-  color: #222;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-weight: 600;
+  font-size: 24px; /* Más grande */
+  color: #2c3e50;
+  margin-top: 30px; /* Más espacio arriba */
+  margin-bottom: 15px;
+  font-weight: 700;
+  border-bottom: 2px solid #e0e6ed; /* Separador sutil */
+  padding-bottom: 10px;
 }
 
 .contest-meta ul, .contest-meta ol {
   list-style-position: inside;
-  padding-left: 20px;
-  margin-bottom: 15px;
+  padding-left: 0; /* Resetear padding */
+  margin-bottom: 20px;
 }
 
 .contest-meta ul li, .contest-meta ol li {
-  font-size: 15px;
+  font-size: 16px;
   color: #555;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  text-indent: -1.5em; /* Ajuste para el estilo de lista */
+  padding-left: 1.5em;
+}
+
+.contest-meta ol li {
+  list-style-type: decimal; /* Números para las instrucciones */
+}
+
+.contest-meta ul li {
+  list-style-type: disc; /* Discos para los premios */
+}
+
+.dates-section,
+.rewards-section,
+.social-tags-section,
+.instructions-section {
+  background-color: #fcfdff; /* Fondo ligeramente diferente para secciones */
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid #f0f0f0;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.03); /* Sombra interna sutil */
 }
 
 .contest-details button {
-  margin-top: 24px;
-  padding: 12px 24px;
-  font-size: 15px;
-  font-weight: 600;
+  margin-top: 40px; /* Más espacio */
+  padding: 15px 30px; /* Más padding */
+  font-size: 18px; /* Más grande */
+  font-weight: 700;
   color: white;
-  background: linear-gradient(135deg, #007bff, #0056b3);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Gradiente consistente */
   border: none;
-  border-radius: 8px;
+  border-radius: 12px; /* Más redondeado */
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4); /* Sombra más fuerte */
+  min-width: 250px; /* Ancho mínimo */
 }
 
 .contest-details button:hover {
-  background: linear-gradient(135deg, #0056b3, #003d80);
-  transform: scale(1.03);
+  background: linear-gradient(135deg, #764ba2, #667eea);
+  transform: translateY(-5px) scale(1.03); /* Elevación más notable */
+  box-shadow: 0 12px 30px rgba(118, 75, 162, 0.5);
 }
 
 .contest-details button:active {
-  transform: scale(0.97);
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.2);
 }
 
 .contest-status {
-  padding: 4px 8px;
-  border-radius: 5px;
+  padding: 8px 15px; /* Más padding */
+  border-radius: 10px; /* Más redondeado */
   font-weight: bold;
   color: white;
+  font-size: 15px;
+  display: inline-block; /* Para que el padding y border-radius funcionen bien */
+  margin-top: 5px;
 }
 
 .status-abierto {
-  background-color: #28a745; /* Green */
+  background-color: #28a745; /* Verde */
+  box-shadow: 0 3px 8px rgba(40, 167, 69, 0.3);
 }
 
 .status-cerrado {
-  background-color: #dc3545; /* Red */
+  background-color: #dc3545; /* Rojo */
+  box-shadow: 0 3px 8px rgba(220, 53, 69, 0.3);
 }
 
 .status-proximo {
-  background-color: #ffc107; /* Yellow/Orange */
-  color: #333; /* Darker text for yellow background */
+  background-color: #ffc107; /* Amarillo/Naranja */
+  color: #333; /* Texto más oscuro para fondo amarillo */
+  box-shadow: 0 3px 8px rgba(255, 193, 7, 0.3);
 }
 
 .timestamps {
-  margin-top: 20px;
-  font-size: 12px;
-  color: #777;
+  margin-top: 30px; /* Más espacio */
+  font-size: 13px; /* Más legible */
+  color: #95a5a6; /* Gris más suave */
   text-align: right;
+  border-top: 1px dashed #e0e6ed; /* Línea divisoria suave */
+  padding-top: 15px;
 }
 
 .closed-message, .upcoming-message {
-  margin-top: 15px;
+  margin-top: 25px;
   font-weight: bold;
-  color: #dc3545;
+  font-size: 17px;
+  color: #dc3545; /* Rojo para mensajes de estado */
+  background-color: #ffebeb; /* Fondo suave para el mensaje */
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid #f5c6cb;
 }
 
 /* 📱 Responsive Styles */
 @media (max-width: 768px) {
   .contest-details {
-    padding: 16px;
+    padding: 25px;
+    margin: 50px auto;
   }
-
   .contest-details h2 {
+    font-size: 30px;
+  }
+  .contest-details .slogan {
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+  .contest-details img {
+    max-height: 280px;
+    margin-bottom: 25px;
+  }
+  .contest-meta p {
+    font-size: 15px;
+  }
+  .contest-meta h3 {
     font-size: 22px;
+    margin-top: 25px;
   }
-
-  .contest-meta p, .contest-meta ul li, .contest-meta ol li {
-    font-size: 14px;
+  .contest-meta ul li, .contest-meta ol li {
+    font-size: 15px;
   }
-
+  .dates-section,
+  .rewards-section,
+  .social-tags-section,
+  .instructions-section {
+    padding: 20px;
+  }
   .contest-details button {
     width: 100%;
-    font-size: 14px;
+    font-size: 16px;
+    padding: 12px 25px;
+    margin-top: 30px;
+  }
+  .closed-message, .upcoming-message {
+    font-size: 15px;
+    padding: 12px 18px;
   }
 }
 
 @media (max-width: 480px) {
   .contest-details {
-    padding: 12px;
+    padding: 18px;
+    margin: 30px auto;
   }
-
   .contest-details h2 {
+    font-size: 26px;
+  }
+  .contest-details .slogan {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+  .contest-details img {
+    max-height: 200px;
+    margin-bottom: 20px;
+  }
+  .contest-meta p {
+    font-size: 14px;
+  }
+  .contest-meta h3 {
     font-size: 20px;
+    margin-top: 20px;
   }
-
-  .contest-meta p, .contest-meta ul li, .contest-meta ol li {
-    font-size: 13px;
+  .contest-meta ul li, .contest-meta ol li {
+    font-size: 14px;
   }
-
+  .dates-section,
+  .rewards-section,
+  .social-tags-section,
+  .instructions-section {
+    padding: 15px;
+  }
   .contest-details button {
-    padding: 10px;
-    font-size: 13px;
+    font-size: 15px;
+    padding: 10px 20px;
+    margin-top: 25px;
   }
 }

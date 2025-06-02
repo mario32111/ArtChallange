@@ -1,167 +1,210 @@
+/* contest-section: Contenedor principal de la lista */
 .contest-section {
-  padding: 20px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #ffffff, #f1f4f9);
+  padding: 30px; /* Aumentar padding */
+  border-radius: 20px; /* Bordes más suaves */
+  background: linear-gradient(145deg, #f0f4f8, #ffffff); /* Gradiente más dinámico */
   width: 90%;
   margin: 60px auto;
-  max-width: 1000px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  animation: fadeIn 0.6s ease-in-out;
+  max-width: 1100px; /* Un poco más ancho */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05); /* Sombra más profunda */
+  animation: fadeIn 0.7s ease-out;
+  border: 1px solid #e0e6ed; /* Borde sutil */
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 h2 {
-  color: #222;
-  font-size: 26px;
+  color: #2c3e50; /* Un azul oscuro más elegante */
+  font-size: 32px; /* Más grande */
   text-align: center;
-  margin-bottom: 24px;
-  font-weight: 600;
+  margin-bottom: 35px; /* Más espacio */
+  font-weight: 700; /* Más peso */
+  letter-spacing: -0.5px; /* Ajuste sutil */
 }
 
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: grid; /* Usar grid para un mejor layout de la lista */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Columnas responsivas */
+  gap: 25px; /* Espacio entre elementos del grid */
 }
 
 li {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-  border-radius: 12px;
-  margin-bottom: 16px;
+  flex-direction: column; /* Cambiar a columna para mejor layout en la tarjeta */
+  align-items: center; /* Centrar elementos */
+  padding: 25px; /* Aumentar padding */
+  border-radius: 18px; /* Bordes más redondeados */
   background-color: #ffffff;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
-  flex-wrap: wrap;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.03); /* Sombra más suave */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transiciones más suaves */
+  border: 1px solid #f0f0f0; /* Borde muy sutil */
+  text-align: center; /* Centrar texto */
 }
 
 li:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px); /* Elevación más pronunciada */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 6px 15px rgba(0, 0, 0, 0.08); /* Sombra de hover más dramática */
 }
 
 img {
-  width: 60px;
-  height: 60px;
+  width: 90px; /* Más grande */
+  height: 90px; /* Más grande */
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #007bff;
-  transition: transform 0.3s;
+  border: 4px solid #667eea; /* Color de borde más vibrante */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para la imagen */
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 15px; /* Espacio debajo de la imagen */
 }
 
 li:hover img {
-  transform: scale(1.05);
+  transform: scale(1.08) rotate(3deg); /* Efecto más divertido al pasar el ratón */
 }
 
 .info {
-  margin-left: 30px;
+  margin-left: 0; /* No se necesita margin-left al ser columna */
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  min-width: 180px;
+  width: 100%; /* Ocupar todo el ancho disponible */
 }
 
 h3 {
   margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
+  font-size: 22px; /* Más grande */
+  font-weight: 700;
+  color: #34495e; /* Color oscuro */
+  margin-bottom: 8px;
 }
 
 p {
   margin: 4px 0;
-  font-size: 13px;
-  color: #666;
+  font-size: 15px;
+  color: #7f8c8d; /* Gris suave */
+  line-height: 1.4;
 }
 
 span {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
-  color: #28a745;
-  margin-top: 4px;
+  color: #27ae60; /* Verde más vivo */
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #e6ffee; /* Fondo suave para la categoría */
+  border-radius: 8px;
+  align-self: center; /* Centrar el span */
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row; /* Botones en fila */
+  gap: 12px; /* Espacio entre botones */
+  margin-top: 20px; /* Más espacio arriba */
+  width: 100%; /* Ocupar todo el ancho */
+  justify-content: center; /* Centrar los botones */
 }
 
 button {
-  padding: 10px 16px;
-  min-width: 120px;
+  padding: 12px 22px; /* Más padding */
+  min-width: 140px; /* Ancho mínimo */
   border: none;
-  background: linear-gradient(135deg, #007bff, #0056b3);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Gradiente de azul a morado */
   color: #fff;
-  font-size: 14px;
-  border-radius: 8px;
+  font-size: 16px; /* Más grande */
+  font-weight: 600;
+  border-radius: 10px; /* Bordes más redondeados */
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
-  margin-top: 10px;
+  transition: all 0.3s ease-in-out; /* Todas las transiciones */
+  box-shadow: 0 6px 15px rgba(102, 126, 234, 0.3); /* Sombra con el color del gradiente */
 }
 
 button:hover {
-  background: linear-gradient(135deg, #0056b3, #003d80);
-  transform: scale(1.03);
+  background: linear-gradient(135deg, #764ba2, #667eea); /* Invertir gradiente o cambiar color */
+  transform: translateY(-3px) scale(1.02); /* Pequeño desplazamiento y escala */
+  box-shadow: 0 10px 25px rgba(118, 75, 162, 0.4);
 }
 
 button:active {
-  transform: scale(0.98);
+  transform: translateY(0) scale(0.98); /* Efecto de presionado */
+  box-shadow: 0 3px 8px rgba(102, 126, 234, 0.2);
 }
 
 /* 🔄 RESPONSIVE BREAKPOINTS */
 
 @media (max-width: 768px) {
-  li {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+  .contest-section {
+    padding: 20px;
+    margin: 40px auto;
   }
-
-  .info {
-    margin-left: 0;
-    margin-top: 12px;
-  }
-
-  button {
-    align-self: flex-end;
-    width: 100%;
-  }
-
-  img {
-    align-self: center;
-  }
-
   h2 {
-    font-size: 22px;
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+  ul {
+    grid-template-columns: 1fr; /* Una sola columna en pantallas más pequeñas */
+    gap: 20px;
+  }
+  li {
+    padding: 20px;
+  }
+  img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 14px;
+  }
+  span {
+    font-size: 15px;
+    margin-top: 8px;
+  }
+  .button-group {
+    flex-direction: column; /* Botones apilados en móvil */
+    gap: 10px;
+  }
+  button {
+    width: 100%; /* Ocupar todo el ancho */
+    font-size: 15px;
+    padding: 10px 18px;
   }
 }
 
 @media (max-width: 480px) {
   .contest-section {
     padding: 15px;
+    margin: 30px auto;
   }
-
   h2 {
-    font-size: 20px;
+    font-size: 24px;
   }
-
+  li {
+    padding: 18px;
+  }
   img {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
-
   h3 {
-    font-size: 16px;
+    font-size: 18px;
   }
-
+  p {
+    font-size: 13px;
+  }
   span {
-    font-size: 13px;
+    font-size: 14px;
   }
-
   button {
-    font-size: 13px;
-    padding: 8px 12px;
+    font-size: 14px;
+    padding: 9px 15px;
   }
 }
