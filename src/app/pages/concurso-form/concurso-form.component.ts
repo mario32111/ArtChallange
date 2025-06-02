@@ -7,6 +7,8 @@ import { HeaderComponent } from '../../shared/header/header.component';
 import { ImageUploadService } from '../../services/image-upload.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PostsService } from '../../services/posts.service';
+import { getParsedLocalStorageItem } from '../../../utils/storage.utils';
+import { AuthResponse } from '../../interfaces/auth.interface';
 
 @Component({
   selector: 'app-concurso-form',
@@ -101,7 +103,7 @@ export class ConcursoFormComponent {
 
   // Getter para acceder fácilmente a las instruccionesParticipacion como FormArray
   get instruccionesParticipacion(): FormArray {
-    return this.concursoForm.get('instruccionesParticipacion') as FormArray;
+    return this.concursoForm.get('instruccionesParticipacion${') as FormArray;
   }
 
   // Método para crear un nuevo control de instrucción
@@ -157,7 +159,9 @@ export class ConcursoFormComponent {
       });
     });
   }
-
+  userData = getParsedLocalStorageItem<AuthResponse>('user');
+  userName = this.userData?.user?.providerData?.[0]?.displayName || 'Usuario Anónimo';
+  userID = this.userData?.user.uid;
   async onSubmit() {
     if (!this.concursoForm.valid) {
       this.resultado = "Por favor, completa todos los campos requeridos.";
@@ -195,8 +199,8 @@ export class ConcursoFormComponent {
       this.postService.createConvocatoriaPost({
         tipo: 'concurso',
         concursoRef: res, // Referencia al ID del concurso
-        autorId: 'usuario123', // Reemplaza con el ID del usuario autenticado
-        autorNombre: 'Usuario Ejemplo', // Reemplaza con el nombre del usuario autenticado
+        autorId: this.userID ?? '', // Reemplaza con el ID del usuario autenticado o una cadena vacía si es undefined
+        autorNombre: this.userName, // Reemplaza con el nombre del usuario autenticado
         fechaPublicacion: new Date(),
         likes: [],
         comentarios: [],
