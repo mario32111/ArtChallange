@@ -1,0 +1,555 @@
+/* Estilos generales (manteniendo tu estética) */
+:host {
+  display: block;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+  color: #515365;
+}
+
+/* Colores y elementos básicos */
+.selected-orange {
+  color: #FF6F61 !important;
+}
+
+.hover-orange:hover {
+  color: #FF6F61;
+}
+
+a {
+  text-decoration: none;
+}
+
+.border-radius {
+  border-radius: 15px;
+}
+
+.border-radius-image {
+  border-radius: 50%;
+}
+
+.shadow {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Contenedor principal 'all' - Layout de 2 columnas */
+.all {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 95px 30px 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Columna del feed principal */
+.right_row {
+  flex-grow: 1;
+  max-width: 900px; /* Ancho del feed en escritorio */
+  min-width: 300px;
+}
+
+/* Columna de Sugerencias lateral - Fija a la derecha */
+.suggestions_row {
+  width: 320px; /* Ancho fijo del panel */
+  /* Eliminamos 'position: fixed' y propiedades relacionadas */
+  /* Ahora se comportará como una columna normal dentro del flexbox */
+  /* Ajustes de padding, fondo y sombra se mantienen si aplican a tarjetas normales */
+  padding: 0; /* Ya no necesita padding específico si es una columna de tarjetas */
+  background-color: transparent; /* Fondo transparente si es solo un contenedor de tarjetas */
+  box-shadow: none; /* Sin sombra si es solo un contenedor */
+}
+
+/* --- Estilos generales para las "tarjetas" (row) --- */
+.row {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 25px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Excepciones para hover en elementos específicos */
+.publish:hover,
+.suggestions_row .row:hover { /* Evitar efecto hover en las tarjetas dentro del panel de sugerencias */
+  transform: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* --- Títulos de sección (Status, Sugerencias) --- */
+.row_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 25px;
+  border-bottom: 1px solid #e9eff6;
+  background-color: #f8fafc;
+  border-radius: 15px 15px 0 0;
+}
+
+.row_title span {
+  font-size: 1.1rem;
+  color: #34495e;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.row_title span i {
+  margin-right: 10px;
+  color: #4A90E2;
+}
+
+.row_title a {
+  font-size: 0.9rem;
+  color: #6c7a89;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.row_title a:hover {
+  color: #4A90E2;
+}
+
+/* --- Sección de "Publicar Status" --- */
+.publish {
+  padding-bottom: 0;
+}
+
+.publish_textarea {
+  display: flex;
+  align-items: center;
+  padding: 20px 25px;
+}
+
+.publish_textarea img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+  border: 3px solid #e0e6ed;
+}
+
+.publish_textarea textarea {
+  flex-grow: 1;
+  border: 1px solid #e0e6ed;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: #333;
+  resize: vertical;
+  min-height: 45px;
+  max-height: 120px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.publish_textarea textarea:focus {
+  outline: none;
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.publish_textarea textarea::placeholder {
+  color: #999;
+}
+
+.publish_icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  border-top: 1px solid #f0f4f8;
+}
+
+.publish_icons ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.publish_icons ul li {
+  margin-right: 15px;
+  font-size: 1.2rem;
+  color: #6c7a89;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.publish_icons ul li:hover {
+  color: #4A90E2;
+  transform: translateY(-2px);
+}
+
+.publish_icons button {
+  background: linear-gradient(90deg, #4A90E2 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.publish_icons button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  opacity: 0.9;
+}
+
+
+
+.feed_content {
+  padding: 20px 0;
+}
+
+.feed_content_image {
+  text-align: center;
+  background-color: #f7f9fc;
+}
+
+.feed_content_image img,
+.feed_content_image iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feed_content_image iframe {
+  width: 100%;
+  min-height: 350px;
+}
+
+.feed_content_text {
+  padding: 0 25px;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.feed_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  border-top: 1px solid #f0f4f8;
+  background-color: #fcfdff;
+  border-radius: 0 0 15px 15px;
+}
+
+.feed_footer ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feed_footer ul li {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 0.95rem;
+  color: #6c7a89;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.feed_footer ul li:last-child {
+  margin-right: 0;
+}
+
+.feed_footer ul li i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+.feed_footer .hover-orange:hover {
+  color: #FF6F61;
+  transform: translateY(-2px);
+}
+
+.feed_footer .selected-orange i.fa-heart {
+  color: #FF6F61;
+}
+
+.feed_footer a {
+  color: #6c7a89;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.feed_footer a:hover {
+  color: #4A90E2;
+}
+
+/* --- Botón "Load More" --- */
+.loadmorefeed {
+  padding: 12px 25px;
+  background-color: #e9eff6;
+  color: #6c7a89;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: fit-content;
+}
+
+.loadmorefeed:hover {
+  background-color: #d1d9e6;
+  color: #4A90E2;
+  transform: translateY(-2px);
+}
+
+
+/* --- Contenido dentro de suggestions_row (Last photos, Friends, Activity, Pages) --- */
+.row_contain_profilephotos ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 15px 25px;
+  list-style: none;
+  margin: 0;
+}
+
+.row_contain_profilephotos ul li {
+  width: calc(33.33% - 6px);
+  box-sizing: border-box;
+}
+
+.row_contain_profilephotos ul li img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.row_contain {
+  display: flex;
+  align-items: center;
+  padding: 12px 25px;
+  border-bottom: 1px solid #f0f4f8;
+  transition: background-color 0.2s ease;
+}
+
+.row_contain:last-child {
+  border-bottom: none;
+}
+
+.row_contain:hover {
+  background-color: #f7f9fc;
+}
+
+.row_contain img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 1px solid #e0e6ed;
+}
+
+.row_contain span {
+  flex-grow: 1;
+  font-size: 0.95rem;
+  color: #2c3e50;
+  line-height: 1.3;
+}
+
+.row_contain span b {
+  display: block;
+  font-weight: 600;
+}
+
+.row_contain span a {
+  color: #4A90E2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.row_contain span a:hover {
+  text-decoration: underline;
+}
+
+.row_contain button {
+  background-color: #4A90E2;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.row_contain button:hover {
+  background-color: #357ABD;
+  transform: translateY(-1px);
+}
+
+/* --- Botón "Ir arriba" --- */
+#myBtn {
+  display: none; /* Oculto por defecto, JS lo muestra */
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: rgba(74, 144, 226, 0.9);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#myBtn:hover {
+  background-color: #4A90E2;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+  .all {
+    flex-direction: column; /* Apila las columnas en pantallas medianas */
+    align-items: center; /* Centra las columnas apiladas */
+    padding: 85px 20px 20px;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .right_row {
+    max-width: 90%;
+    width: 100%;
+  }
+
+  /* El panel de sugerencias también se apila como una tarjeta normal */
+  .suggestions_row {
+    width: 90%;
+    max-width: 600px; /* Ancho máximo para el panel apilado */
+    order: 1; /* Puedes cambiar el orden si quieres que aparezca antes o después del feed */
+  }
+
+  /* Ajuste para las fotos en el panel lateral */
+  .row_contain_profilephotos ul li {
+    width: calc(25% - 6px); /* 4 fotos por fila en tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .all {
+    padding: 70px 15px 15px;
+  }
+
+  .right_row {
+    max-width: 95%;
+  }
+
+  .row_contain_profilephotos ul li {
+    width: calc(33.33% - 6px); /* 3 fotos por fila en pantallas medianas */
+  }
+
+  .feed_content_image iframe {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .all {
+    padding: 65px 10px 10px;
+    gap: 15px;
+  }
+
+  .right_row {
+    max-width: 100%;
+  }
+
+  .feed_title {
+    padding: 15px 15px 10px;
+  }
+
+  .publish_textarea,
+  .publish_icons,
+  .feed_footer,
+  .row_title,
+  .row_contain,
+  .row_contain_profilephotos ul {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .publish_textarea img {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+  }
+
+  .feed_title img {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+  }
+
+  .row_contain img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  .row_contain_profilephotos ul li {
+    width: calc(50% - 4px); /* 2 fotos por fila en las más pequeñas */
+  }
+
+  .feed_content_image iframe {
+    min-height: 200px;
+  }
+
+  .publish_icons button {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+
+  .feed_footer ul li {
+    font-size: 0.85rem;
+    margin-right: 15px;
+  }
+}
