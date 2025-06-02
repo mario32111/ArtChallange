@@ -1,7 +1,5 @@
-<!-- Header grande para pantallas grandes -->
 <app-header *ngIf="!showSmallHeader"></app-header>
 
-<!-- Header pequeño para pantallas pequeñas -->
 <app-header-small *ngIf="showSmallHeader"></app-header-small>
 
 <div class="contest-section" *ngIf="!concursoSeleccionado">
@@ -14,25 +12,15 @@
         <p>{{ concurso.organizador }}</p>
         <span>{{ concurso.categoria }}</span>
       </div>
-      
-      <div class="button-group">
-      <button (click)="verDetalleConcurso(concurso)">Detalles</button>        
-      <button 
-        *ngIf="concurso.id && !signedUpChallangeIds.includes(concurso.id)"
-        (click)="inscribirse(concurso)">
-        Inscribirme
-      </button>
 
+      <div class="button-group">
+        <button (click)="verDetalleConcurso(concurso)">Detalles</button>
+        <button
+          *ngIf="concurso.id && !signedUpChallangeIds.includes(concurso.id)"
+          (click)="inscribirse(concurso)">
+          Inscribirme
+        </button>
       </div>
     </li>
   </ul>
 </div>
-
-
-
-
-<app-challange-details
-  *ngIf="concursoSeleccionado"
-  [concurso]="concursoSeleccionado"
-  (volver)="cerrarDetalles()"> <!-- ✅ Así sí funciona -->
-</app-challange-details>

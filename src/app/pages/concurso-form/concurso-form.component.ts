@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormsModule, FormArray } from '@angular/forms'; // Importa FormArray
 import { ChallangeService } from '../../services/challange.service';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
@@ -10,18 +10,16 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-concurso-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HeaderComponent, FormsModule, HttpClientModule], // Importaciones necesarias
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent, FormsModule, HttpClientModule],
   templateUrl: './concurso-form.component.html',
   styleUrls: ['./concurso-form.component.css'],
-  providers: [ImageUploadService] // Proveemos el servicio a nivel de componente
-
+  providers: [ImageUploadService]
 })
 export class ConcursoFormComponent {
   resultado!: string;
   miClase: string = "msg1";
   concursoForm: FormGroup;
 
-  //variables de imagen
   selectedFile: File | null = null;
   uploadResponse: any = null;
   errorMessage: string | null = null;
@@ -33,22 +31,100 @@ export class ConcursoFormComponent {
     private imageUploadService: ImageUploadService) {
     this.concursoForm = this.fb.group({
       nombre: ['', Validators.required],
+      slogan: [''], // Nuevo campo: opcional
       organizador: ['', Validators.required],
       categoria: ['', Validators.required],
       inscripcionCosto: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-      premios: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      announcementDate: [''], // Nuevo campo: opcional
+      // Cambiamos 'premios' a un FormArray para manejar múltiples premios
+      premios: this.fb.array([this.createPremioControl()]), // Inicializa con un premio
+      descripcionCorta: [''], // Nuevo campo: opcional
+      descripcion: ['', Validators.required], // Descripción larga existente
+      hashtag: ['', Validators.required], // Nuevo campo
+      // Cambiamos 'etiquetasRedes' a un FormArray para manejar múltiples etiquetas
+      etiquetasRedes: this.fb.array([this.createEtiquetaControl()]), // Inicializa con una etiqueta
+      // Cambiamos 'instruccionesParticipacion' a un FormArray
+      instruccionesParticipacion: this.fb.array([this.createInstruccionControl()]), // Inicializa con una instrucción
+      infoAdicionalLink: [''], // Nuevo campo: opcional
+      // Estado se puede manejar en el backend o con un valor por defecto al crear
+      // estado: ['proximo', Validators.required], // Opcional, si quieres controlarlo desde el form
     });
   }
+
+  // Getter para acceder fácilmente a los premios como FormArray
+  get premios(): FormArray {
+    return this.concursoForm.get('premios') as FormArray;
+  }
+
+  // Método para crear un nuevo control de premio
+  createPremioControl(): FormGroup {
+    return this.fb.group({
+      detalle: ['', Validators.required] // Por ejemplo, 'detalle' del premio
+    });
+  }
+
+  // Método para añadir un premio al FormArray
+  addPremio(): void {
+    this.premios.push(this.createPremioControl());
+  }
+
+  // Método para remover un premio del FormArray
+  removePremio(index: number): void {
+    this.premios.removeAt(index);
+  }
+
+  // Getter para acceder fácilmente a las etiquetasRedes como FormArray
+  get etiquetasRedes(): FormArray {
+    return this.concursoForm.get('etiquetasRedes') as FormArray;
+  }
+
+  // Método para crear un nuevo control de etiqueta
+  createEtiquetaControl(): FormGroup {
+    return this.fb.group({
+      handle: ['', Validators.required] // Por ejemplo, '@MiPagina'
+    });
+  }
+
+  // Método para añadir una etiqueta al FormArray
+  addEtiqueta(): void {
+    this.etiquetasRedes.push(this.createEtiquetaControl());
+  }
+
+  // Método para remover una etiqueta del FormArray
+  removeEtiqueta(index: number): void {
+    this.etiquetasRedes.removeAt(index);
+  }
+
+  // Getter para acceder fácilmente a las instruccionesParticipacion como FormArray
+  get instruccionesParticipacion(): FormArray {
+    return this.concursoForm.get('instruccionesParticipacion') as FormArray;
+  }
+
+  // Método para crear un nuevo control de instrucción
+  createInstruccionControl(): FormGroup {
+    return this.fb.group({
+      paso: ['', Validators.required] // Por ejemplo, 'Toma una foto...'
+    });
+  }
+
+  // Método para añadir una instrucción al FormArray
+  addInstruccion(): void {
+    this.instruccionesParticipacion.push(this.createInstruccionControl());
+  }
+
+  // Método para remover una instrucción del FormArray
+  removeInstruccion(index: number): void {
+    this.instruccionesParticipacion.removeAt(index);
+  }
+
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
     }
-
   }
 
   uploadImage(): Promise<string> {
@@ -68,7 +144,7 @@ export class ConcursoFormComponent {
           this.uploadResponse = response;
           this.isLoading = false;
           const imageUrl = response.data.display_url;
-          resolve(imageUrl); // ✅ devolvemos la URL
+          resolve(imageUrl);
         },
         error: (error) => {
           this.errorMessage = 'Error al subir la imagen';
@@ -80,22 +156,37 @@ export class ConcursoFormComponent {
     });
   }
 
-
   async onSubmit() {
     if (!this.concursoForm.valid) {
-      this.resultado = "Alguno de los campos está vacío";
+      this.resultado = "Por favor, completa todos los campos requeridos.";
       this.miClase = "msg1";
-      console.error('Alguno de los campos está vacío');
+      console.error('Formulario no válido. Campos faltantes o incorrectos.');
+      // Puedes añadir más lógica aquí para mostrar qué campos son inválidos
       return;
     }
 
     try {
-      const imageUrl = await this.uploadImage(); // ✅ esperamos la URL
+      const imageUrl = await this.uploadImage();
+      const rawFormValue = this.concursoForm.value;
+
+      // Transformar los FormArrays a arrays simples de strings
+      const premiosArray = rawFormValue.premios.map((p: { detalle: string }) => p.detalle);
+      const etiquetasArray = rawFormValue.etiquetasRedes.map((e: { handle: string }) => e.handle);
+      const instruccionesArray = rawFormValue.instruccionesParticipacion.map((i: { paso: string }) => i.paso);
+
       const challangeData = {
-        ...this.concursoForm.value,
-        imagen: imageUrl // ✅ actualizamos el valor en el objeto
+        ...rawFormValue,
+        imagen: imageUrl, // Renombrado de 'imagen' a 'imagenPrincipalUrl'
+        premios: premiosArray, // Asigna el array transformado
+        etiquetasRedes: etiquetasArray, // Asigna el array transformado
+        instruccionesParticipacion: instruccionesArray, // Asigna el array transformado
+        createdAt: new Date(), // Nuevo: Fecha de creación
+        updatedAt: new Date(), // Nuevo: Fecha de última actualización
+        estado: 'abierto' // Establece un estado inicial por defecto
       };
-      console.log('Datos del concurso:', challangeData);
+
+
+      console.log('Datos del concurso a guardar:', challangeData);
       await this.service.createChallange(challangeData);
 
       console.log('Concurso creado exitosamente:', challangeData);

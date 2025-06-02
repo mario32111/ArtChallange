@@ -22,8 +22,15 @@
 .contest-details h2 {
   font-size: 28px;
   color: #222;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-weight: 700;
+}
+
+.contest-details .slogan {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+  font-style: italic;
 }
 
 .contest-details img {
@@ -35,14 +42,50 @@
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 
+.contest-meta {
+  width: 100%;
+  text-align: left; /* Align text within contest-meta to the left */
+}
+
 .contest-meta p {
   font-size: 15px;
   color: #555;
-  margin: 10px 0;
+  margin: 8px 0;
+  line-height: 1.5;
 }
 
 .contest-meta strong {
   color: #333;
+  margin-right: 5px;
+}
+
+.contest-meta a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contest-meta a:hover {
+  text-decoration: underline;
+}
+
+.contest-meta h3 {
+  font-size: 18px;
+  color: #222;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.contest-meta ul, .contest-meta ol {
+  list-style-position: inside;
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.contest-meta ul li, .contest-meta ol li {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 5px;
 }
 
 .contest-details button {
@@ -68,6 +111,39 @@
   transform: scale(0.97);
 }
 
+.contest-status {
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+.status-abierto {
+  background-color: #28a745; /* Green */
+}
+
+.status-cerrado {
+  background-color: #dc3545; /* Red */
+}
+
+.status-proximo {
+  background-color: #ffc107; /* Yellow/Orange */
+  color: #333; /* Darker text for yellow background */
+}
+
+.timestamps {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #777;
+  text-align: right;
+}
+
+.closed-message, .upcoming-message {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #dc3545;
+}
+
 /* 📱 Responsive Styles */
 @media (max-width: 768px) {
   .contest-details {
@@ -78,7 +154,7 @@
     font-size: 22px;
   }
 
-  .contest-meta p {
+  .contest-meta p, .contest-meta ul li, .contest-meta ol li {
     font-size: 14px;
   }
 
@@ -97,7 +173,7 @@
     font-size: 20px;
   }
 
-  .contest-meta p {
+  .contest-meta p, .contest-meta ul li, .contest-meta ol li {
     font-size: 13px;
   }
 
@@ -105,33 +181,4 @@
     padding: 10px;
     font-size: 13px;
   }
-}
-
-.back-arrow {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  width: 40px;
-  height: 40px;
-  background: #007bff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  z-index: 1000;
-  transition: background-color 0.3s;
-}
-
-.back-arrow i {
-  font-size: 20px;
-  color: white;
-}
-
-.back-arrow:hover {
-  background-color: #0056b3;
-}
-
-.contest-details {
-  position: relative; /* ✅ Esto es importante para posicionar la flecha */
 }

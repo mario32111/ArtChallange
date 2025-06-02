@@ -3,6 +3,7 @@ import { Firestore, addDoc, collection, doc, getDocs, query, setDoc, where } fro
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators'; // Asegúrate de importar 'map' de RxJS
 import { getDoc } from '@angular/fire/firestore';
+import { ChallangeDocument } from '../interfaces/challange.model';
 
 
 @Injectable({
@@ -11,10 +12,11 @@ import { getDoc } from '@angular/fire/firestore';
 export class ChallangeService {
   constructor(private firestore: Firestore) { }
 
-  createChallange(challangeData: any): Promise<any> {
+  createChallange(challangeData: ChallangeDocument): Promise<any> {
     const challangesCollection = collection(this.firestore, 'challanges');
     return addDoc(challangesCollection, challangeData);
   }
+
   getAllChallanges(): Observable<any[]> {
     const challangesCollection = collection(this.firestore, 'challanges');
     return from(getDocs(challangesCollection)).pipe(
