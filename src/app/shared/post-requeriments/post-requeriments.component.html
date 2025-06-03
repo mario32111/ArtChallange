@@ -1,55 +1,81 @@
-<div class="row border-radius">
+<div class="row border-radius" *ngIf="post.length > 0 && convocatoria">
   <div class="feed">
     <div class="feed_title">
       <img src="../../../assets/images/user-6.jpg" alt="" />
-      <span><b>Organizador2</b> shared a <a href="feed.html">convocatoria</a><br>
-        <p>March 1 at 3:53pm</p>
+      <span>
+        <b>{{ post[0].autorNombre }}</b> compartió una
+        <a href="#">convocatoria</a><br />
+        <p>{{ post[0].fechaPublicacion | date: 'medium' }}</p>
       </span>
     </div>
+
     <div class="feed_content">
       <div class="container">
-        <h3>Convocatoria para el concurso Foto entre amigos</h3>
+        <h3>{{ convocatoria.nombre }}</h3>
 
-        <h1>📢 ¡Llamando a todos los amantes de la fotografía y la amistad! 💙</h1>
-        <p>¿Tienes una foto que capture la esencia de la amistad? 🤩 ¡Este es tu momento!</p>
-        <p>Participa en nuestro concurso <span class="highlight">"Foto entre Amigos"</span> y gana premios increíbles. 🏆🎁</p>
+        <h1>📢 {{ convocatoria.slogan }}</h1>
+        <p>{{ convocatoria.descripcionCorta }}</p>
+        <p [innerHTML]="convocatoria.descripcionLarga"></p>
 
         <h2>📌 ¿Cómo participar?</h2>
         <ul class="steps">
-            <li>📷 <strong>Toma una foto</strong> que refleje la amistad en su máxima expresión.</li>
-            <li>✨ Súbela a <strong>Instagram</strong> con el hashtag <span class="hashtag">#FotoEntreAmigos2024</span></li>
-            <li>📢 <strong>Etiquétanos</strong> en la publicación para que podamos verla.</li>
+          <li *ngFor="let paso of convocatoria.instruccionesParticipacion">
+            {{ paso }}
+          </li>
         </ul>
 
         <h2>🏆 Premios increíbles</h2>
-        <p>Para las fotos más <span class="highlight">creativas y emotivas</span>. ¡No te quedes fuera! 😍</p>
+        <ul>
+          <li *ngFor="let premio of convocatoria.premios">
+            🎁 {{ premio }}
+          </li>
+        </ul>
 
-        <p>⏳ <strong>Fecha límite de participación:</strong> <span class="highlight">[Inserta fecha]</span></p>
-        <p>📢 <strong>Anuncio de ganadores:</strong> <span class="highlight">[Inserta fecha]</span></p>
+        <p>
+          ⏳ <strong>Fecha límite de participación:</strong>
+          <span class="highlight">{{ convocatoria.endDate | date: 'longDate' }}</span>
+        </p>
+        <p *ngIf="convocatoria.announcementDate">
+          📢 <strong>Anuncio de ganadores:</strong>
+          <span class="highlight">{{ convocatoria.announcementDate | date: 'longDate' }}</span>
+        </p>
 
         <div class="footer">
-            📸 ¡Etiqueta a tus amigos y únete a la diversión! 🙌😎
-            <br>🔗 Más info en <a href="#">[Inserta enlace]</a>
+          📸 ¡Etiqueta a tus amigos y únete a la diversión! 🙌😎 <br />
+          🔗 Más info en
+          <a [href]="convocatoria.infoAdicionalLink || '#'">[Enlace]</a>
         </div>
-    </div>
+      </div>
+
       <div class="feed_content_image">
-        <a href="feed.html"><img src="../../../assets/images/photo-2.jpg" alt="" /></a>
+        <img [src]="convocatoria.imagen" alt="Imagen del concurso" />
       </div>
     </div>
+
     <div class="feed_footer">
       <ul class="feed_footer_left">
-        <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
-        <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
+        <li class="hover-orange selected-orange">
+          <i class="fa fa-heart"></i> {{ post[0].likes.length }} likes
+        </li>
+        <li>
+          <span>
+            <b>{{ post[0].likes.slice(0, 2).join(', ') }}</b>
+            y {{ post[0].likes.length - 2 }} más dieron like
+          </span>
+        </li>
       </ul>
       <ul class="feed_footer_right">
-        <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
+        <li class="hover-orange selected-orange">
+          <i class="fa fa-share"></i> Compartir
+        </li>
         <li class="hover-orange">
-          <a (click)="toggleComments()"style="color:#515365;">
-            <i class="fa fa-comments-o"></i> 74 comments
+          <a (click)="toggleComments()" style="color: #515365;">
+            <i class="fa fa-comments-o"></i> {{ post[0].comentarios.length }} comentarios
           </a>
         </li>
       </ul>
     </div>
-    <app-comments  *ngIf="showComments"></app-comments>
+
+    <app-comments *ngIf="showComments"></app-comments>
   </div>
 </div>
