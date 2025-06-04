@@ -4,23 +4,28 @@
   <h2>Registrar Concurso</h2>
 
   <div class="form-group">
-    <label>Nombre:</label>
-    <input formControlName="nombre" placeholder="Ej. Concurso Nacional de Robótica" />
+    <label>Nombre del Concurso:</label>
+    <input formControlName="nombre" placeholder="Ej. Foto entre Amigos" />
+  </div>
+
+  <div class="form-group">
+    <label>Slogan (opcional):</label>
+    <input formControlName="slogan" placeholder="Ej. ¡Llamando a todos los amantes de la fotografía y la amistad!" />
   </div>
 
   <div class="form-group">
     <label>Organizador:</label>
-    <input formControlName="organizador" placeholder="Ej. Instituto de Tecnología" />
+    <input formControlName="organizador" placeholder="Ej. PhotoWorld" />
   </div>
 
   <div class="form-group">
     <label>Categoría:</label>
-    <input formControlName="categoria" placeholder="Ej. Tecnología" />
+    <input formControlName="categoria" placeholder="Ej. Fotografía urbana" />
   </div>
 
   <div class="form-group">
     <label>Costo de Inscripción:</label>
-    <input formControlName="inscripcionCosto" type="number" placeholder="Ej. 500" />
+    <input formControlName="inscripcionCosto" type="number" placeholder="Ej. 120" />
   </div>
 
   <div class="form-group">
@@ -34,21 +39,91 @@
   </div>
 
   <div class="form-group">
+    <label>Fecha de Anuncio de Ganadores (opcional):</label>
+    <input formControlName="announcementDate" type="date" />
+  </div>
+
+  <div class="form-group">
     <label>Premios:</label>
-    <input formControlName="premios" placeholder="Ej. Laptop, Dinero, Beca" />
+    <div formArrayName="premios">
+      <div *ngFor="let premioControl of premios.controls; let i = index" [formGroupName]="i" class="input-with-button">
+        <input formControlName="detalle" placeholder="Ej. Publicación en revista o $5,000 MXN" />
+        <button type="button" (click)="removePremio(i)" *ngIf="premios.length > 1">Remover</button>
+      </div>
+      <button type="button" (click)="addPremio()">Añadir Premio</button>
+    </div>
   </div>
 
   <div class="form-group">
-    <label>Descripción:</label>
-    <textarea formControlName="descripcion" rows="4" placeholder="Describe los detalles del concurso..."></textarea>
+    <label>Descripción Corta (opcional):</label>
+    <textarea formControlName="descripcionCorta" rows="2" placeholder="Un resumen breve del concurso..."></textarea>
   </div>
 
   <div class="form-group">
-    <label>Imagen:</label>
-    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    <label>Descripción Completa:</label>
+    <textarea formControlName="descripcion" rows="6" placeholder="Describe todos los detalles del concurso, reglas, etc."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Hashtag:</label>
+    <input formControlName="hashtag" placeholder="Ej. #FotoEntreAmigos2024" />
+  </div>
+
+  <div class="form-group">
+    <label>Etiquetas de Redes Sociales (handles):</label>
+    <div formArrayName="etiquetasRedes">
+      <div *ngFor="let etiquetaControl of etiquetasRedes.controls; let i = index" [formGroupName]="i" class="input-with-button">
+        <input formControlName="handle" placeholder="Ej. @TuPaginaOficial" />
+        <button type="button" (click)="removeEtiqueta(i)" *ngIf="etiquetasRedes.length > 1">Remover</button>
+      </div>
+      <button type="button" (click)="addEtiqueta()">Añadir Etiqueta</button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Instrucciones de Participación:</label>
+    <div formArrayName="instruccionesParticipacion">
+      <div *ngFor="let instruccionControl of instruccionesParticipacion.controls; let i = index" [formGroupName]="i" class="input-with-button">
+        <textarea formControlName="paso" rows="2" placeholder="Ej. Súbela a Instagram con el hashtag..."></textarea>
+        <button type="button" (click)="removeInstruccion(i)" *ngIf="instruccionesParticipacion.length > 1">Remover</button>
+      </div>
+      <button type="button" (click)="addInstruccion()">Añadir Instrucción</button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Enlace de Información Adicional (opcional):</label>
+    <input formControlName="infoAdicionalLink" type="url" placeholder="Ej. https://tuweb.com/masinfo" />
+  </div>
+
+  <div class="form-group">
+    <label>Imagen Principal de la Convocatoria:</label>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
   </div>
 
   <strong [ngClass]="miClase">{{ resultado }}</strong>
 
-  <button type="submit">Agregar Concurso</button>
+  <button type="submit" [disabled]="concursoForm.invalid || isLoading">Agregar Concurso</button>
+  <div *ngIf="isLoading">Subiendo imagen...</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 </form>
+
+<style>
+  /* Puedes añadir estilos CSS para los botones de añadir/remover */
+  .input-with-button {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px; /* Espacio entre los elementos dinámicos */
+  }
+
+  .input-with-button input,
+  .input-with-button textarea {
+    flex-grow: 1; /* Permite que el input/textarea ocupe el espacio disponible */
+    margin-right: 8px;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+</style>

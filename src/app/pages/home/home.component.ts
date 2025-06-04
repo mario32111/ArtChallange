@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   mostrarContenido = true;
   userData = getParsedLocalStorageItem<AuthResponse>('user');
   imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
+  showSuggestionsPanel: boolean = false; // Nueva propiedad para controlar la visibilidad del panel
 
   constructor(private service: ChallangeService, private router: Router) {
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     /*          this.insertarConcursos();
      */
-    
+
     this.service.getAllChallanges().subscribe(
       (data: Concurso[]) => {
         console.log('Concursos obtenidos:', data);
@@ -71,10 +72,14 @@ export class HomeComponent implements OnInit {
     this.showSmallHeader = screenWidth < 800; // Cambia a header pequeño si es menor a 768px
   }
 
+  toggleSuggestionsPanel() {
+    this.showSuggestionsPanel = !this.showSuggestionsPanel;
+  }
+
   toggleContenido() {
     this.mostrarContenido = !this.mostrarContenido;
   }
-  
+
   verDetalleConcurso(concurso: Concurso) {
     this.router.navigate(['/challangeDetails', concurso.id]);
   }

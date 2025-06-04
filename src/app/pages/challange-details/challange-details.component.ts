@@ -1,24 +1,25 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common'; // Import DatePipe
 import { Component, EventEmitter, Input, Output, HostListener, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { HeaderSmallComponent } from '../../shared/header-small/header-small.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router'; // Import RouterLink
 import { ChallangeService } from '../../services/challange.service';
 import { Auth, user } from '@angular/fire/auth';
 import { firstValueFrom } from 'rxjs';
+import { ChallangeDocument } from '../../interfaces/challange.model'; // Make sure this path is correct
 
 @Component({
   selector: 'app-challange-details',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, HeaderSmallComponent],
+  imports: [CommonModule, HeaderComponent, HeaderSmallComponent, DatePipe],
   templateUrl: './challange-details.component.html',
   styleUrl: './challange-details.component.css'
 })
 export class ChallangeDetailsComponent implements OnInit {
-  @Input() concurso: any;
+  @Input() concurso: ChallangeDocument | undefined; // Now explicitly ChallangeDocument
   @Output() volver = new EventEmitter<void>();
 
-  isSignedUp = false;  // <--- flag to control button visibility
+  isSignedUp = false;
   showSmallHeader = false;
 
   constructor(
@@ -34,12 +35,31 @@ export class ChallangeDetailsComponent implements OnInit {
     if (id) {
       this.service.getChallangeById(id).subscribe((concurso) => {
         this.concurso = concurso;
+        // Convert Firestore Timestamps or ISO strings to Date objects if needed
+        if (this.concurso) {
+          if (typeof this.concurso.startDate === 'string') {
+            this.concurso.startDate = new Date(this.concurso.startDate);
+          }
+          if (typeof this.concurso.endDate === 'string') {
+            this.concurso.endDate = new Date(this.concurso.endDate);
+          }
+          if (typeof this.concurso.announcementDate === 'string') {
+            this.concurso.announcementDate = new Date(this.concurso.announcementDate);
+          }
+          if (typeof this.concurso.createdAt === 'string') {
+            this.concurso.createdAt = new Date(this.concurso.createdAt);
+          }
+          if (typeof this.concurso.updatedAt === 'string') {
+            this.concurso.updatedAt = new Date(this.concurso.updatedAt);
+          }
+          // If Firebase Timestamps are returned, you might need:
+          // this.concurso.startDate = (this.concurso.startDate as any).toDate();
+          // etc.
+        }
       });
 
-      // Get current user
       const userData = await firstValueFrom(user(this.auth));
       if (userData && id) {
-        // Check if user is already signed up
         this.service.isUserSignedUp(userData.uid, id).subscribe((signedUp) => {
           this.isSignedUp = signedUp;
         });
@@ -61,6 +81,11 @@ export class ChallangeDetailsComponent implements OnInit {
   }
 
   async unirseAlConcurso() {
+    if (!this.concurso || !this.concurso.id) {
+      alert('No se pudo encontrar la información del concurso.');
+      return;
+    }
+
     try {
       const userData = await firstValueFrom(user(this.auth));
 
@@ -75,10 +100,9 @@ export class ChallangeDetailsComponent implements OnInit {
         if (alreadySigned) {
           alert('Ya estás inscrito en este concurso.');
         } else {
-          await this.service.signUpUserToChallange(uid, this.concurso.id);
+          await this.service.signUpUserToChallange(uid, this.concurso!.id!);
           alert('¡Inscripción exitosa!');
-          this.isSignedUp = true;  // <-- Hide button after joining
-          // this.volver.emit(); // Optional: close details and return to list
+          this.isSignedUp = true;
         }
       });
     } catch (error) {

@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { getParsedLocalStorageItem } from '../../../utils/storage.utils';
 import { AuthResponse } from '../../interfaces/auth.interface';
 import { UserService } from '../../services/user.service';
-import { ActivatedRoute } from '@angular/router'; // Importa ActivatedRoute
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -22,65 +22,64 @@ export class ProfileComponent implements OnInit {
   // Propiedad para almacenar los datos del perfil que se ha cargado
   userProfileData: any = null;
 
+  // Propiedad para el control del header responsive
+  showSmallHeader = false;
+
+  // showSuggestionsPanel y toggleSuggestionsPanel ya no son necesarios si no hay despliegue
+  // showSuggestionsPanel: boolean = true; // Esta propiedad ya no controla el despliegue
+
+  // Esto sigue siendo para el usuario LOGUEADO (tu propio perfil)
+  userData = getParsedLocalStorageItem<AuthResponse>('user');
+
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute // Inyecta ActivatedRoute para leer parámetros de la URL
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.checkScreenSize();
   }
 
   ngOnInit(): void {
-    // Suscribirse a los cambios en los parámetros de la URL
     this.route.paramMap.subscribe(params => {
-      this.profileUid = params.get('uid'); // Obtiene el valor del parámetro 'uid'
+      this.profileUid = params.get('uid');
+
+      if (!this.profileUid) {
+        const currentUserData = getParsedLocalStorageItem<AuthResponse>('user');
+        if (currentUserData && currentUserData.user && currentUserData.user.uid) {
+          this.profileUid = currentUserData.user.uid;
+        } else {
+          console.warn('No UID provided in route and no authenticated user. Redirecting to login/home.');
+          // this.router.navigate(['/login']);
+          return;
+        }
+      }
+
       if (this.profileUid) {
-        // Si hay un UID en la URL, busca el perfil de ese usuario
         this.userService.getUserByUid(this.profileUid).subscribe({
           next: (user: any) => {
-            this.userProfileData = user; // Almacena los datos del perfil
+            this.userProfileData = user;
             console.log('Perfil de usuario obtenido:', this.userProfileData);
           },
           error: (error: any) => {
             console.error('Error al obtener el perfil del usuario:', error);
-            // Podrías redirigir a una página de "perfil no encontrado" o mostrar un mensaje
+            // this.router.navigate(['/not-found']);
           }
         });
-      } else {
-        // Opcional: Si no hay UID en la URL, puedes cargar el perfil del usuario autenticado
-        // O redirigir a una ruta por defecto o a un error 404
-        console.warn('No UID provided in route. Loading current user profile or handling default.');
-        const currentUserData = getParsedLocalStorageItem<AuthResponse>('user');
-        if (currentUserData && currentUserData.user && currentUserData.user.uid) {
-          this.userService.getUserByUid(currentUserData.user.uid).subscribe({
-            next: (user: any) => {
-              this.userProfileData = user;
-              console.log('Perfil del usuario actual obtenido:', this.userProfileData);
-            },
-            error: (error: any) => {
-              console.error('Error al obtener el perfil del usuario actual:', error);
-            }
-          });
-        } else {
-          // No hay UID ni usuario logueado, manejar el caso (ej. redirigir a login o home)
-          console.error('No se pudo cargar ningún perfil. Usuario no autenticado o UID faltante.');
-          // this.router.navigate(['/login']); // Ejemplo de redirección
-        }
       }
     });
   }
 
-  showSmallHeader = false;
-  mostrarContenido = true;
-  userData = getParsedLocalStorageItem<AuthResponse>('user'); // Esto sigue siendo para el usuario LOGUEADO
-
-
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.checkScreenSize();
+    // Eliminamos adjustPanelVisibilityOnResize() ya que el panel no se oculta/muestra dinámicamente
   }
 
   checkScreenSize() {
     const screenWidth = window.innerWidth;
     this.showSmallHeader = screenWidth < 800;
   }
+
+  // Eliminamos toggleSuggestionsPanel()
+  // Eliminamos adjustPanelVisibilityOnResize()
 }

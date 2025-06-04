@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar" [class.scrolled]="isScrolled">
   <div class="navbar_menuicon" (click)="toggleMobileMenu()">
     <i class="fa fa-navicon"></i>
   </div>
@@ -10,7 +10,7 @@
   <div class="navbar_page">
     <span>> FEED</span>
   </div>
-  
+
   <div class="navbar_search">
     <form>
       <input
