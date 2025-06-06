@@ -2,9 +2,19 @@
 export interface Comentario {
   id?: string;
   usuarioId: string;
+  postId: string; // ID del post al que se le dio like (si es necesario registrar esto en una colección separada)
   nombreUsuario: string;
   contenido: string;
   fecha: Date;
+}
+
+
+export interface Like {
+  id?: string;
+  usuarioId: string;
+  nombreUsuario: string;
+  postId: string; // ID del post al que se le dio like (si es necesario registrar esto en una colección separada)
+  fecha: Date;    // Fecha en que se dio like
 }
 
 export interface ConvovatoriaPost {

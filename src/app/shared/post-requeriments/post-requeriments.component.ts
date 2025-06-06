@@ -16,7 +16,9 @@ import { ChallangeService } from '../../services/challange.service';
 export class PostRequerimentsComponent implements OnInit {
 
   showComments = false;
-  post: ConvovatoriaPost[] = []; // Cambia 'any' por tu modelo de datos si lo tienes definido
+  //documento postChallange
+  post: ConvovatoriaPost[] = [];
+  //documento challange
   convocatoria: ChallangeDocument | any;
   constructor(private postsService: PostsService,
     private convocatoriaService: ChallangeService
