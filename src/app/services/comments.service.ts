@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, doc, addDoc, updateDoc, arrayUnion, getDoc, query, where, getDocs } from '@angular/fire/firestore';
-import { Comentario } from '../interfaces/post.interfaces'; // Ajusta la ruta según sea necesario
+import { Firestore, collection, doc, addDoc, updateDoc, arrayUnion, getDoc, query, where, getDocs, deleteDoc, arrayRemove } from '@angular/fire/firestore';
+import { Comentario, CommentLike } from '../interfaces/post.interfaces'; // Ajusta la ruta según sea necesario
 import { Observable, from } from 'rxjs'; // Importamos 'from' y 'Observable'
 import { map } from 'rxjs/operators'; // Importamos 'map'
 
@@ -89,5 +89,95 @@ export class CommentsService {
         return comments;
       })
     );
+  }
+
+
+
+
+    /**
+   * Obtiene los likes para un comentario específico.
+   * @param commentId El ID del comentario.
+   * @returns Un array de CommentLike.
+   */
+  async getLikesForComment(commentId: string): Promise<CommentLike[]> {
+    const likesCollectionRef = collection(this.firestore, 'commentLikes');
+    const q = query(likesCollectionRef, where('commentId', '==', commentId));
+    const snapshot = await getDocs(q);
+
+    const likes = snapshot.docs.map(doc => {
+      const data = doc.data();
+      let fechaConvertida: Date;
+      if (data['fecha'] && typeof data['fecha'].toDate === 'function') {
+        fechaConvertida = data['fecha'].toDate();
+      } else {
+        fechaConvertida = new Date(data['fecha'] || null);
+        if (isNaN(fechaConvertida.getTime())) {
+          fechaConvertida = new Date();
+        }
+      }
+      return {
+        id: doc.id,
+        ...data,
+        fecha: fechaConvertida
+      } as CommentLike;
+    });
+    console.log(`CommentLikesService: Se encontraron ${likes.length} likes para el comentario ${commentId}.`);
+    return likes;
+  }
+
+  /**
+   * Alterna el estado de like de un comentario (añadir/eliminar like).
+   * También actualiza el array de likes dentro del documento del comentario en Firestore.
+   * @param likeData Datos del like (usuarioId, commentId, nombreUsuario).
+   * @returns 'liked' si se añadió, 'unliked' si se eliminó.
+   */
+  async toggleCommentLike(likeData: { usuarioId: string; commentId: string; nombreUsuario: string }): Promise<'liked' | 'unliked'> {
+    const likesCollectionRef = collection(this.firestore, 'commentLikes');
+    const q = query(likesCollectionRef,
+      where('commentId', '==', likeData.commentId),
+      where('usuarioId', '==', likeData.usuarioId)
+    );
+    const snapshot = await getDocs(q);
+
+    const commentRef = doc(this.firestore, 'comments', likeData.commentId);
+
+    if (snapshot.empty) {
+      // No existe el like, lo añadimos
+      const newLike: CommentLike = {
+        usuarioId: likeData.usuarioId,
+        commentId: likeData.commentId,
+        nombreUsuario: likeData.nombreUsuario,
+        fecha: new Date()
+      };
+      const docRef = await addDoc(likesCollectionRef, newLike);
+
+      // Actualizar el array de likes en el documento del comentario
+      await updateDoc(commentRef, {
+        likes: arrayUnion({
+          id: docRef.id,
+          usuarioId: newLike.usuarioId,
+          nombreUsuario: newLike.nombreUsuario,
+          commentId: newLike.commentId,
+          fecha: newLike.fecha // Guardar la fecha como Timestamp en el array también
+        })
+      });
+      return 'liked';
+    } else {
+      // El like existe, lo eliminamos
+      const likeDoc = snapshot.docs[0];
+      await deleteDoc(doc(this.firestore, 'commentLikes', likeDoc.id));
+
+      // Actualizar el array de likes en el documento del comentario
+      await updateDoc(commentRef, {
+        likes: arrayRemove({
+          id: likeDoc.id, // Es importante usar el ID original del like para arrayRemove
+          usuarioId: likeData.usuarioId,
+          nombreUsuario: likeData.nombreUsuario,
+          commentId: likeData.commentId,
+          fecha: likeDoc.data()['fecha'] // Usar la fecha original del documento para arrayRemove
+        })
+      });
+      return 'unliked';
+    }
   }
 }

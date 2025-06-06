@@ -1,4 +1,12 @@
+export interface CommentLike {
+  id?: string; // ID del documento de like en Firestore
+  usuarioId: string; // ID del usuario que dio like
+  nombreUsuario: string; // Nombre del usuario que dio like
+  commentId: string; // ID del comentario al que se le dio like
+  fecha: Date; // Fecha en que se dio like
+}
 
+// Actualiza la interfaz Comentario para incluir likes
 export interface Comentario {
   id?: string;
   usuarioId: string;
@@ -6,7 +14,9 @@ export interface Comentario {
   nombreUsuario: string;
   contenido: string;
   fecha: Date;
+  likes?: CommentLike[]; // Añadimos un array para los likes de este comentario
 }
+
 
 
 export interface Like {

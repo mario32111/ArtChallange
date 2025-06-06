@@ -24,7 +24,13 @@
           <p>{{ comment.contenido }}</p>
         </div>
         <div class="feedcomments-foot">
-          <i class="fa fa-heart-o"></i><span>0 likes</span>
+          <span class="comment-like-button" (click)="toggleCommentLike(comment)" style="cursor:pointer;">
+            <i class="fa"
+               [class.fa-heart]="hasUserLikedComment(comment)"
+               [class.fa-heart-o]="!hasUserLikedComment(comment)">
+            </i>
+            {{ comment.likes?.length || 0 }} {{ comment.likes?.length === 1 ? 'like' : 'likes' }}
+          </span>
           <p><a href="#"><i class="fa fa-reply"></i> responder</a></p>
         </div>
       </div>
