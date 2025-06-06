@@ -2,7 +2,7 @@
 export interface Comentario {
   id?: string;
   usuarioId: string;
-  postId: string; // ID del post al que se le dio like (si es necesario registrar esto en una colección separada)
+  postId: string;
   nombreUsuario: string;
   contenido: string;
   fecha: Date;
