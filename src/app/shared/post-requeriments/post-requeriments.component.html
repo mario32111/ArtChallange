@@ -1,7 +1,7 @@
 <div class="row border-radius" *ngIf="post.length > 0 && convocatoria">
   <div class="feed">
     <div class="feed_title">
-      <img src="../../../assets/images/user-6.jpg" alt="" />
+      <img src="../../../assets/images/user-6.jpg" alt="User avatar" />
       <span>
         <b>{{ post[0].autorNombre }}</b> compartió una
         <a href="#">convocatoria</a><br />
@@ -54,23 +54,31 @@
 
     <div class="feed_footer">
       <ul class="feed_footer_left">
-        <li class="hover-orange selected-orange">
-          <i class="fa fa-heart"></i> {{ post[0].likes.length }} likes
+        <li class="hover-orange selected-orange" (click)="toggleLike(post[0])" style="cursor:pointer;">
+          <i
+            class="fa"
+            [class.fa-heart]="hasUserLiked(post[0])"
+            [class.fa-heart-o]="!hasUserLiked(post[0])"
+            aria-hidden="true"
+          ></i>
+          {{ post[0].likes.length }} {{ post[0].likes.length === 1 ? 'like' : 'likes' }}
         </li>
-        <li>
+
+        <li *ngIf="post[0].likes.length > 2">
           <span>
-            <b>{{ post[0].likes.slice(0, 2).join(', ') }}</b>
+            <b>{{ firstTwoLikeUsers }}</b>
             y {{ post[0].likes.length - 2 }} más dieron like
           </span>
         </li>
       </ul>
+
       <ul class="feed_footer_right">
-        <li class="hover-orange selected-orange">
-          <i class="fa fa-share"></i> Compartir
+        <li class="hover-orange selected-orange" style="cursor:pointer;">
+          <i class="fa fa-share" aria-hidden="true"></i> Compartir
         </li>
-        <li class="hover-orange">
-          <a (click)="toggleComments()" style="color: #515365;">
-            <i class="fa fa-comments-o"></i> {{ post[0].comentarios.length }} comentarios
+        <li class="hover-orange" style="cursor:pointer;">
+          <a (click)="toggleComments()" style="color: #515365; cursor:pointer;">
+            <i class="fa fa-comments-o" aria-hidden="true"></i> {{ post[0].comentarios.length }} comentarios
           </a>
         </li>
       </ul>

@@ -26,7 +26,7 @@ export interface ConvovatoriaPost {
 
   fechaPublicacion: Date;
 
-  likes: string[]; // IDs de usuarios que han dado like
+  likes: Like[]; // IDs de usuarios que han dado like
   comentarios: Comentario[]; // Comentarios del usuario
 
   hashtags: string[]; // Solo si se usan para el feed, de lo contrario pueden omitirse

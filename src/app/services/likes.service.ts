@@ -7,7 +7,11 @@ import {
   deleteDoc,
   updateDoc,
   arrayUnion,
-  arrayRemove
+  arrayRemove,
+  collection,
+  where,
+  getDocs,
+  query
 } from '@angular/fire/firestore';
 import { Like } from '../interfaces/post.interfaces';
 
@@ -39,4 +43,13 @@ export class LikesService {
       return 'liked';
     }
   }
+
+
+  async getLikesForPost(postId: string): Promise<Like[]> {
+  const likesRef = collection(this.firestore, 'likes');
+  const q = query(likesRef, where('postId', '==', postId));
+  const querySnapshot = await getDocs(q);
+
+  return querySnapshot.docs.map(doc => doc.data() as Like);
+}
 }
