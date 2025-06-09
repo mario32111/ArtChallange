@@ -30,7 +30,7 @@
   top: 65px; /* Debajo del navbar */
   right: -350px; /* Inicialmente oculto fuera de la pantalla */
   width: 320px; /* Ancho fijo del panel */
-  height: 60hv; /* Ocupa el resto de la altura de la ventana */
+  height: 60vh; /* Ocupa el resto de la altura de la ventana */
   background-color: #ffffff;
   box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15); /* Sombra hacia la izquierda */
   z-index: 999; /* Por encima de todo, pero debajo del navbar */

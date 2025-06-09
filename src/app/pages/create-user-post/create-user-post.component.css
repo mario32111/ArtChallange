@@ -1,0 +1,330 @@
+/* Styles for the main content area (where the publish section resides) */
+.main-content-wrapper {
+  /* You might need to adjust these if .main-content-wrapper also wraps other parts of your page */
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  padding: 95px 30px 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.content-area {
+  flex-grow: 1;
+  max-width: 1250px; /* Adjust based on whether other elements share this area */
+  margin-left: 0;
+  transition: max-width 0.3s ease, margin-left 0.3s ease;
+}
+
+/* --- General styles for "cards" (like the publish section) --- */
+.row {
+  background-color: #ffffff;
+  border-radius: 15px; /* Softer borders */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); /* Subtle and attractive shadow */
+  margin-bottom: 25px; /* Space between rows */
+  overflow: hidden; /* Ensures content respects border-radius */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transitions for hover */
+}
+
+.row:hover {
+  transform: translateY(-3px); /* Lift effect on hover */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+}
+
+/* Remove hover effect specifically for the publish section */
+.publish-section:hover {
+  transform: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Section Title styles (e.g., "Status") --- */
+.row_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 25px; /* More padding */
+  border-bottom: 1px solid #e9eff6; /* Softer border */
+  background-color: #f8fafc; /* Slightly different background */
+  border-radius: 15px 15px 0 0; /* Rounded top corners */
+}
+
+.row_title span {
+  font-size: 1.1rem; /* More pleasing font size */
+  color: #34495e; /* Darker text color */
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.row_title span i {
+  margin-right: 10px;
+  color: #4A90E2; /* Icon color matching navbar */
+}
+
+/* --- "Publish Status" Section Styles --- */
+.publish-section {
+  padding-bottom: 0; /* Adjustment for internal content */
+}
+
+.publish_textarea {
+  display: flex;
+  align-items: center; /* Changed from flex-start to center for vertical alignment */
+  padding: 20px 25px;
+  gap: 20px; /* Use gap for spacing instead of margin-right on image */
+}
+
+.publish_textarea img {
+  width: 55px; /* Avatar size */
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e0e6ed; /* Subtle border */
+}
+
+textarea {
+  flex-grow: 1;
+  border: 1px solid #e0e6ed;
+  border-radius: 25px; /* More rounded */
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: #333;
+  resize: vertical; /* Only allow vertical resizing */
+  min-height: 45px; /* Minimum height */
+  max-height: 120px; /* Maximum height */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #4A90E2; /* Blue border on focus */
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); /* Soft focus shadow */
+}
+
+textarea::placeholder {
+  color: #999;
+}
+
+/* Styles for input fields in extra-fields */
+.extra-fields input {
+  width: calc(100% - 40px); /* Adjust width considering padding */
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: 1px solid #e0e6ed;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  color: #555;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.extra-fields input:focus {
+  outline: none;
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+
+.publish_icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  border-top: 1px solid #f0f4f8; /* Soft top border */
+}
+
+.publish_icons ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Override existing margin */
+  gap: 15px; /* Space between icons */
+}
+
+.publish_icons ul li {
+  margin-right: 0; /* Remove specific margin-right from previous setup if any */
+  font-size: 1.2rem;
+  color: #6c7a89;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.publish_icons ul li:hover {
+  color: #4A90E2; /* Blue color on hover */
+  transform: translateY(-2px); /* Slight lift */
+}
+
+button.publish-button { /* More specific selector to override generic button styles */
+  background: linear-gradient(90deg, #4A90E2 0%, #764ba2 100%); /* Blue-purple gradient */
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 25px; /* Rounded button */
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Soft shadow */
+}
+
+button.publish-button:hover {
+  transform: translateY(-2px); /* Lift effect */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); /* More pronounced shadow */
+  opacity: 0.9;
+}
+
+/* Styles for disabled publish button */
+button.publish-button:disabled {
+  background: #cccccc; /* Greyed out background */
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  opacity: 0.7;
+}
+
+/* --- Responsive Design for the publish section --- */
+@media (max-width: 1024px) {
+  .row_title span {
+    font-size: 1rem;
+  }
+
+  .publish_textarea textarea {
+    min-height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .row {
+    margin-bottom: 20px;
+  }
+
+  .row_title {
+    padding: 15px 20px;
+  }
+
+  .publish_textarea {
+    padding: 15px 20px;
+  }
+
+  .publish_textarea img {
+    width: 45px;
+    height: 45px;
+    margin-right: 0; /* Use gap */
+  }
+
+  .publish_textarea textarea {
+    font-size: 0.95rem;
+    padding: 10px 18px;
+  }
+
+  .publish_icons {
+    padding: 12px 20px;
+  }
+
+  .publish_icons ul li {
+    font-size: 1.1rem;
+    margin-right: 0; /* Use gap */
+  }
+
+  button.publish-button {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .row_title {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  .publish_textarea {
+    padding: 10px 15px;
+  }
+
+  .publish_textarea img {
+    width: 40px;
+    height: 40px;
+    margin-right: 0; /* Use gap */
+  }
+
+  .publish_textarea textarea {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+
+  .publish_icons {
+    padding: 10px 15px;
+  }
+
+  .publish_icons ul li {
+    font-size: 1rem;
+    margin-right: 0; /* Use gap */
+  }
+
+  button.publish-button {
+    padding: 7px 15px;
+    font-size: 0.8rem;
+  }
+}
+
+
+
+/* Add this new style for the container holding textarea and upload */
+.publish_content_area {
+  display: flex; /* Enable flexbox for side-by-side arrangement */
+  align-items: flex-start; /* Align items to the top */
+  gap: 20px; /* Space between textarea and upload component */
+  padding: 20px 25px; /* Inherit padding from the old publish_textarea for this new container */
+}
+
+/* Adjust the existing publish_textarea to allow it to shrink/grow */
+.publish_textarea {
+  display: flex; /* Keep flex for image and textarea */
+  align-items: center;
+  gap: 20px; /* Space between image and textarea */
+  flex: 1; /* Allow the textarea container to take available space */
+  padding: 0; /* Remove padding here as it's now on .publish_content_area */
+}
+
+/* Styles for the wrapper around the upload component */
+.upload-component-wrapper {
+  flex: 1; /* Allow the upload component wrapper to take available space */
+  min-width: 250px; /* Ensure it doesn't get too small */
+  /* You might want to add some styling like border, background, or max-height here */
+  /* background-color: #f0f0f0; */
+  /* padding: 10px; */
+  /* border-radius: 8px; */
+}
+
+/* Ensure textarea itself behaves correctly within its flex container */
+.publish_textarea textarea {
+    flex-grow: 1; /* Ensure textarea grows to fill space */
+}
+
+/* Adjust responsive styles for .publish_content_area */
+@media (max-width: 768px) {
+  .publish_content_area {
+    flex-direction: column; /* Stack them vertically on smaller screens */
+    align-items: stretch; /* Stretch items to fill width */
+    gap: 15px; /* Reduce gap when stacked */
+    padding: 15px 20px; /* Adjust padding for smaller screens */
+  }
+
+  .publish_textarea {
+    flex-direction: row; /* Keep image and textarea in a row */
+    align-items: center;
+    padding: 0; /* Ensure no extra padding */
+  }
+
+  .upload-component-wrapper {
+    min-width: unset; /* Remove min-width when stacked */
+    width: 100%; /* Take full width when stacked */
+  }
+}
+
+@media (max-width: 480px) {
+    .publish_content_area {
+        padding: 10px 15px; /* Further adjust padding */
+    }
+}
+

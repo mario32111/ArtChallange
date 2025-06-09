@@ -2,32 +2,50 @@
   <div class="feed">
     <div class="feed_title">
       <img src="../../../assets/images/user-7.jpg" alt="" />
-      <span><b>Marina Valentine</b> shared a <a href="feed.html">participation</a> in <a
-          href="feed.html">concurso</a> <br>
-        <p>March 2 at 6:05pm</p>
+      <span>
+        <b>{{ post.autorNombre }}</b> compartió una <a href="#">participación</a> en
+        <ng-container *ngIf="contestName; else defaultConcurso">
+          un concurso:
+          <a href="#" (click)="goToContestDetails()">{{ contestName }}</a>
+        </ng-container>
+        <ng-template #defaultConcurso>
+          un <a href="#">concurso</a>
+        </ng-template>
+        <br />
+        <p>{{ post.fechaPublicacion | date: 'medium' }}</p>
       </span>
     </div>
-    <div class="feed_content">
-      <p>Tengo el placer de compoartir mi pintura sobre sdsdadadadadadadadadadsda</p>
 
-      <div class="feed_content_image">
-        <a href="feed.html"><img src="../../../assets/images/photo-1.jpg" alt="" /></a>
+    <div class="feed_content">
+      <p>{{ post.descripcion }}</p>
+
+      <div class="feed_content_image" *ngIf="post.imagenUrl">
+        <a href="#"><img [src]="post.imagenUrl" alt="Imagen del post" /></a>
       </div>
     </div>
+
     <div class="feed_footer">
       <ul class="feed_footer_left">
-        <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
-        <li><span><b>Jimmy, Andrea</b> and 47 more liked this</span></li>
+        <li class="hover-orange selected-orange">
+          <i class="fa fa-heart"></i> {{ post.likes.length }}
+        </li>
+        <li>
+          <span>
+            <b>{{ post.likes[0] || 'Alguien' }}</b> y {{ post.likes.length - 1 }} más les gustó esto
+          </span>
+        </li>
       </ul>
+
       <ul class="feed_footer_right">
-        <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
+        <li class="hover-orange selected-orange"><i class="fa fa-share"></i> Compartir</li>
         <li class="hover-orange">
-          <a (click)="toggleComments()"style="color:#515365;">
-            <i class="fa fa-comments-o"></i> 74 comments
+          <a (click)="toggleComments()" style="color:#515365;">
+            <i class="fa fa-comments-o"></i> {{ post.comentarios.length }} comentarios
           </a>
         </li>
       </ul>
     </div>
-    <app-comments  *ngIf="showComments"></app-comments>
+
+    <app-comments *ngIf="showComments"></app-comments>
   </div>
 </div>

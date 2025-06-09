@@ -4,29 +4,13 @@
 
 <div class="main-content-wrapper" [class.suggestions-open]="showSuggestionsPanel">
   <div class="content-area">
-    <div class="row publish-section">
-      <div class="row_title">
-        <span><i class="fa fa-newspaper-o" aria-hidden="true"></i> Status</span>
-      </div>
-      <form method="" action="/">
-        <div class="publish_textarea">
-          <img class="border-radius-image" [src]="imgUrl" alt="" />
-          <textarea type="text" placeholder="¿Qué piensas, Mario?" style="resize: none;"></textarea>
-        </div>
-        <div class="publish_icons">
-          <ul>
-            <li><i class="fa fa-camera"></i></li>
-            <li><i class="fa fa-video-camera"></i></li>
-            <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
-          </ul>
-          <button class="publish-button">Publicar</button>
-        </div>
-      </form>
-    </div>
+    <app-create-user-post (postCreated)="fetchPostsAgain()"></app-create-user-post>
+
+    <app-post-participation *ngFor="let post of posts" [post]="post"></app-post-participation>
 
     <app-post-requeriments></app-post-requeriments>
     <app-post-challange-results></app-post-challange-results>
-    <app-post-participation></app-post-participation>
+
 
     <div class="row feed-post">
       <div class="feed">

@@ -45,3 +45,27 @@ export interface ConvovatoriaPost {
   creadoEn: Date;
   actualizadoEn: Date;
 }
+
+
+export interface UserPost {
+  id?: string; // <--- ADD THIS LINE to allow the 'id' property
+  tipo: 'participacion'; // Distinct type for user submissions
+
+  autorId: string;
+  autorNombre: string;
+  imagenUrl: string;
+  descripcion: string; // 👈 Add this
+
+
+  hashtags: string[];
+  etiquetas: string[];
+
+  likes: string[];
+  comentarios: Comentario[];
+
+  fechaPublicacion: Date;
+  creadoEn: Date;
+  actualizadoEn: Date;
+  concursoId?: string; // <--- This line was already here (optional ID of the selected contest)
+
+}

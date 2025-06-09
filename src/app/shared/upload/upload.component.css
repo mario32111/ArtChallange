@@ -37,3 +37,94 @@ button:disabled {
   background-color: #f8f9fa;
   border-radius: 4px;
 }
+
+/* upload.component.css */
+
+/* Your existing styles for the upload component... */
+
+/* upload.component.css */
+
+/* Your existing styles for the upload component... */
+
+.uploaded-preview-image {
+  max-width: 100%; /* Ensures image fits within its container horizontally */
+  max-height: 200px; /* Sets a maximum height for the image */
+  height: auto; /* Allows the height to adjust automatically based on max-height and aspect ratio */
+  object-fit: contain; /* Ensures the entire image is visible within the bounds, scaling down if necessary. Use 'cover' if you want it to fill the space and potentially crop. */
+  margin-top: 10px; /* Margin from the text above it */
+  margin-left: auto; /* Centers the image horizontally */
+  margin-right: auto; /* Centers the image horizontally */
+  display: block; /* Important for margin: auto to work */
+  border: 1px solid #ddd; /* Optional: adds a subtle border */
+  border-radius: 8px; /* Optional: rounds the corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+/* upload.component.css */
+
+.input-button-wrapper {
+  display: flex; /* Enable flexbox for this container */
+  justify-content: space-between; /* Pushes items to opposite ends */
+  align-items: center; /* Vertically aligns items in the middle */
+  gap: 15px; /* Adds space between the input and the button */
+  margin-bottom: 15px; /* Add some space below this section */
+}
+
+/* Ensure the file input takes up available space or a reasonable width */
+.input-button-wrapper input[type="file"] {
+  flex-grow: 1; /* Allows the input to take up most of the available space */
+  /* You might want to adjust max-width or width here if it gets too wide */
+  padding: 8px; /* Basic padding for the input */
+  border: 1px solid #ccc; /* Basic border */
+  border-radius: 5px; /* Slightly rounded corners */
+}
+
+.input-button-wrapper button {
+  /* Ensure your button styles are appropriate for this layout */
+  flex-shrink: 0; /* Prevents the button from shrinking */
+  padding: 10px 20px; /* Example padding */
+  background-color: #4A90E2; /* Example button color */
+  color: white; /* Example text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-button-wrapper button:hover {
+  background-color: #357ABD; /* Darker blue on hover */
+}
+
+/* If you have general button styles, make sure they don't override this.
+   You might need to make this selector more specific, e.g.,
+   .upload-container .input-button-wrapper button { ... }
+*/
+
+/* Your existing styles for .uploaded-preview-image should remain as is */
+.uploaded-preview-image {
+  max-width: 100%;
+  max-height: 200px;
+  height: auto;
+  object-fit: contain;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Basic styling for error/success messages */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+.success-message {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  text-align: center; /* To center the image within the container */
+}

@@ -1,0 +1,50 @@
+<div class="row publish-section">
+  <div class="row_title">
+    <span><i class="fa fa-newspaper-o" aria-hidden="true"></i> Status</span>
+  </div>
+
+  <form (submit)="submitPost()">
+    <div class="publish_content_area">
+      <div class="publish_textarea">
+        <img class="border-radius-image" [src]="imgUrl" alt="" />
+        <textarea
+          type="text"
+          [placeholder]="'¿Qué piensas, ' + userName + '?'"
+          style="resize: none;"
+          [(ngModel)]="caption"
+          name="caption"
+          required
+        ></textarea>
+      </div>
+
+      <div class="upload-component-wrapper" *ngIf="showImageUpload">
+        <app-upload (imageUploaded)="onImageUploaded($event)"></app-upload>
+
+        <div class="concursos-select-wrapper">
+          <label for="concursoSelect">Seleccionar Concurso (Opcional):</label>
+          <select
+            id="concursoSelect"
+            name="selectedConcurso"
+            [(ngModel)]="selectedConcursoId"
+          >
+            <option [ngValue]="null">Ninguno</option>
+            <option *ngFor="let concurso of concursos" [ngValue]="concurso.id">
+              {{ concurso.nombre }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="publish_icons">
+      <ul>
+        <li (click)="toggleImageUpload()"><i class="fa fa-camera"></i></li>
+        <li><i class="fa fa-video-camera"></i></li>
+        <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
+      </ul>
+      <button class="publish-button" type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Publicando...' : 'Publicar' }}
+      </button>
+    </div>
+  </form>
+</div>

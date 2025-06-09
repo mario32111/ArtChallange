@@ -279,3 +279,99 @@
     margin-top: 25px;
   }
 }
+
+/* Add this to create-user-post.css */
+
+.concursos-select-wrapper {
+  margin-top: 20px; /* Space above the select box */
+  padding: 0 25px; /* Adjust padding to align with other content */
+}
+
+.concursos-select-wrapper label {
+  display: block; /* Make label take its own line */
+  margin-bottom: 8px; /* Space between label and select */
+  font-weight: 600;
+  color: #34495e;
+}
+
+.concursos-select-wrapper select {
+  width: 100%; /* Make select box take full width */
+  padding: 10px 15px;
+  border: 1px solid #e0e6ed;
+  border-radius: 25px; /* Match other rounded inputs */
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+  appearance: none; /* Remove default arrow in some browsers */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="#333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 18px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.concursos-select-wrapper select:focus {
+  outline: none;
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .concursos-select-wrapper {
+    margin-top: 15px;
+    padding: 0 20px; /* Adjust padding for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .concursos-select-wrapper {
+    margin-top: 10px;
+    padding: 0 15px; /* Further adjust padding */
+  }
+}
+
+/* challenge-details.component.css */
+
+/* ... your existing styles ... */
+
+.contest-post-section {
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 1px solid #e9eff6;
+  background-color: #f8fafc;
+  border-radius: 0 0 15px 15px; /* Adjust if it's not the last element */
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.03);
+}
+
+.contest-post-section h3 {
+  margin-bottom: 20px;
+  color: #34495e;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.contest-posts-list {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.contest-posts-list h3 {
+  margin-bottom: 20px;
+  color: #34495e;
+  font-size: 1.2rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.contest-posts-list p {
+  text-align: center;
+  color: #6c7a89;
+  font-style: italic;
+}
+
