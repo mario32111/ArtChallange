@@ -1,4 +1,3 @@
-
 import { Component, HostListener, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { CommonModule } from '@angular/common';
@@ -12,6 +11,10 @@ import { AuthResponse } from '../../interfaces/auth.interface';
 import { ChallangeService } from '../../services/challange.service';
 import { Concurso } from '../../interfaces/challange.model';
 import { Router } from '@angular/router';
+import { UserPost } from '../../interfaces/post.interfaces';
+import { UserPostsService } from '../../services/user-post.service'; // adjust path if needed
+import { CreateUserPostComponent } from '../../pages/create-user-post/create-user-post.component'; // Adjust path if needed
+
 
 
 
@@ -25,6 +28,8 @@ import { Router } from '@angular/router';
     PostParticipationComponent,
     PostRequerimentsComponent,
     RouterModule,
+    CreateUserPostComponent  // 👈 Add this
+
   ],
   standalone: true,
   templateUrl: './home.component.html',
@@ -33,17 +38,33 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   showSmallHeader = false;
   mostrarContenido = true;
+  posts: UserPost[] = [];
   userData = getParsedLocalStorageItem<AuthResponse>('user');
   imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
   showSuggestionsPanel: boolean = false; // Nueva propiedad para controlar la visibilidad del panel
 
-  constructor(private service: ChallangeService, private router: Router) {
+  constructor(
+    private service: ChallangeService,
+    private userPostsService: UserPostsService, 
+    private router: Router
+  ) {
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
 /*     console.log(this.userName);
  */  }
   ngOnInit(): void {
     /*          this.insertarConcursos();
      */
+
+    this.userPostsService.getAllUserPosts().subscribe(
+      (posts) => {
+        this.posts = posts;
+        console.log('User posts cargados:', posts);
+      },
+      (error) => {
+        console.error('Error al obtener los posts del usuario:', error);
+      }
+    );
+
 
     this.service.getAllChallanges().subscribe(
       (data: Concurso[]) => {
@@ -83,6 +104,19 @@ export class HomeComponent implements OnInit {
   verDetalleConcurso(concurso: Concurso) {
     this.router.navigate(['/challangeDetails', concurso.id]);
   }
+
+  fetchPostsAgain() {
+  this.userPostsService.getAllUserPosts().subscribe(
+    (posts) => {
+      this.posts = posts;
+      console.log('🔁 Posts actualizados después de crear uno nuevo:', posts);
+    },
+    (error) => {
+      console.error('Error al refrescar los posts:', error);
+    }
+  );
+}
+
 
 
 }
