@@ -12,18 +12,6 @@
         <p class="mb-1 text-muted">{{ concurso.organizador }}</p>
         <span class="badge bg-primary">{{ concurso.categoria }}</span>
       </div>
-<<<<<<< HEAD
-      <button (click)="verMas(concurso)" class="btn btn-outline-primary rounded-pill px-3">Ver más</button>
-    </li>
-  </ul>
-</div>
-
-<app-challange-details
-  *ngIf="concursoSeleccionado"
-  [concurso]="concursoSeleccionado"
-  (volver)="cerrarDetalles()"> <!-- ✅ Así sí funciona -->
-</app-challange-details>
-=======
 
       <div class="button-group">
         <button (click)="verDetalleConcurso(concurso)">Detalles</button>
@@ -36,4 +24,3 @@
     </li>
   </ul>
 </div>
->>>>>>> release/v1.0.1
