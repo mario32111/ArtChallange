@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.model';
 
@@ -10,7 +10,7 @@ import { User } from '../../interfaces/user.model';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
   async loginWithEmail() {
     try {
       const user = await this.authService.loginWithEmail(this.email, this.password);
-      console.log('Inicio de sesión exitoso:', user);
+      //console.log('Inicio de sesión exitoso:', user);
       // * Redirigir a otra página o mostrar mensaje
       this.router.navigate(['/home']);
 
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
   async loginWithGoogle() {
     try {
       const user = await this.authService.loginWithGoogle();
-      console.log('Usuario autenticado (Google):', user);
+      //console.log('Usuario autenticado (Google):', user);
       this.router.navigate(['/home']);
       localStorage.setItem('user', JSON.stringify(user));
 

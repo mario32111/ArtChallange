@@ -30,8 +30,10 @@
   font-weight: bold;
 }
 
-.center-link-login{
+/* Si 'center-link-login' solo agrega padding y quieres que el texto se centre */
+.center-link-login {
   padding-top: 30px;
+  text-align: center; /* Añadido para centrar el enlace "Login Now" */
 }
 
 
@@ -42,6 +44,8 @@
   font-weight: 500;
   margin-top: 4px;
   display: block;
+  /* Si necesitas que msg1 también se centre por defecto, añade: */
+  /* text-align: center; */
 }
 
 .msg2 {
@@ -49,11 +53,22 @@
   font-size: 14px;
   font-weight: bold;
   margin-top: 12px;
-  text-align: center;
+  text-align: center; /* Ya está centrado aquí */
 }
 
 /* Input + mensaje de validación debajo */
 .input-group {
   margin-bottom: 18px;
   position: relative;
+}
+
+/* CLASE PARA CENTRAR TEXTO (reutilizable) */
+.text-centered {
+  text-align: center;
+}
+
+/* Para centrar el botón de Google, el padre ya debería tener 'text-align: center;' */
+/* Asegúrate de que .text-center (que usas en el HTML) aplique text-align: center; */
+.text-center {
+    text-align: center; /* Asegura que esta regla exista y no sea sobrescrita */
 }

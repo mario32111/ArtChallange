@@ -9,6 +9,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ChallangeListScreenComponent } from './pages/challange-list-screen/challange-list-screen.component';
 import { ChallangeDetailsComponent } from './pages/challange-details/challange-details.component';
 import { ConcursoFormComponent } from './pages/concurso-form/concurso-form.component';
+import { ConcursoUsuario} from './pages/concurso-usuario/concurso-usuario.component'
 import { UploadComponent } from './shared/upload/upload.component';
 import { AuthGuard } from './auth.guard'; // ajusta el path si es necesario
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -16,10 +17,11 @@ import { ProfileComponent } from './pages/profile/profile.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'challanges', component: ChallangeListScreenComponent, canActivate: [AuthGuard] },
-  { path: 'challangeDetails', component: ChallangeDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'Concursousuario', component: ConcursoUsuario, canActivate: [AuthGuard] },
+  { path: 'challangeDetails/:id', component: ChallangeDetailsComponent, canActivate: [AuthGuard] },
   { path: 'newChallange', component: ConcursoFormComponent, canActivate: [AuthGuard] },
   { path: 'a', component: UploadComponent, canActivate: [AuthGuard] },
-  { path: 'personalProfile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'personalProfile/:uid', component: ProfileComponent, canActivate: [AuthGuard] },
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

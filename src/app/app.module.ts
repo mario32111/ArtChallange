@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { environment } from './envitoments/envitoment';
 import { UserService } from './services/user.service';
+import { FormsModule } from '@angular/forms';
 
 // Firebase v9 (modular)
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -20,7 +21,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
   imports: [
     BrowserModule,
     AppRoutingModule, // Asegúrate de que esto incluya RouterModule.forRoot([])
-    RouterModule, // Añade esto para resolver el error de router-outlet
+    RouterModule,
+    FormsModule // Añade esto para resolver el error de router-outlet
   ],
   providers: [
     UserService,

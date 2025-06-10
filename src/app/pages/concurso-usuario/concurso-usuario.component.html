@@ -1,0 +1,29 @@
+<!-- Header grande para pantallas grandes -->
+<app-header *ngIf="!showSmallHeader"></app-header>
+
+<!-- Header pequeño para pantallas pequeñas -->
+<app-header-small *ngIf="showSmallHeader"></app-header-small>
+
+<div class="contest-section" *ngIf="!concursoSeleccionado">
+  <h2>Tus Concursos</h2>
+  <ul>
+    <li *ngFor="let concurso of concursosRecomendados">
+      <img [src]="concurso.imagen" alt="{{ concurso.nombre }}">
+      <div class="info">
+        <h3>{{ concurso.nombre }}</h3>
+        <p>{{ concurso.organizador }}</p>
+        <span>{{ concurso.categoria }}</span>
+      </div>
+      <button (click)="verDetalleConcurso(concurso)">Detalles</button>        
+    </li>
+  </ul>
+</div>
+
+
+
+
+<app-challange-details
+  *ngIf="concursoSeleccionado"
+  [concurso]="concursoSeleccionado"
+  (volver)="cerrarDetalles()"> <!-- ✅ Así sí funciona -->
+</app-challange-details>

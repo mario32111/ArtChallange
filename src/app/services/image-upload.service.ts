@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ImageUploadService {
-  private readonly apiKey = '5951401df9075b63dbf49b22ac6ab16b'; // Tu API key de ImgBB
+  private readonly apiKey = 'f6b1133859231f68cdceda9ad600eace'; // Tu API key de ImgBB
   private readonly uploadUrl = 'https://api.imgbb.com/1/upload';
 
   constructor(private http: HttpClient  ) { }
@@ -23,7 +23,7 @@ export class ImageUploadService {
     };
 
     const data = this.http.post(this.uploadUrl, formData, { params });
-    console.log(data);
+    //console.log(data);
     return data;
     }
 }

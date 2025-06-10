@@ -1,49 +1,98 @@
-<div class="row border-radius card shadow-lg p-4 mb-4 bg-white rounded">
-  <div class="feed">
-    <div class="feed_title d-flex align-items-center mb-2">
-      <img src="../../../assets/images/user-6.jpg" alt="" class="rounded-circle me-2" style="width: 40px; height: 40px;" />
-      <span><b>Organizador2</b> compartió una <a href="feed.html">convocatoria</a><br>
-        <p class="text-muted small">1 de marzo a las 3:53pm</p>
+<div class="row border-radius" *ngIf="post && convocatoria"> <div class="feed">
+    <div class="feed_title">
+      <img src="../../../assets/images/user-6.jpg" alt="User avatar" />
+      <span>
+        <b>{{ post.autorNombre }}</b> compartió una
+        <a href="#">convocatoria</a><br />
+        <p>{{ post.fechaPublicacion | date: 'medium' }}</p>
       </span>
     </div>
+
     <div class="feed_content">
       <div class="container">
-        <h3 class="fw-bold text-primary">Convocatoria para el concurso Foto entre amigos</h3>
-        <h1 class="mb-3">📢 ¡Llamando a todos los amantes de la fotografía y la amistad! 💙</h1>
-        <p>¿Tienes una foto que capture la esencia de la amistad? 🤩 ¡Este es tu momento!</p>
-        <p>Participa en nuestro concurso <span class="highlight">"Foto entre Amigos"</span> y gana premios increíbles. 🏆🎁</p>
-        <h2 class="fw-bold text-success mt-4">📌 ¿Cómo participar?</h2>
-        <ul class="steps mb-3">
-            <li>📷 <strong>Toma una foto</strong> que refleje la amistad en su máxima expresión.</li>
-            <li>✨ Súbela a <strong>Instagram</strong> con el hashtag <span class="hashtag">#FotoEntreAmigos2024</span></li>
-            <li>📢 <strong>Etiquétanos</strong> en la publicación para que podamos verla.</li>
+        <h3>{{ convocatoria.nombre }}</h3>
+
+        <h1>📢 {{ convocatoria.slogan }}</h1>
+        <p>{{ convocatoria.descripcionCorta }}</p>
+        <p [innerHTML]="convocatoria.descripcionLarga"></p>
+
+        <h2>📌 ¿Cómo participar?</h2>
+        <ul class="steps">
+          <li *ngFor="let paso of convocatoria.instruccionesParticipacion">
+            {{ paso }}
+          </li>
         </ul>
-        <h2 class="fw-bold text-warning mt-4">🏆 Premios increíbles</h2>
-        <p>Para las fotos más <span class="highlight">creativas y emotivas</span>. ¡No te quedes fuera! 😍</p>
-        <p>⏳ <strong>Fecha límite de participación:</strong> <span class="highlight">[Inserta fecha]</span></p>
-        <p>📢 <strong>Anuncio de ganadores:</strong> <span class="highlight">[Inserta fecha]</span></p>
-        <div class="footer mt-4">
-            📸 ¡Etiqueta a tus amigos y únete a la diversión! 🙌😎
-            <br>🔗 Más info en <a href="#">[Inserta enlace]</a>
+
+        <h2>🏆 Premios increíbles</h2>
+        <ul>
+          <li *ngFor="let premio of convocatoria.premios">
+            🎁 {{ premio }}
+          </li>
+        </ul>
+
+        <p>
+          ⏳ <strong>Fecha límite de participación:</strong>
+          <span class="highlight">{{ convocatoria.endDate | date: 'longDate' }}</span>
+        </p>
+        <p *ngIf="convocatoria.announcementDate">
+          📢 <strong>Anuncio de ganadores:</strong>
+          <span class="highlight">{{ convocatoria.announcementDate | date: 'longDate' }}</span>
+        </p>
+
+        <div class="footer">
+          📸 ¡Etiqueta a tus amigos y únete a la diversión! 🙌😎 <br />
+          🔗 Más info en
+          <a [href]="convocatoria.infoAdicionalLink || '#'">[Enlace]</a>
         </div>
       </div>
-      <div class="feed_content_image mt-3">
-        <a href="feed.html"><img src="../../../assets/images/photo-2.jpg" alt="" class="img-fluid rounded shadow" /></a>
+
+      <div class="feed_content_image">
+        <img [src]="convocatoria.imagen" alt="Imagen del concurso" />
       </div>
     </div>
-    <div class="feed_footer mt-3">
-      <ul class="feed_footer_left list-inline mb-0">
-        <li class="hover-orange selected-orange list-inline-item"><i class="fa fa-heart"></i> 22k</li>
-        <li class="list-inline-item"><span><b>Jimmy, Andrea</b> y 47 más les gustó esto</span></li>
+
+    <div class="feed_footer">
+      <ul class="feed_footer_left">
+        <li class="hover-orange selected-orange" (click)="toggleLike(post)" style="cursor:pointer;">
+          <i
+            class="fa"
+            [class.fa-heart]="hasUserLiked(post)"
+            [class.fa-heart-o]="!hasUserLiked(post)"
+            aria-hidden="true"
+          ></i>
+          {{ post.likes.length }} {{ post.likes.length === 1 ? 'like' : 'likes' }}
+        </li>
+
+        <li *ngIf="post.likes && post.likes.length > 0">
+          <span>
+            <b>{{ firstTwoLikeUsers }}</b>
+            <ng-container *ngIf="post.likes.length > 2">
+              y {{ post.likes.length - 2 }} más
+            </ng-container>
+            dieron like
+          </span>
+        </li>
       </ul>
-      <ul class="feed_footer_right list-inline mb-0">
-        <li class="hover-orange selected-orange list-inline-item"><i class="fa fa-share"></i> 7k</li>
-        <li class="hover-orange list-inline-item">
-          <a href="feed.html" style="color:#515365;">
-            <i class="fa fa-comments-o"></i> 74 comentarios
+
+      <ul class="feed_footer_right">
+        <li class="hover-orange selected-orange" style="cursor:pointer;">
+          <i class="fa fa-share" aria-hidden="true"></i> Compartir
+        </li>
+        <li class="hover-orange" style="cursor:pointer;">
+          <a (click)="toggleComments()" style="color: #515365; cursor:pointer;">
+            <i class="fa fa-comments-o" aria-hidden="true"></i>
+            {{ post.comentarios.length || 0 }} comentarios
           </a>
         </li>
       </ul>
     </div>
+
+    <app-comments
+      *ngIf="showComments && post?.concursoRef"
+      [postId]="post.concursoRef"
+      [currentUserId]="currentUserId!"
+      [currentUserName]="currentUserName"
+      (commentAdded)="onCommentAdded($event)"
+    ></app-comments>
   </div>
 </div>

@@ -1,23 +1,108 @@
-<!-- Header grande para pantallas grandes -->
 <app-header *ngIf="!showSmallHeader"></app-header>
 
-<!-- Header pequeño para pantallas pequeñas -->
 <app-header-small *ngIf="showSmallHeader"></app-header-small>
 
-<div class="contest-details card shadow-lg p-4 mb-4 bg-white rounded" *ngIf="concurso">
-  <!-- Botón flecha para volver -->
-  <button class="back-arrow btn btn-light border shadow-sm mb-3" (click)="emitirVolver()" aria-label="Volver">
-    <i class="fa fa-arrow-left"></i>
-  </button>
-  <h2 class="fw-bold text-primary mb-3">{{ concurso.nombre }}</h2>
-  <img [src]="concurso.imagen" alt="{{ concurso.nombre }}" class="img-fluid rounded mb-3" style="max-width: 400px;">
-  <div class="contest-meta mb-3">
+<div class="contest-details" *ngIf="concurso">
+  <h2>{{ concurso.nombre }}</h2>
+  <p class="slogan" *ngIf="concurso.slogan">{{ concurso.slogan }}</p>
+  <img [src]="concurso.imagen" alt="{{ concurso.nombre }}" />
+
+  <div class="contest-meta">
     <p><strong>Organizador:</strong> {{ concurso.organizador }}</p>
     <p><strong>Categoría:</strong> {{ concurso.categoria }}</p>
-    <p><strong>Descripción:</strong> {{ concurso.descripcion }}</p>
-    <p><strong>Fecha límite:</strong> {{ concurso.endDate }}</p>
-    <p><strong>Premios:</strong> {{ concurso.premios }}</p>
-    <p><strong>Costo de inscripción:</strong> {{ concurso.inscripcionCosto }}</p>
+    <p *ngIf="concurso.descripcionCorta">
+      <strong>Resumen:</strong> {{ concurso.descripcionCorta }}
+    </p>
+    <p>
+      <strong>Descripción completa:</strong> {{ concurso.descripcionLarga }}
+    </p>
+    <p>
+      <strong>Costo de inscripción:</strong>
+      {{ concurso.inscripcionCosto | currency : 'MXN' : 'symbol' : '1.0-2' }}
+    </p>
+
+    <div class="dates-section">
+      <p>
+        <strong>Inicio de participación:</strong>
+        {{ concurso.startDate | date : 'mediumDate' }}
+      </p>
+      <p>
+        <strong>Fecha límite de participación:</strong>
+        {{ concurso.endDate | date : 'mediumDate' }}
+      </p>
+      <p *ngIf="concurso.announcementDate">
+        <strong>Anuncio de ganadores:</strong>
+        {{ concurso.announcementDate | date : 'mediumDate' }}
+      </p>
+    </div>
+
+    <div class="rewards-section" *ngIf="concurso.premios && concurso.premios.length > 0">
+      <h3>Premios:</h3>
+      <ul>
+        <li *ngFor="let premio of concurso.premios">{{ premio }}</li>
+      </ul>
+    </div>
+
+    <p *ngIf="concurso.hashtag"><strong>Hashtag:</strong> #{{ concurso.hashtag }}</p>
+
+    <div class="social-tags-section" *ngIf="concurso.etiquetasRedes && concurso.etiquetasRedes.length > 0">
+      <h3>Etiquetas en Redes:</h3>
+      <ul>
+        <li *ngFor="let tag of concurso.etiquetasRedes">{{ tag }}</li>
+      </ul>
+    </div>
+
+    <div class="instructions-section" *ngIf="concurso.instruccionesParticipacion && concurso.instruccionesParticipacion.length > 0">
+      <h3>Instrucciones para participar:</h3>
+      <ol>
+        <li *ngFor="let instruction of concurso.instruccionesParticipacion">
+          {{ instruction }}
+        </li>
+      </ol>
+    </div>
+
+    <p *ngIf="concurso.infoAdicionalLink">
+      <strong>Más información:</strong>
+      <a [href]="concurso.infoAdicionalLink" target="_blank">{{
+        concurso.infoAdicionalLink
+      }}</a>
+    </p>
+
+    <p>
+      <strong>Estado:</strong>
+      <span class="contest-status status-{{ concurso.estado }}">{{
+        concurso.estado | titlecase
+      }}</span>
+    </p>
+    <p class="timestamps">
+      <small>Creado: {{ concurso.createdAt | date : 'short' }}</small
+      ><br />
+      <small>Última actualización: {{ concurso.updatedAt | date : 'short' }}</small>
+    </p>
   </div>
-  <button (click)="unirseAlConcurso()" class="btn btn-success rounded-pill px-4">Unirse al Concurso</button>
+
+  <button *ngIf="!isSignedUp && concurso.estado === 'abierto'" (click)="unirseAlConcurso()">
+    Unirse al concurso
+  </button>
+  <p *ngIf="isSignedUp">¡Ya estás inscrito en este concurso!</p>
+  <p *ngIf="concurso.estado === 'cerrado' && !isSignedUp" class="closed-message">
+    Este concurso ya ha cerrado.
+  </p>
+  <p *ngIf="concurso.estado === 'proximo' && !isSignedUp" class="upcoming-message">
+    Este concurso abrirá pronto.
+  </p>
+
+  <div class="contest-post-section" *ngIf="isSignedUp && concurso.estado === 'abierto'">
+    <h3>Comparte tu participación</h3>
+    <app-create-user-post
+      [preSelectedConcursoId]="concurso.id"
+      (postCreated)="onPostCreated()"
+    ></app-create-user-post>
+  </div>
+
+  <div class="contest-posts-list">
+    <h3>Publicaciones del Concurso</h3>
+    <p *ngIf="contestPosts.length === 0">Aún no hay publicaciones para este concurso.</p>
+    <app-post-participation *ngFor="let post of contestPosts" [post]="post"></app-post-participation>
+  </div>
 </div>

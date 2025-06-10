@@ -1,37 +1,46 @@
 <div class="feedcomments">
-  <div class="new-comment">
-    <h4>Add a Comment</h4>
-    <textarea placeholder="Write your comment..." [(ngModel)]="newCommentText"></textarea>
-    <button (click)="addComment()">Post Comment</button>
+  <div class="new-comment row border-radius shadow">
+    <h4>Agregar un Comentario</h4>
+    <div class="comment-input-area">
+      <textarea
+        placeholder="Escribe tu comentario..."
+        [(ngModel)]="newCommentText"
+      ></textarea>
+      <button (click)="addComment()">Publicar Comentario</button>
+    </div>
   </div>
-  
-  <ul>
-      <li>
-          <div class="feedcomments-user">
-              <img src="./../../../assets/images/user-6.jpg" />
-              <span><b>Mathilda Brinker</b><br><p>38 mins ago</p></span>
-          </div>
-          <div class="feedcomments-comment">
-              <p>Ratione voluptatem sequi en lod nesciunt. Neque porro quisquam est, quinder dolorem ipsum quia dolor sit amet, consectetur adipisci velit en lorem ipsum duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-          </div>
-          <div class="feedcomments-foot">
-              <i class="fa fa-heart"></i><span>3 likes</span>
-              <p><a href="#"><i class="fa fa-reply"></i> reply</a></p>
-          </div>
-      </li>
-      <li>
-          <div class="feedcomments-user">
-              <img src="./../../../assets/images/user.jpg" />
-              <span><b>Jonh Hamstrong</b><br><p>1 hour ago</p></span>
-          </div>
-          <div class="feedcomments-comment">
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
-          </div>
-          <div class="feedcomments-foot">
-              <i class="fa fa-heart"></i><span>44 likes</span>
-              <p><a href="#"><i class="fa fa-reply"></i> reply</a></p>
-          </div>
-      </li>
-  </ul>
 
+  <ul>
+    <li *ngFor="let comment of comments">
+      <div class="comment-card row border-radius shadow">
+        <div class="feedcomments-user">
+          <img src="./../../../assets/images/user-6.jpg" alt="Avatar del usuario" />
+          <span>
+            <b>{{ comment.nombreUsuario }}</b
+            ><br /><p>{{ formatCommentDate(comment.fecha) }}</p>
+          </span>
+        </div>
+        <div class="feedcomments-comment">
+          <p>{{ comment.contenido }}</p>
+        </div>
+        <div class="feedcomments-foot">
+          <span class="comment-like-button" (click)="toggleCommentLike(comment)" style="cursor:pointer;">
+            <i class="fa"
+               [class.fa-heart]="hasUserLikedComment(comment)"
+               [class.fa-heart-o]="!hasUserLikedComment(comment)">
+            </i>
+            {{ comment.likes?.length || 0 }} {{ comment.likes?.length === 1 ? 'like' : 'likes' }}
+          </span>
+          <p><a href="#"><i class="fa fa-reply"></i> responder</a></p>
+        </div>
+      </div>
+    </li>
+    <li *ngIf="comments.length === 0 && postId">
+      <div class="comment-card row border-radius shadow">
+        <div class="feedcomments-comment">
+          <p>Sé el primero en comentar esta publicación.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>

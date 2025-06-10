@@ -10,6 +10,7 @@ export class ProfileService {
 
   constructor(private firestore: Firestore) { }
 
+
   uploadProfile(profileData: any): Promise<void> {
     const profileDoc = doc(this.firestore, 'profiles', profileData.uid);
     return setDoc(profileDoc, profileData);
@@ -33,4 +34,26 @@ export class ProfileService {
       })
     );
   }
+
+  // MODIFICADO: Para buscar usuarios cuyo 'username' empieza por el valor dado
+  getUsersByUsername(usernamePrefix: string): Observable<any[]> {
+    const profilesCollection = collection(this.firestore, 'users');
+    // Asegúrate de que tu campo en Firestore se llame 'username'
+    // Para búsquedas "empieza por", necesitas un índice en Firestore para el campo 'username'.
+    // Si no lo tienes, Firebase te dará un enlace para crearlo en la consola.
+    const profilesQuery = query(
+      profilesCollection,
+      where('displayName', '>=', usernamePrefix),
+      where('displayName', '<=', usernamePrefix + '\uf8ff') // '\uf8ff' es un carácter Unicode muy alto para el final del rango
+    );
+    return from(getDocs(profilesQuery)).pipe(
+      map((querySnapshot) => {
+        return querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+      })
+    );
+  }
+
 }

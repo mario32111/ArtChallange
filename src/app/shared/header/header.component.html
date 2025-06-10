@@ -1,10 +1,10 @@
-<div class="navbar">
+<div class="navbar" [class.scrolled]="isScrolled">
   <div class="navbar_menuicon" (click)="toggleMobileMenu()">
     <i class="fa fa-navicon"></i>
   </div>
 
   <div class="navbar_logo" [routerLink]="['/']" style="cursor: pointer;">
-    <img src="assets/images/logo-blanco.png" alt="Logo" />
+    <img src="/assets/images/logo-blanco.png" alt="Logo" />
   </div>
 
   <div class="navbar_page">
@@ -27,8 +27,8 @@
     <div class="search-results-dropdown" *ngIf="showSearchResults && searchResults.length > 0">
       <ul>
         <li *ngFor="let user of searchResults" (click)="selectSearchResult(user)">
-          <img [src]="user.imageUrl" alt="{{ user.name }}" />
-          <span>{{ user.name }}</span>
+          <img [src]="user.photoURL" alt="{{ user.displayName }}" />
+          <span>{{ user.displayName }}</span>
         </li>
       </ul>
     </div>
@@ -45,10 +45,16 @@
         <i class="fa fa-comments-o"></i>
         <span id="notification">2</span>
       </li>
-      <a href="#" style="color: white">
-        <li><i class="fa fa-trophy"></i></li>
-      </a>
-      </ul>
+
+    <a style="color: white; cursor: pointer">
+      <li>
+        <i class="fa fa-trophy" routerLink="/Concursousuario"></i>
+      </li>
+    </a>
+      <!--       <a href="#" style="color: white">
+        <li><i class="fa fa-shopping-cart"></i></li>
+      </a> -->
+    </ul>
   </div>
 
   <div class="navbar_user" (mouseenter)="toggleProfileModal()" (mouseleave)="closeModalsOnLeave()">

@@ -1,11 +1,13 @@
+// header.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { getParsedLocalStorageItem } from '../../../utils/storage.utils';
 import { AuthResponse } from '../../interfaces/auth.interface';
 import { AuthService } from '../../services/auth.service';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; // Asegúrate de importar Router
 import { FormsModule } from '@angular/forms';
-import { debounceTime, Subject } from 'rxjs'; // Import for debouncing
+import { debounceTime, Subject } from 'rxjs';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-header',
@@ -26,24 +28,39 @@ export class HeaderComponent {
 
   searchBarValue: string = '';
   onSearchBarFocus: boolean = false;
-  showSearchResults: boolean = false; // New: To control visibility of search results
-  searchResults: any[] = []; // New: To store the search results (e.g., user objects)
-  private searchSubject = new Subject<string>(); // New: For debouncing search input
+  showSearchResults: boolean = false;
+  searchResults: any[] = [];
+
+  isScrolled = false; // Nueva propiedad para el efecto de scr
+  private searchSubject = new Subject<string>();
 
   userData = getParsedLocalStorageItem<AuthResponse>('user');
   imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
   userName = this.userData?.user?.providerData?.[0]?.displayName || 'Usuario Anónimo';
 
-  constructor(private auth: AuthService) {
-    // New: Subscribe to search input changes with a debounce time
+  constructor(
+    private auth: AuthService,
+    private profileService: ProfileService,
+    private router: Router // Inyecta el Router
+  ) {
     this.searchSubject.pipe(debounceTime(300)).subscribe(searchValue => {
       this.performSearch(searchValue);
     });
   }
 
+   // HostListener para detectar el scroll en la ventana
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    // Si el scroll vertical es mayor a 50px (puedes ajustar este valor)
+    if (window.scrollY > 50) {
+      this.isScrolled = true;
+    } else {
+      this.isScrolled = false;
+    }
+  }
   logout() {
     localStorage.removeItem('user');
-    return this.auth.logOut(); // o lo que uses
+    return this.auth.logOut();
   }
 
   toggleMessagesModal() {
@@ -78,10 +95,10 @@ export class HeaderComponent {
       !target.closest('.modal-container') &&
       !target.closest('.navbar_icons') &&
       !target.closest('.navbar_user') &&
-      !target.closest('.search-results-dropdown') // New: Exclude search results dropdown
+      !target.closest('.search-results-dropdown')
     ) {
       this.closeAllModals();
-      this.showSearchResults = false; // New: Close search results on outside click
+      this.showSearchResults = false;
     }
   }
 
@@ -91,13 +108,11 @@ export class HeaderComponent {
     if (!this.profileModalHover) this.showProfileModal = false;
   }
 
-  // New: Handle input changes in the search bar
   onSearchInputChange() {
     this.searchSubject.next(this.searchBarValue);
-    this.showSearchResults = this.searchBarValue.length > 0; // Show if there's input
+    this.showSearchResults = this.searchBarValue.length > 0;
   }
 
-  // New: Simulate a search for users (replace with actual API call)
   performSearch(searchValue: string) {
     if (searchValue.trim() === '') {
       this.searchResults = [];
@@ -105,31 +120,29 @@ export class HeaderComponent {
       return;
     }
 
-    // --- Replace this with your actual API call to search for users ---
-    // Example: this.auth.searchUsers(searchValue).subscribe(results => {
-    //   this.searchResults = results;
-    //   this.showSearchResults = true; // Show results if there are any
-    // });
-    // --- End of replacement area ---
-
-    // For demonstration, let's mock some results
-    const mockUsers = [
-      { name: 'Alice Smith', imageUrl: 'assets/images/user-2.jpg' },
-      { name: 'Bob Johnson', imageUrl: 'assets/images/user-7.jpg' },
-      { name: 'Charlie Brown', imageUrl: 'https://www.gravatar.com/avatar' },
-      { name: 'Diana Prince', imageUrl: 'assets/images/user-2.jpg' },
-    ];
-
-    this.searchResults = mockUsers.filter(user =>
-      user.name.toLowerCase().includes(searchValue.toLowerCase())
-    );
+    this.profileService.getUsersByUsername(searchValue).subscribe({
+      next: (users) => {
+        this.searchResults = users;
+        this.showSearchResults = this.searchResults.length > 0;
+        //console.log('Search results:', this.searchResults);
+      },
+      error: (error) => {
+        console.error('Error fetching users:', error);
+        this.searchResults = [];
+        this.showSearchResults = false;
+      },
+      complete: () => {
+        //console.log('Search completed.');
+      }
+    });
   }
 
-  // New: Handle click on a search result
   selectSearchResult(user: any) {
-    console.log('Selected user:', user.name);
-    // You can navigate to the user's profile, populate the search bar, etc.
-    this.searchBarValue = user.name;
+    //console.log('Selected user:', user.displayName);
+    this.searchBarValue = user.displayName;
     this.showSearchResults = false;
+
+    // CAMBIO AQUI: Navega a '/personalProfile' y pasa el 'uid' del usuario
+    this.router.navigate(['/personalProfile', user.uid]);
   }
 }

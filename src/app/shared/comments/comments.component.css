@@ -1,31 +1,201 @@
-.feedcomments{
-  border-top: 2px solid #eeeeee;  /* aplica solo el borde superior con color */
+/* Contenedor principal de todos los comentarios */
+.feedcomments {
+  padding: 0 25px;
+  margin-top: 25px;
 }
 
+/* Estilo para la tarjeta "Añadir un comentario" */
 .new-comment {
-  margin: 20px 40px 0px 40px;
-  border: 1px solid #eeeeee;
-  padding-top: 15px;
-  border-radius: 8px;
+  margin: 0 0 25px 0;
+  padding: 20px 25px;
+  background-color: #ffffff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 15px;
 }
+
+.new-comment h4 {
+  font-size: 1.1rem;
+  color: #34495e;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #f0f4f8;
+  padding-bottom: 15px;
+  background-color: #f8fafc;
+  margin: -20px -25px 15px -25px;
+  padding: 20px 25px 15px 25px;
+  border-radius: 15px 15px 0 0;
+}
+
+/* Nuevo estilo para el contenedor del input y el botón */
+.comment-input-area {
+  display: flex; /* Convierte este contenedor en flexbox */
+  flex-direction: column; /* Apila el textarea y el botón verticalmente */
+  align-items: flex-end; /* Alinea los elementos al final del eje transversal (derecha en este caso) */
+}
+
 .new-comment textarea {
-  width: 100%;
+  width: 100%; /* El textarea ocupa todo el ancho disponible del flex container */
   height: 80px;
-  resize: none;
+  resize: vertical;
   padding: 10px;
-  font-size: 14px;
+  font-size: 0.95rem;
+  border: 1px solid #e0e6ed;
+  border-radius: 8px;
+  color: #333;
+  margin-bottom: 15px; /* Espacio debajo del textarea */
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+
+.new-comment textarea:focus {
+  outline: none;
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.new-comment textarea::placeholder {
+  color: #999;
+}
+
 .new-comment button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background-color: #007bff;
+  padding: 10px 22px;
+  background: linear-gradient(90deg, #4A90E2 0%, #764ba2 100%);
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 8px;
-
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  margin-top: 0; /* Ya no necesitamos float ni margin-top excesivo si está alineado con flex */
 }
+
 .new-comment button:hover {
-  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  opacity: 0.9;
 }
 
+/* Estilos para la lista de comentarios (resto del CSS se mantiene igual) */
+.feedcomments ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feedcomments ul li {
+  margin-bottom: 20px;
+}
+
+.comment-card {
+  padding: 20px 25px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.comment-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feedcomments-user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #f0f4f8;
+  padding-bottom: 15px;
+}
+
+.feedcomments-user img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 2px solid #e0e6ed;
+}
+
+.feedcomments-user span {
+  font-size: 0.95rem;
+  color: #34495e;
+  line-height: 1.4;
+}
+
+.feedcomments-user span b {
+  font-weight: 700;
+  color: #2c3e50;
+  display: block;
+}
+
+.feedcomments-user span p {
+  font-size: 0.8rem;
+  color: #95a5a6;
+  margin: 0;
+}
+
+.feedcomments-comment {
+  margin-bottom: 15px;
+}
+
+.feedcomments-comment p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.feedcomments-foot {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #f0f4f8;
+}
+
+.feedcomments-foot i.fa-heart {
+  color: #6c7a89;
+  font-size: 1.1rem;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.feedcomments-foot i.fa-heart:hover {
+  color: #FF6F61;
+  transform: scale(1.1);
+}
+
+.feedcomments-foot span {
+  font-size: 0.9rem;
+  color: #6c7a89;
+  margin-right: 20px;
+}
+
+.feedcomments-foot p {
+  margin: 0;
+  margin-left: auto;
+}
+
+.feedcomments-foot p a {
+  display: flex;
+  align-items: center;
+  color: #6c7a89;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.feedcomments-foot p a:hover {
+  color: #4A90E2;
+  text-decoration: underline;
+}
+
+.feedcomments-foot p a i {
+  margin-right: 5px;
+  font-size: 1rem;
+}

@@ -35,9 +35,8 @@ export class PostsService {
     );
   }
 
-
-  createConvocatoriaPost(postData: ConvovatoriaPost): Promise<void> {
-    const postDoc = doc(this.firestore, 'posts', postData.uid);
+  createConvocatoriaPost(postData: ConvovatoriaPost, challangeId: string): Promise<void> {
+    const postDoc = doc(this.firestore, 'posts', challangeId);
     return setDoc(postDoc, postData);
   }
 

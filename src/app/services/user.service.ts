@@ -47,6 +47,17 @@ export class UserService {
     );
   }
 
+  //Obtiene los concursos del usuario
+  getUserContests(uid: string): Observable<string[]> {
+  const userContestsRef = collection(this.firestore, 'userContests');
+  const q = query(userContestsRef, where('uid', '==', uid));
+
+  return from(getDocs(q)).pipe(
+    map(snapshot => snapshot.docs.map(doc => doc.data()['concursoId']))
+  );
+}
+
+
   /*
   //*El otro metodo de getAllUsers, por si se requiere
     getAllUsers(): Observable<any[]> {

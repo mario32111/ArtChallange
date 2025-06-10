@@ -1,5 +1,5 @@
 // upload.component.ts
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,10 +14,11 @@ import { ImageUploadService } from '../../services/image-upload.service';
   providers: [ImageUploadService] // Proveemos el servicio a nivel de componente
 })
 export class UploadComponent {
+  @Output() imageUploaded = new EventEmitter<string>(); // 👈 Add this line
   selectedFile: File | null = null;
   uploadResponse: any = null;
   errorMessage: string | null = null;
-  isLoading = false;
+  isLoading:boolean = false;
 
   constructor(private imageUploadService: ImageUploadService) {}
 
@@ -28,27 +29,32 @@ export class UploadComponent {
     }
   }
 
-  uploadImage(): void {
-    if (!this.selectedFile) {
-      this.errorMessage = 'Por favor selecciona un archivo';
-      return;
-    }
-
-    this.isLoading = true;
-    this.errorMessage = null;
-    this.uploadResponse = null;
-
-    this.imageUploadService.uploadImage(this.selectedFile).subscribe({
-      next: (response) => {
-        this.uploadResponse = response;
-        this.isLoading = false;
-        console.log('Imagen subida con éxito:', response);
-      },
-      error: (error) => {
-        this.errorMessage = 'Error al subir la imagen';
-        this.isLoading = false;
-        console.error('Error al subir la imagen:', error);
-      }
-    });
+uploadImage(): void {
+  if (!this.selectedFile) {
+    this.errorMessage = 'Por favor selecciona un archivo';
+    return;
   }
+
+  this.isLoading = true;
+  this.errorMessage = null;
+  this.uploadResponse = null;
+
+  this.imageUploadService.uploadImage(this.selectedFile).subscribe({
+    next: (response) => {
+      this.uploadResponse = response;
+      this.isLoading = false;
+      const imageUrl = response?.data?.url;
+      if (imageUrl) {
+        this.imageUploaded.emit(imageUrl); // ✅ EMIT the uploaded image URL
+      }
+      //console.log('Imagen subida con éxito:', response);
+    },
+    error: (error) => {
+      this.errorMessage = 'Error al subir la imagen';
+      this.isLoading = false;
+      console.error('Error al subir la imagen:', error);
+    }
+  });
+}
+
 }

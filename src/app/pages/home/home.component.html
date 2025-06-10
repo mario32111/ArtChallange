@@ -1,79 +1,56 @@
-<!-- Header grande para pantallas grandes -->
 <app-header *ngIf="!showSmallHeader"></app-header>
 
-<!-- Header pequeño para pantallas pequeñas -->
 <app-header-small *ngIf="showSmallHeader"></app-header-small>
 
-<div class="all">
-  <div class="right_row">
-    <div class="row">
-      <div class="publish card shadow-lg p-4 mb-4 bg-white rounded">
-        <div class="row_title mb-3">
-          <span><i class="fa fa-newspaper-o me-2" aria-hidden="true"></i> Estado</span>
-        </div>
-        <form method="" action="/">
-          <div class="publish_textarea d-flex align-items-center mb-3">
-            <img class="border-radius-image me-3" [src]="imgUrl" alt="" />
-            <textarea type="text" class="form-control" placeholder="¿Qué pasa, Mario?" style="resize: none;"></textarea>
-          </div>
-          <div class="publish_icons d-flex justify-content-between align-items-center">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item"><i class="fa fa-camera"></i></li>
-              <li class="list-inline-item"><i class="fa fa-video-camera"></i></li>
-              <li class="list-inline-item"><i class="fa fa-map-marker" aria-hidden="true"></i></li>
-            </ul>
-            <button class="btn btn-primary rounded-pill px-4 shadow-sm">Publicar</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <app-post-requeriments></app-post-requeriments>
+<div class="main-content-wrapper" [class.suggestions-open]="showSuggestionsPanel">
+  <div class="content-area">
+    <app-create-user-post (postCreated)="fetchPostsAgain()"></app-create-user-post>
 
+    <app-post-participation *ngFor="let post of posts" [post]="post"></app-post-participation>
+
+    <app-post-requeriments *ngFor="let requirementPost of requirementsPosts" [post]="requirementPost"></app-post-requeriments>
     <app-post-challange-results></app-post-challange-results>
 
-    <app-post-participation></app-post-participation>
 
-    <!-- *Publicaciones normales -->
-
-
-    <div class="row border-radius card shadow-sm mb-4 bg-white">
+    <div class="row feed-post">
       <div class="feed">
-        <div class="feed_title d-flex align-items-center mb-2">
-          <img [src]="imgUrl" alt="" class="me-2" />
-          <span><b>Marito11</b> compartió un <a href="feed.html">video</a><br>
-            <p class="text-muted small">1 de marzo a las 3:53pm</p>
+        <div class="feed_title">
+          <img [src]="imgUrl" alt="" />
+          <span><b>Marito11</b> compartió un <a href="feed.html">video</a><br />
+            <p>1 de Marzo a las 3:53pm</p>
           </span>
         </div>
         <div class="feed_content">
           <div class="feed_content_image">
-            <iframe src="https://www.youtube.com/embed/jR8L9UyExH4" frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-100 rounded"></iframe>
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
-        <div class="feed_footer d-flex justify-content-between align-items-center mt-2">
-          <ul class="feed_footer_left list-inline mb-0">
-            <li class="hover-orange selected-orange list-inline-item"><i class="fa fa-heart"></i> 22k</li>
-            <li class="list-inline-item"><span><b>Jimmy, Andrea</b> y 47 más les gustó esto</span></li>
+        <div class="feed_footer">
+          <ul class="feed_footer_left">
+            <li class="action-item"><i class="fa fa-heart"></i> 22k</li>
+            <li><span><b>Jimmy, Andrea</b> y 47 más les gustó esto</span></li>
           </ul>
-          <ul class="feed_footer_right list-inline mb-0">
-            <li class="hover-orange selected-orange list-inline-item"><i class="fa fa-share"></i> 7k</li>
-            <li class="hover-orange list-inline-item">
-              <a href="feed.html" style="color:#515365;">
-                <i class="fa fa-comments-o"></i> 74 comentarios
-              </a>
+          <ul class="feed_footer_right">
+            <li class="action-item"><i class="fa fa-share"></i> 7k</li>
+            <li class="action-item comment-link">
+              <a href="feed.html"><i class="fa fa-comments-o"></i> 74 comentarios</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
 
-
-    <div class="row border-radius">
+    <div class="row feed-post">
       <div class="feed">
         <div class="feed_title">
           <img src="../../../assets/images/user-6.jpg" alt="" />
-          <span><b>Valentine Krashe</b> compartió una <a href="feed.html">foto</a><br>
-            <p>March 1 at 3:53pm</p>
+          <span><b>Valentine Krashe</b> compartió una <a href="feed.html">foto</a><br />
+            <p>1 de Marzo a las 3:53pm</p>
           </span>
         </div>
         <div class="feed_content">
@@ -83,32 +60,29 @@
         </div>
         <div class="feed_footer">
           <ul class="feed_footer_left">
-            <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 22k</li>
+            <li class="action-item"><i class="fa fa-heart"></i> 22k</li>
             <li><span><b>Jimmy, Andrea</b> y 47 más les gustó esto</span></li>
           </ul>
           <ul class="feed_footer_right">
-            <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
-            <li class="hover-orange">
-              <a href="feed.html" style="color:#515365;">
-                <i class="fa fa-comments-o"></i> 74 comentarios
-              </a>
+            <li class="action-item"><i class="fa fa-share"></i> 7k</li>
+            <li class="action-item comment-link">
+              <a href="feed.html"><i class="fa fa-comments-o"></i> 74 comentarios</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
 
-
-    <div class="row border-radius">
+    <div class="row feed-post">
       <div class="feed">
         <div class="feed_title">
           <img src="../../../assets/images/user-6.jpg" alt="" />
-          <span><b>Valentine Krashe</b>
-            <p>March 1 at 3:53pm</p>
+          <span><b>Valentine Krashe</b><br />
+            <p>1 de Marzo a las 3:53pm</p>
           </span>
         </div>
         <div class="feed_content">
-          <div class="feed_content_image">
+          <div class="feed_content_text">
             <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
               laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
@@ -116,15 +90,13 @@
         </div>
         <div class="feed_footer">
           <ul class="feed_footer_left">
-            <li class="hover-orange selected-orange"><i class="fa fa-heart"></i> 159</li>
+            <li class="action-item"><i class="fa fa-heart"></i> 159</li>
             <li><span><b>Jimmy, Andrea</b> y 157 más les gustó esto</span></li>
           </ul>
           <ul class="feed_footer_right">
-            <li class="hover-orange selected-orange"><i class="fa fa-share"></i> 7k</li>
-            <li class="hover-orange">
-              <a href="feed.html" style="color:#515365;">
-                <i class="fa fa-comments-o"></i> 54 comentarios
-              </a>
+            <li class="action-item"><i class="fa fa-share"></i> 7k</li>
+            <li class="action-item comment-link">
+              <a href="feed.html"><i class="fa fa-comments-o"></i> 54 comentarios</a>
             </li>
           </ul>
         </div>
@@ -132,124 +104,34 @@
     </div>
     <div style="text-align: center;">
       <a href="#">
-        <div class="loadmorefeed">
+        <div class="load-more-feed">
           <i class="fa fa-ellipsis-h"></i>
         </div>
       </a>
     </div>
   </div>
 
-  <div class="suggestions_row">
-    <div class="row shadow">
+  <div class="suggestions-panel" [class.show]="showSuggestionsPanel">
+    <div class="row suggestions-box">
       <div class="row_title">
         <span>Sugerencias de concursos</span>
         <a [routerLink]="['/challanges']">ver más..</a>
       </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/pintura.jpg" alt="" />
-        <span><b>Francine Smith</b><br>Pintura</span>
-        <button>+</button>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/dibujo.jpg" alt="" />
-        <span><b>Hugh Wilson</b><br>Dibujo tradicional</span>
-        <button>+</button>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/dibujo.jpg" alt="" />
-        <span><b>Karen Masters</b><br>Dibujo tradicional</span>
-        <button>+</button>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/pintura.jpg" alt="" />
-        <span><b>Francine Smith</b><br>Pintura</span>
-        <button>+</button>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/dibujo.jpg" alt="" />
-        <span><b>Hugh Wilson</b><br>Dibujo tradicional</span>
-        <button>+</button>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/dibujo.jpg" alt="" />
-        <span><b>Karen Masters</b><br>Dibujo tradicional</span>
-        <button>+</button>
-      </div>
-    </div>
-
-    <div class="row shadow">
-      <div class="row_title">
-        <span>Actividad Reciente</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-7.jpg" alt="" />
-        <span>Marina Polson comentó en la <a href="" class="selected-orange">foto</a> de Jason Mark..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-2.jpg" alt="" />
-        <span>Jake Parker le dio me gusta a la <a href="" class="selected-orange">actualización de estado</a> de Nicholas Grissom..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-3.jpg" alt="" />
-        <span>Mary Jane Stark agregó 20 nuevas fotos a su <a href="" class="selected-orange">álbum de galería</a>..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-6.jpg" alt="" />
-        <span>Marina Polson comentó en la <a href="" class="selected-orange">foto</a> de Jason Mark..</span>
-      </div>
-      <div class="row_contain">
-        <img [src]="imgUrl" alt="" />
-        <span>Jake Parker le dio me gusta a la <a href="" class="selected-orange">actualización de estado</a> de Nicholas Grissom..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-4.jpg" alt="" />
-        <span>Mary Jane Stark agregó 20 nuevas fotos a su <a href="" class="selected-orange">álbum de galería</a>..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-5.jpg" alt="" />
-        <span>Marina Polson comentó en la <a href="" class="selected-orange">foto</a> de Jason Mark..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-2.jpg" alt="" />
-        <span>Jake Parker le dio me gusta a la <a href="" class="selected-orange">actualización de estado</a> de Nicholas Grissom..</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/user-7.jpg" alt="" />
-        <span>Mary Jane Stark agregó 20 nuevas fotos a su <a href="" class="selected-orange">álbum de galería</a>..</span>
-      </div>
-    </div>
-
-
-    <div class="row shadow">
-      <div class="row_title">
-        <span>Páginas que Puede Que Te Gusten</span>
-        <a href="#">ver más..</a>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-1.png" alt="" />
-        <span><a href=""><b>The Marina Bar</b></a><br>Restaurant / Bar</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-2.jpg" alt="" />
-        <span><a href=""><b>Caverna Roch</b></a><br>Rock / Band</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-3.png" alt="" />
-        <span><a href=""><b>Pixel Digital Design</b></a><br>Company</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-1.png" alt="" />
-        <span><a href=""><b>The Marina Bar</b></a><br>Restaurant / Bar</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-2.jpg" alt="" />
-        <span><a href=""><b>Caverna Roch</b></a><br>Rock / Band</span>
-      </div>
-      <div class="row_contain">
-        <img src="../../../assets/images/group-3.png" alt="" />
-        <span><a href=""><b>Pixel Digital Design</b></a><br>Company</span>
-      </div>
+      <ng-container *ngFor="let concurso of concursosRecomendados.slice(0, 6)">
+        <div class="suggestion-item">
+          <img [src]="concurso.imagen" alt="" />
+          <div class="suggestion-info">
+            <b>{{ concurso.nombre }}</b><br /><span>{{ concurso.categoria }}</span>
+          </div>
+          <button class="details-button" (click)="verDetalleConcurso(concurso)">Detalles</button>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
-<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
+
+<button class="toggle-suggestions-button" (click)="toggleSuggestionsPanel()">
+  <i class="fa" [ngClass]="{'fa-chevron-right': !showSuggestionsPanel, 'fa-chevron-left': showSuggestionsPanel}"></i>
+  </button>
+
+<button onclick="topFunction()" id="myBtn" title="Ir arriba"><i class="fa fa-arrow-up"></i></button>
