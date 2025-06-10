@@ -1,4 +1,4 @@
-/* Estilos para el botón de Google */
+/* Tu CSS existente */
 .google-btn {
   display: inline-flex;
   align-items: center;
@@ -30,7 +30,7 @@
   font-weight: bold;
 }
 
-.center-link-login{
+.center-link-login {
   padding-top: 30px;
 }
 
@@ -41,4 +41,15 @@
   font-weight: 500;
   margin-top: 4px;
   display: block;
+}
+
+/* CLASE PARA CENTRAR TEXTO (ya la tenías) */
+.text-centered {
+  text-align: center;
+}
+
+/* --- Añadido para centrar el contenedor del botón de Google --- */
+/* Apunta al contenedor padre del botón de Google */
+.text-center.p-t-20 {
+  text-align: center;
 }

@@ -30,7 +30,6 @@
             "styles": [
               "src/styles.css",
               "src/assets/css/style.css",
-              "src/assets/css/login/util.css",
               "src/assets/css/login/main.css"
             ],
             "scripts": []
