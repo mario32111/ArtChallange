@@ -26,26 +26,44 @@
 
     <div class="feed_footer">
       <ul class="feed_footer_left">
-        <li class="hover-orange selected-orange">
-          <i class="fa fa-heart"></i> {{ post.likes.length }}
+        <li class="hover-orange selected-orange" (click)="toggleLike(post)" style="cursor:pointer;">
+          <i
+            class="fa"
+            [class.fa-heart]="hasUserLiked(post)"
+            [class.fa-heart-o]="!hasUserLiked(post)"
+            aria-hidden="true"
+          ></i>
+          {{ post.likes?.length || 0 }} {{ (post.likes?.length === 1 || post.likes?.length === 0) ? 'like' : 'likes' }}
         </li>
-        <li>
+
+        <li *ngIf="post.likes && post.likes.length > 0">
           <span>
-            <b>{{ post.likes[0] || 'Alguien' }}</b> y {{ post.likes.length - 1 }} más les gustó esto
+            <b>{{ firstTwoLikeUsers }}</b>
+            <ng-container *ngIf="post.likes.length > 2">
+              y {{ post.likes.length - 2 }} más
+            </ng-container>
+            dieron like
           </span>
         </li>
       </ul>
 
       <ul class="feed_footer_right">
-        <li class="hover-orange selected-orange"><i class="fa fa-share"></i> Compartir</li>
-        <li class="hover-orange">
+        <li class="hover-orange selected-orange" style="cursor:pointer;"><i class="fa fa-share" aria-hidden="true"></i> Compartir</li>
+        <li class="hover-orange" style="cursor:pointer;">
           <a (click)="toggleComments()" style="color:#515365;">
-            <i class="fa fa-comments-o"></i> {{ post.comentarios.length }} comentarios
+            <i class="fa fa-comments-o" aria-hidden="true"></i>
+            {{ post.comentarios.length || 0 }} comentarios
           </a>
         </li>
       </ul>
     </div>
 
-    <app-comments *ngIf="showComments"></app-comments>
+    <app-comments
+      *ngIf="showComments && post?.id"
+      [postId]="post.id!"
+      [currentUserId]="currentUserId!"
+      [currentUserName]="currentUserName"
+      (commentAdded)="onCommentAdded($event)"
+    ></app-comments>
   </div>
 </div>

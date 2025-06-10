@@ -1,3 +1,5 @@
+// src/app/interfaces/post.interfaces.ts
+
 export interface CommentLike {
   id?: string; // ID del documento de like en Firestore
   usuarioId: string; // ID del usuario que dio like
@@ -12,12 +14,10 @@ export interface Comentario {
   usuarioId: string;
   postId: string;
   nombreUsuario: string;
-  contenido: string;
+  contenido: string; // Renombrado de 'texto' a 'contenido'
   fecha: Date;
   likes?: CommentLike[]; // Añadimos un array para los likes de este comentario
 }
-
-
 
 export interface Like {
   id?: string;
@@ -28,44 +28,32 @@ export interface Like {
 }
 
 export interface ConvovatoriaPost {
-  tipo: 'concurso'; // Podrías agregar más tipos si en el futuro agregas otro tipo de publicación
-
-  concursoRef: string; // ID del documento de tipo ChallangeDocument (referencia)
+  tipo: 'concurso';
+  concursoRef: string;
   autorId: string;
   autorNombre: string;
-
   fechaPublicacion: Date;
-
-  likes: Like[]; // IDs de usuarios que han dado like
-  comentarios: Comentario[]; // Comentarios del usuario
-
-  hashtags: string[]; // Solo si se usan para el feed, de lo contrario pueden omitirse
-  etiquetas: string[]; // Handles
-
+  likes: Like[]; // Array de objetos Like
+  comentarios: Comentario[];
+  hashtags: string[];
+  etiquetas: string[];
   creadoEn: Date;
   actualizadoEn: Date;
 }
 
-
 export interface UserPost {
-  id?: string; // <--- ADD THIS LINE to allow the 'id' property
-  tipo: 'participacion'; // Distinct type for user submissions
-
+  id?: string;
+  tipo: 'participacion';
   autorId: string;
   autorNombre: string;
   imagenUrl: string;
-  descripcion: string; // 👈 Add this
-
-
+  descripcion: string;
   hashtags: string[];
   etiquetas: string[];
-
-  likes: string[];
+  likes: Like[]; // <-- Changed from `string[]` to `Like[]` for consistency
   comentarios: Comentario[];
-
   fechaPublicacion: Date;
   creadoEn: Date;
   actualizadoEn: Date;
-  concursoId?: string; // <--- This line was already here (optional ID of the selected contest)
-
+  concursoId?: string;
 }
