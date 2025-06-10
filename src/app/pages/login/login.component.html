@@ -28,14 +28,21 @@
         </div>
 
         <div class="text-center p-t-20">
-          <p class="txt1 text-centered">O iniciar sesion con Goolge</p>
+          <p class="txt1 text-centered">O iniciar sesión con Google</p>
           <a (click)="loginWithGoogle()" class="google-btn" style="cursor: pointer;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo">
             <span>Login with Google</span>
           </a>
         </div>
 
-      </form>
+        <div class="text-center p-t-136 center-link-login">
+          <span class="txt1">¿No tienes cuenta? </span>
+          <a class="txt2" routerLink="/register">
+            Regístrate ahora
+            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+          </a>
+        </div>
+        </form>
 
     </div>
   </div>

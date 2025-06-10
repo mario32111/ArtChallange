@@ -32,6 +32,7 @@
 
 .center-link-login {
   padding-top: 30px;
+  text-align: center; /* Añadido para asegurar que el contenido dentro se centre */
 }
 
 /* Mensajes de error y éxito */
@@ -48,8 +49,22 @@
   text-align: center;
 }
 
-/* --- Añadido para centrar el contenedor del botón de Google --- */
-/* Apunta al contenedor padre del botón de Google */
+/* --- Asegura que el contenedor del botón de Google se centre --- */
 .text-center.p-t-20 {
   text-align: center;
+}
+
+/* Si tu 'txt1' y 'txt2' no tienen un estilo base, podrías añadir algo aquí */
+/* Por ejemplo, para el color si no lo tienen ya */
+.txt1 {
+    /* Si necesitas un color específico, por ejemplo: */
+    /* color: #999999; */
+    font-size: 13px; /* Asumiendo que quieres el mismo tamaño que el p.txt1 anterior */
+}
+
+.txt2 {
+    /* Si necesitas un color específico, por ejemplo: */
+    /* color: #333333; */
+    font-size: 13px; /* Asumiendo un tamaño similar */
+    text-decoration: underline; /* Es común que los enlaces tengan subrayado */
 }
