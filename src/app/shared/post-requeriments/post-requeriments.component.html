@@ -1,12 +1,10 @@
-<!-- post-requeriments.component.html -->
-<div class="row border-radius" *ngIf="post.length > 0 && convocatoria">
-  <div class="feed">
+<div class="row border-radius" *ngIf="post && convocatoria"> <div class="feed">
     <div class="feed_title">
       <img src="../../../assets/images/user-6.jpg" alt="User avatar" />
       <span>
-        <b>{{ post[0].autorNombre }}</b> compartió una
+        <b>{{ post.autorNombre }}</b> compartió una
         <a href="#">convocatoria</a><br />
-        <p>{{ post[0].fechaPublicacion | date: 'medium' }}</p>
+        <p>{{ post.fechaPublicacion | date: 'medium' }}</p>
       </span>
     </div>
 
@@ -55,21 +53,21 @@
 
     <div class="feed_footer">
       <ul class="feed_footer_left">
-        <li class="hover-orange selected-orange" (click)="toggleLike(post[0])" style="cursor:pointer;">
+        <li class="hover-orange selected-orange" (click)="toggleLike(post)" style="cursor:pointer;">
           <i
             class="fa"
-            [class.fa-heart]="hasUserLiked(post[0])"
-            [class.fa-heart-o]="!hasUserLiked(post[0])"
+            [class.fa-heart]="hasUserLiked(post)"
+            [class.fa-heart-o]="!hasUserLiked(post)"
             aria-hidden="true"
           ></i>
-          {{ post[0].likes.length }} {{ post[0].likes.length === 1 ? 'like' : 'likes' }}
+          {{ post.likes.length }} {{ post.likes.length === 1 ? 'like' : 'likes' }}
         </li>
 
-        <li *ngIf="post[0].likes && post[0].likes.length > 0">
+        <li *ngIf="post.likes && post.likes.length > 0">
           <span>
             <b>{{ firstTwoLikeUsers }}</b>
-            <ng-container *ngIf="post[0].likes.length > 2">
-              y {{ post[0].likes.length - 2 }} más
+            <ng-container *ngIf="post.likes.length > 2">
+              y {{ post.likes.length - 2 }} más
             </ng-container>
             dieron like
           </span>
@@ -83,16 +81,15 @@
         <li class="hover-orange" style="cursor:pointer;">
           <a (click)="toggleComments()" style="color: #515365; cursor:pointer;">
             <i class="fa fa-comments-o" aria-hidden="true"></i>
-            {{ post[0].comentarios.length || 0 }} comentarios
+            {{ post.comentarios.length || 0 }} comentarios
           </a>
         </li>
       </ul>
     </div>
 
-    <!-- Pasa las propiedades al CommentsComponent -->
     <app-comments
-      *ngIf="showComments && post[0]?.concursoRef"
-      [postId]="post[0].concursoRef"
+      *ngIf="showComments && post?.concursoRef"
+      [postId]="post.concursoRef"
       [currentUserId]="currentUserId!"
       [currentUserName]="currentUserName"
       (commentAdded)="onCommentAdded($event)"

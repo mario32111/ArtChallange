@@ -11,9 +11,10 @@ import { AuthResponse } from '../../interfaces/auth.interface';
 import { ChallangeService } from '../../services/challange.service';
 import { Concurso } from '../../interfaces/challange.model';
 import { Router } from '@angular/router';
-import { UserPost } from '../../interfaces/post.interfaces';
+import { ConvovatoriaPost, UserPost } from '../../interfaces/post.interfaces';
 import { UserPostsService } from '../../services/user-post.service'; // adjust path if needed
 import { CreateUserPostComponent } from '../../pages/create-user-post/create-user-post.component'; // Adjust path if needed
+import { PostsService } from '../../services/posts.service';
 
 
 
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
   showSmallHeader = false;
   mostrarContenido = true;
   posts: UserPost[] = [];
+  requirementsPosts: ConvovatoriaPost[] = [];
   userData = getParsedLocalStorageItem<AuthResponse>('user');
   imgUrl = this.userData?.user?.photoURL || 'https://www.gravatar.com/avatar';
   showSuggestionsPanel: boolean = false; // Nueva propiedad para controlar la visibilidad del panel
@@ -46,6 +48,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private service: ChallangeService,
     private userPostsService: UserPostsService, 
+    private convocatriaPostsService: PostsService,
     private router: Router
   ) {
     this.checkScreenSize(); // Verificar tamaño de pantalla al cargar
@@ -65,6 +68,16 @@ export class HomeComponent implements OnInit {
       }
     );
 
+    
+    this.convocatriaPostsService.getAllPosts().subscribe(
+      (publicaciones: ConvovatoriaPost[]) => {
+        this.requirementsPosts = publicaciones;
+        console.log('User posts cargados:', publicaciones);
+      },
+      (error: any) => {
+        console.error('Error al obtener los posts del usuario:', error);
+      }
+    );
 
     this.service.getAllChallanges().subscribe(
       (data: Concurso[]) => {

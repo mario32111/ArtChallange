@@ -8,7 +8,7 @@
 
     <app-post-participation *ngFor="let post of posts" [post]="post"></app-post-participation>
 
-    <app-post-requeriments></app-post-requeriments>
+    <app-post-requeriments *ngFor="let requirementPost of requirementsPosts" [post]="requirementPost"></app-post-requeriments>
     <app-post-challange-results></app-post-challange-results>
 
 

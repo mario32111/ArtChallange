@@ -1,8 +1,7 @@
-// post-requeriments.component.ts (no necesita cambios adicionales, solo se muestra por contexto)
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommentsComponent } from '../comments/comments.component';
 import { CommonModule } from '@angular/common';
-import { PostsService } from '../../services/posts.service';
+import { PostsService } from '../../services/posts.service'; // Still needed if you might fetch other posts later
 import { ConvovatoriaPost, Comentario } from '../../interfaces/post.interfaces';
 import { ChallangeDocument } from '../../interfaces/challange.model';
 import { ChallangeService } from '../../services/challange.service';
@@ -19,9 +18,11 @@ import { getParsedLocalStorageItem } from '../../../utils/storage.utils';
   styleUrl: './post-requeriments.component.css'
 })
 export class PostRequerimentsComponent implements OnInit {
+  // The @Input() 'post' will now be the primary source of data for this component
+  @Input() post!: ConvovatoriaPost; // Changed to single post, as it's for one post now
 
   showComments = false;
-  post: ConvovatoriaPost[] = [];
+  // This 'convocatoria' will be specific to the @Input() post
   convocatoria: ChallangeDocument | any;
 
   userData = getParsedLocalStorageItem<AuthResponse>('user');
@@ -29,6 +30,8 @@ export class PostRequerimentsComponent implements OnInit {
   currentUserId = this.userData?.user.uid;
 
   constructor(
+    // PostsService might not be directly used here anymore for fetching,
+    // but keep it if other methods within the component might need it.
     private postsService: PostsService,
     private convocatoriaService: ChallangeService,
     private likesService: LikesService,
@@ -36,33 +39,34 @@ export class PostRequerimentsComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.postsService.getAllPosts().subscribe(async (res) => {
-      if (res && res.length > 0) {
-        const randomIndex = Math.floor(Math.random() * res.length);
-        this.post = [res[randomIndex]];
+    // Check if the input 'post' is provided and valid
+    if (this.post) {
+      const concursoRefId = this.post.concursoRef; // Access directly from this.post
 
-        const concursoRefId = this.post[0].concursoRef;
-        if (concursoRefId) {
-          this.convocatoriaService.getChallangeById(concursoRefId).subscribe(res => {
-            this.convocatoria = res;
-          });
+      if (concursoRefId) {
+        // Fetch the challenge (convocatoria) associated with this specific post
+        this.convocatoriaService.getChallangeById(concursoRefId).subscribe(res => {
+          this.convocatoria = res;
+        });
 
-          const likes = await this.likesService.getLikesForPost(concursoRefId);
-          this.post[0].likes = likes;
+        // Fetch likes for this specific post
+        const likes = await this.likesService.getLikesForPost(concursoRefId);
+        this.post.likes = likes;
 
-          if (!this.post[0].comentarios) {
-              this.post[0].comentarios = [];
-          }
-        } else {
-            console.warn('El post no tiene un concursoRef válido.');
+        // Ensure comments array exists
+        if (!this.post.comentarios) {
+          this.post.comentarios = [];
         }
       } else {
-        console.warn('No se encontraron posts.');
+        console.warn('El post de entrada no tiene un concursoRef válido.');
       }
-    });
+    } else {
+      console.warn('El componente PostRequerimentsComponent fue cargado sin un post de entrada.');
+      // You might want to handle this case, e.g., display a "no data" message
+    }
   }
 
-  async toggleLike(post: ConvovatoriaPost) {
+  async toggleLike(postToLike: ConvovatoriaPost) { // Renamed parameter for clarity
     if (!this.currentUserId) {
       console.error('Usuario no autenticado correctamente para dar like.');
       return;
@@ -70,7 +74,7 @@ export class PostRequerimentsComponent implements OnInit {
     const likeData = {
       usuarioId: this.currentUserId,
       nombreUsuario: this.currentUserName,
-      postId: post.concursoRef,
+      postId: postToLike.concursoRef, // Use the postToLike parameter
       fecha: new Date()
     };
 
@@ -78,14 +82,14 @@ export class PostRequerimentsComponent implements OnInit {
     console.log('Resultado del like:', result);
 
     if (result === 'liked') {
-      post.likes.push({
+      postToLike.likes.push({ // Update the specific post's likes
         usuarioId: this.currentUserId,
         nombreUsuario: this.currentUserName,
-        postId: post.concursoRef,
+        postId: postToLike.concursoRef,
         fecha: new Date()
       });
     } else {
-      post.likes = post.likes.filter(like => like.usuarioId !== this.currentUserId);
+      postToLike.likes = postToLike.likes.filter(like => like.usuarioId !== this.currentUserId); // Update the specific post's likes
     }
   }
 
@@ -94,22 +98,24 @@ export class PostRequerimentsComponent implements OnInit {
   }
 
   onCommentAdded(newComment: Comentario) {
-    if (!this.post[0].comentarios) {
-      this.post[0].comentarios = [];
+    // Make sure to add the comment to THIS component's 'post' object
+    if (!this.post.comentarios) {
+      this.post.comentarios = [];
     }
-    this.post[0].comentarios.unshift(newComment);
+    this.post.comentarios.unshift(newComment);
     console.log('Comentario añadido localmente al post para actualizar el conteo:', newComment);
   }
 
-  hasUserLiked(post: ConvovatoriaPost): boolean {
-    return post.likes.some(like => like.usuarioId === this.currentUserId);
+  hasUserLiked(postToCheck: ConvovatoriaPost): boolean { // Renamed parameter for clarity
+    return postToCheck.likes.some(like => like.usuarioId === this.currentUserId);
   }
 
+  // This getter now directly accesses 'this.post.likes'
   get firstTwoLikeUsers(): string {
-    if (!this.post.length || !this.post[0].likes || this.post[0].likes.length === 0) return '';
-    const twoUsers = this.post[0].likes.slice(0, 2).map(like => like.nombreUsuario).join(', ');
-    if (this.post[0].likes.length > 2) {
-      return `${twoUsers} y ${this.post[0].likes.length - 2} más`;
+    if (!this.post || !this.post.likes || this.post.likes.length === 0) return '';
+    const twoUsers = this.post.likes.slice(0, 2).map(like => like.nombreUsuario).join(', ');
+    if (this.post.likes.length > 2) {
+      return `${twoUsers} y ${this.post.likes.length - 2} más`;
     }
     return twoUsers;
   }
