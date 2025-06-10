@@ -33,7 +33,7 @@ export class CommentsComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['postId'] && this.postId) {
-      console.log(`CommentsComponent: postId cambió a ${this.postId}. Cargando comentarios...`);
+      //console.log(`CommentsComponent: postId cambió a ${this.postId}. Cargando comentarios...`);
       this.loadComments();
     }
   }
@@ -61,7 +61,7 @@ export class CommentsComponent implements OnInit, OnChanges {
           }
           return dateB - dateA;
         });
-        console.log(`Comentarios cargados y ordenados para postId ${this.postId}:`, this.comments);
+        //console.log(`Comentarios cargados y ordenados para postId ${this.postId}:`, this.comments);
       },
       (error) => {
         console.error('Error al cargar los comentarios:', error);
@@ -91,7 +91,7 @@ export class CommentsComponent implements OnInit, OnChanges {
 
     try {
       const commentId = await this.commentsService.addCommentToPost(newComment);
-      console.log('Comentario añadido con ID:', commentId);
+      //console.log('Comentario añadido con ID:', commentId);
 
       // Aseguramos que tenga el ID asignado por Firestore y el array de likes
       this.comments.unshift({ ...newComment, id: commentId, likes: [] });
@@ -121,7 +121,7 @@ export class CommentsComponent implements OnInit, OnChanges {
 
     try {
       const result = await this.commentsService.toggleCommentLike(likeData);
-      console.log(`Resultado del like en comentario ${comment.id}:`, result);
+      //console.log(`Resultado del like en comentario ${comment.id}:`, result);
 
       if (result === 'liked') {
         const newLike: CommentLike = {

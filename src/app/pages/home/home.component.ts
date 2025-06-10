@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
     this.userPostsService.getAllUserPosts().subscribe(
       (posts) => {
         this.posts = posts;
-        console.log('User posts cargados:', posts);
+        //console.log('User posts cargados:', posts);
       },
       (error) => {
         console.error('Error al obtener los posts del usuario:', error);
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
     this.convocatriaPostsService.getAllPosts().subscribe(
       (publicaciones: ConvovatoriaPost[]) => {
         this.requirementsPosts = publicaciones;
-        console.log('User posts cargados:', publicaciones);
+        //console.log('User posts cargados:', publicaciones);
       },
       (error: any) => {
         console.error('Error al obtener los posts del usuario:', error);
@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
 
     this.service.getAllChallanges().subscribe(
       (data: Concurso[]) => {
-        console.log('Concursos obtenidos:', data);
+        //console.log('Concursos obtenidos:', data);
         this.concursosRecomendados = data;
       },
       (error) => {
@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit {
   this.userPostsService.getAllUserPosts().subscribe(
     (posts) => {
       this.posts = posts;
-      console.log('🔁 Posts actualizados después de crear uno nuevo:', posts);
+      //console.log('🔁 Posts actualizados después de crear uno nuevo:', posts);
     },
     (error) => {
       console.error('Error al refrescar los posts:', error);

@@ -47,7 +47,7 @@ uploadImage(): void {
       if (imageUrl) {
         this.imageUploaded.emit(imageUrl); // ✅ EMIT the uploaded image URL
       }
-      console.log('Imagen subida con éxito:', response);
+      //console.log('Imagen subida con éxito:', response);
     },
     error: (error) => {
       this.errorMessage = 'Error al subir la imagen';

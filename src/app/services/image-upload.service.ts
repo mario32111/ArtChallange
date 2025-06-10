@@ -23,7 +23,7 @@ export class ImageUploadService {
     };
 
     const data = this.http.post(this.uploadUrl, formData, { params });
-    console.log(data);
+    //console.log(data);
     return data;
     }
 }

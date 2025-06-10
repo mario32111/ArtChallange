@@ -192,9 +192,9 @@ export class ConcursoFormComponent {
       };
 
 
-      console.log('Datos del concurso a guardar:', challangeData);
+      //console.log('Datos del concurso a guardar:', challangeData);
       const res = await this.service.createChallange(challangeData);
-      console.log('Concurso creado exitosamente:', res);
+      //console.log('Concurso creado exitosamente:', res);
 
       this.postService.createConvocatoriaPost({
         tipo: 'concurso',

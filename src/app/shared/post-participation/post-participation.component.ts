@@ -105,7 +105,7 @@ export class PostParticipationComponent implements OnInit {
     };
 
     const result = await this.likesService.toggleLike2(likeData);
-    console.log('Resultado del like:', result);
+    //console.log('Resultado del like:', result);
 
     if (result === 'liked') {
       post.likes.push(likeData); // Añade el objeto `Like` completo
@@ -138,7 +138,7 @@ export class PostParticipationComponent implements OnInit {
       this.post.comentarios = [];
     }
     this.post.comentarios.unshift(newComment);
-    console.log('Comentario añadido localmente al post para actualizar el conteo:', newComment);
+    //console.log('Comentario añadido localmente al post para actualizar el conteo:', newComment);
   }
   // --- FIN MÉTODOS DE COMENTARIOS ---
 

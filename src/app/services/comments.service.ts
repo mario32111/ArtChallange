@@ -85,7 +85,7 @@ export class CommentsService {
             fecha: fechaConvertida // Asigna la fecha convertida
           } as Comentario;
         });
-        console.log(`CommentsService: Se encontraron ${comments.length} comentarios para postId ${postId}.`); // DEPURACIÓN
+        //(`CommentsService: Se encontraron ${comments.length} comentarios para postId ${postId}.`); // DEPURACIÓN
         return comments;
       })
     );
@@ -121,7 +121,7 @@ export class CommentsService {
         fecha: fechaConvertida
       } as CommentLike;
     });
-    console.log(`CommentLikesService: Se encontraron ${likes.length} likes para el comentario ${commentId}.`);
+    //console.log(`CommentLikesService: Se encontraron ${likes.length} likes para el comentario ${commentId}.`);
     return likes;
   }
 

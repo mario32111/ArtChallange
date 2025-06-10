@@ -124,7 +124,7 @@ export class HeaderComponent {
       next: (users) => {
         this.searchResults = users;
         this.showSearchResults = this.searchResults.length > 0;
-        console.log('Search results:', this.searchResults);
+        //console.log('Search results:', this.searchResults);
       },
       error: (error) => {
         console.error('Error fetching users:', error);
@@ -132,13 +132,13 @@ export class HeaderComponent {
         this.showSearchResults = false;
       },
       complete: () => {
-        console.log('Search completed.');
+        //console.log('Search completed.');
       }
     });
   }
 
   selectSearchResult(user: any) {
-    console.log('Selected user:', user.displayName);
+    //console.log('Selected user:', user.displayName);
     this.searchBarValue = user.displayName;
     this.showSearchResults = false;
 

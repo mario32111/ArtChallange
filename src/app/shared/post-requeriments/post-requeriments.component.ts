@@ -79,7 +79,7 @@ export class PostRequerimentsComponent implements OnInit {
     };
 
     const result = await this.likesService.toggleLike(likeData);
-    console.log('Resultado del like:', result);
+    //console.log('Resultado del like:', result);
 
     if (result === 'liked') {
       postToLike.likes.push({ // Update the specific post's likes
@@ -103,7 +103,7 @@ export class PostRequerimentsComponent implements OnInit {
       this.post.comentarios = [];
     }
     this.post.comentarios.unshift(newComment);
-    console.log('Comentario añadido localmente al post para actualizar el conteo:', newComment);
+    //console.log('Comentario añadido localmente al post para actualizar el conteo:', newComment);
   }
 
   hasUserLiked(postToCheck: ConvovatoriaPost): boolean { // Renamed parameter for clarity

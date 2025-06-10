@@ -135,7 +135,7 @@ export class ChallangeDetailsComponent implements OnInit {
       next: (posts: UserPost[]) => {
         // Ensure posts are sorted by date if you want newest first
         this.contestPosts = posts.sort((a, b) => b.fechaPublicacion.getTime() - a.fechaPublicacion.getTime());
-        console.log('Posts for this contest:', this.contestPosts);
+        //console.log('Posts for this contest:', this.contestPosts);
       },
       error: (err) => {
         console.error('Error loading contest posts:', err);

@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
         this.userService.getUserByUid(this.profileUid).subscribe({
           next: (user: any) => {
             this.userProfileData = user;
-            console.log('Perfil de usuario obtenido:', this.userProfileData);
+            //console.log('Perfil de usuario obtenido:', this.userProfileData);
           },
           error: (error: any) => {
             console.error('Error al obtener el perfil del usuario:', error);

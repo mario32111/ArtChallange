@@ -55,13 +55,13 @@ export class RegisterComponent implements OnInit {
 
     try {
       const userData = await this.authService.loginWithGoogle();
-      console.log('Usuario autenticado (Google):', userData);
+      //console.log('Usuario autenticado (Google):', userData);
       this.authService.loginWithEmail(correo!, password!);
 
       this.router.navigate(['/home']);
       await this.registerUserInFirestore(userData);
     } catch (error) {
-      console.error('Error al iniciar sesión con Google:', error);
+      //console.error('Error al iniciar sesión con Google:', error);
     }
   }
 
@@ -71,14 +71,14 @@ export class RegisterComponent implements OnInit {
 
     if (!this.formularioValidacion.valid) {
       this.resultado = "Alguno de los campos esta vacio"
-      console.log(correo, password);
+      //console.log(correo, password);
       console.error('Alguno de los campos esta vacio');
       return;
     }
 
     try {
       const user = await this.authService.registerWithEmail(correo!, password!);
-      console.log('Usuario registrado (Email):', user);
+      //console.log('Usuario registrado (Email):', user);
       this.resultado = "Usuario registrado correctamente"
       this.miClase = "msg2"; // Cambia la clase para mostrar el mensaje de éxito
       const res = this.authService.loginWithEmail(correo!, password!);
@@ -110,14 +110,14 @@ export class RegisterComponent implements OnInit {
   }
 
   async registerUserInFirestore(data: any) {
-    console.log('Registrando usuario en Firestore:', data.user);
+    //console.log('Registrando usuario en Firestore:', data.user);
     this.userService.createUser({
       uid: data.user.uid,
       email: data.user.email,
       displayName: data.user.displayName,
       photoURL: data.user.photoURL
     }).then(() => {
-      console.log('Usuario creado en Firestore');
+      //console.log('Usuario creado en Firestore');
     }).catch((error) => {
       console.error('Error al crear usuario en Firestore:', error);
     });

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
   async loginWithEmail() {
     try {
       const user = await this.authService.loginWithEmail(this.email, this.password);
-      console.log('Inicio de sesión exitoso:', user);
+      //console.log('Inicio de sesión exitoso:', user);
       // * Redirigir a otra página o mostrar mensaje
       this.router.navigate(['/home']);
 
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
   async loginWithGoogle() {
     try {
       const user = await this.authService.loginWithGoogle();
-      console.log('Usuario autenticado (Google):', user);
+      //console.log('Usuario autenticado (Google):', user);
       this.router.navigate(['/home']);
       localStorage.setItem('user', JSON.stringify(user));
 

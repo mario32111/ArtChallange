@@ -44,7 +44,7 @@ export class ChallangeListScreenComponent implements OnInit {
 
     this.service.getAllChallanges().subscribe(
       (data: ChallangeDocument[]) => {
-        console.log('Concursos obtenidos:', data);
+        //console.log('Concursos obtenidos:', data);
         this.concursosRecomendados = data;
       },
       (error) => {
@@ -84,7 +84,7 @@ export class ChallangeListScreenComponent implements OnInit {
     // If you have a list of contests to insert, iterate over it:
     // For now, this is just an example of how you might use `createChallange`
     this.service.createChallange(exampleChallange)
-      .then((response) => console.log('Concurso creado:', response))
+      //.then((response) => console.log('Concurso creado:', response))
       .catch((error) => console.error('Error al crear concurso:', error));
   }
 
