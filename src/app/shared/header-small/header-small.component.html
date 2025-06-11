@@ -1,42 +1,126 @@
-<!-- Barra superior para móvil -->
 <div class="mobilemenu-bar">
-  <button class="menu-btn" (click)="toggleMenu()">
-    <i class="fa fa-bars"></i>
-  </button>
-  <span class="menu-title">Mi Perfil</span>
+  <div class="mobile-search-container">
+    <input
+      [(ngModel)]="searchBarValue"
+      name="searchBarMobile"
+      type="text"
+      placeholder="Search people.."
+      (input)="onSearchInputChange()"
+      (focus)="showSearchResults = searchBarValue.length > 0"
+    />
+    <button><i class="fa fa-search"></i></button>
+    <div
+      class="search-results-dropdown mobile"
+      *ngIf="showSearchResults && searchResults.length > 0"
+    >
+      <ul>
+        <li *ngFor="let user of searchResults" (click)="selectSearchResult(user)">
+          <img [src]="user.photoURL" alt="{{ user.displayName }}" />
+          <span>{{ user.displayName }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="mobilemenu-bar_icons">
+    <span id="notification" *ngIf="false">2</span>
+    <i class="fa fa-comments-o" (click)="toggleMessagesModal()"></i>
+    <i class="fa fa-user-o" (click)="toggleFriendsModal()"></i>
+    <img [src]="imgUrl" alt="User" (click)="toggleProfileModal()" />
+  </div>
 </div>
 
-<!-- Menú desplegable -->
-<div class="mobilemenu" [class.show]="menuVisible">
-  <div class="mobilemenu_profile">
-    <img id="mobilemenu_portada" src="assets/images/portada.jpg" />
-    <div class="mobilemenu_profile">
-      <img id="mobilemenu_profile_pic" [src]="imgUrl" /><br />
-      <span>Marito11<br />
-        <p>150k followers / 50 follow</p>
-      </span>
+<div
+  class="modal-container"
+  (mouseenter)="messagesModalHover = true"
+  (mouseleave)="messagesModalHover = false"
+>
+  <div class="modal modal-comments" *ngIf="showMessagesModal">
+    <div class="modal-title">
+      <span>CHAT / MESSAGES</span>
+      <a (click)="navigateTo('/messages.html')"><i class="fa fa-ellipsis-h"></i></a>
     </div>
-    <div class="mobilemenu_menu">
+    <div class="modal-content">
       <ul>
-        <li><a href="index.html" id="mobilemenu-selected"><i class="fa fa-globe"></i>Noticias</a></li>
-        <li><a href="profile.html"><i class="fa fa-user"></i>Perfil</a></li>
-        <li><a href="friends.html"><i class="fa fa-users"></i>Amigos</a></li>
-        <li><a href="messages.html"><i class="fa fa-comments-o"></i>Mensajes</a></li>
-        <li class="primarymenu"><i class="fa fa-compass"></i>Explorar</li>
-        <ul class="mobilemenu_child">
-          <li><a href="#"><i class="fa fa-globe"></i>Actividad</a></li>
-          <li><a href="#"><i class="fa fa-file"></i>Amigos</a></li>
-          <li><a href="#"><i class="fa fa-file"></i>Grupos</a></li>
-          <li><a href="#"><i class="fa fa-file"></i>Páginas</a></li>
-          <li><a href="#"><i class="fa fa-file"></i>Guardados</a></li>
-        </ul>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-7.jpg" alt="Diana" />
+            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to
+              reschedule...<p>4 hours ago</p></span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-2.jpg" alt="Diana" />
+            <span><b>Diana Jameson</b><br />Hi James! It’s Diana, I just wanted to let you know that we have to
+              reschedule...<p>4 hours ago</p></span>
+          </a>
+        </li>
       </ul>
-      <hr />
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal-container"
+  (mouseenter)="friendsModalHover = true"
+  (mouseleave)="friendsModalHover = false"
+>
+  <div class="modal modal-friends" *ngIf="showFriendsModal">
+    <div class="modal-title">
+      <span>FRIEND REQUESTS</span>
+      <a (click)="navigateTo('/friends.html')"><i class="fa fa-ellipsis-h"></i></a>
+    </div>
+    <div class="modal-content">
       <ul>
-        <li><a href="#">Términos y Condiciones</a></li>
-        <li><a href="#">Preguntas Frecuentes</a></li>
-        <li><a href="#">Contacto</a></li>
-        <li><a href="login.html">Cerrar sesión</a></li>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-2.jpg" alt="Tony" />
+            <span><b>Tony Stevens</b><br />4 Friends in Common</span>
+            <button class="modal-content-accept">Accept</button>
+            <button class="modal-content-decline">Decline</button>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="modal-content">
+      <ul>
+        <li>
+          <a href="#">
+            <img src="assets/images/user-7.jpg" alt="Tony" />
+            <span><b>Tony Stevens</b><br />4 Friends in Common</span>
+            <button class="modal-content-accept">Accept</button>
+            <button class="modal-content-decline">Decline</button>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal-container"
+  (mouseenter)="profileModalHover = true"
+  (mouseleave)="profileModalHover = false"
+>
+  <div class="modal modal-profile" *ngIf="showProfileModal">
+    <div class="modal-title">
+      <span>YOUR ACCOUNT</span>
+      <a (click)="navigateTo('/settings.html')"><i class="fa fa-cogs"></i></a>
+    </div>
+    <div class="modal-content">
+      <ul>
+        <li>
+          <a (click)="navigateTo('/settings.html')">
+            <i class="fa fa-tasks"></i>
+            <span><b>Profile Settings</b><br />Your profile settings</span>
+          </a>
+        </li>
+        <li>
+          <a (click)="logout()" routerLink="/login">
+            <i class="fa fa-sign-out"></i>
+            <span><b>Sign out</b></span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

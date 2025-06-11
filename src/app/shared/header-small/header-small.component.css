@@ -1,111 +1,510 @@
-/* Barra superior fija para móvil */
+/* Estilos para la barra superior del móvil */
 .mobilemenu-bar {
+  z-index: 1000;
+  height: 60px;
   width: 100%;
-  height: 50px;
-  background-color: #3F4257;
+  background: linear-gradient(90deg, #163953 0%, #2c3e50 100%);
+  color: white;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 15px;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 0 15px;
+  box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
 }
 
-.menu-btn {
+.mobilemenu-bar .menu-btn {
   background: none;
   border: none;
-  color: #fff;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  margin-right: 15px;
+}
+
+.mobilemenu-bar .menu-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Contenedor de la barra de búsqueda móvil */
+.mobile-search-container {
+  flex-grow: 1; /* Ocupa el espacio disponible */
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 60%; /* Ajusta el ancho máximo para la búsqueda */
+}
+
+.mobile-search-container input {
+  width: 100%;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+  font-size: 14px;
+  outline: none;
+  padding-right: 45px; /* Espacio para el icono de búsqueda */
+}
+
+.mobile-search-container button {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  background: transparent;
+  border: none;
+  color: #667eea;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 0 20px 20px 0;
+  transition: color 0.3s ease;
+}
+
+.mobile-search-container button:hover {
+  color: #764ba2;
+}
+
+/* Resultados de búsqueda para móvil */
+.search-results-dropdown.mobile {
+  position: absolute;
+  top: 48px; /* Ajusta esto si la altura del input cambia */
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #e0e6ed;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  max-height: 200px; /* Altura máxima para scroll */
+  overflow-y: auto;
+  animation: slideDown 0.3s ease-out;
+}
+
+.search-results-dropdown.mobile ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results-dropdown.mobile ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #34495e;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f0f4f8;
+}
+
+.search-results-dropdown.mobile ul li:last-child {
+  border-bottom: none;
+}
+
+.search-results-dropdown.mobile ul li:hover {
+  background-color: #f7f9fc;
+}
+
+.search-results-dropdown.mobile ul li img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+  border: 1px solid #e0e6ed;
+}
+
+.search-results-dropdown.mobile ul li span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/* Iconos de la derecha en la barra superior móvil */
+.mobilemenu-bar_icons {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  position: relative; /* Para la notificación */
+}
+
+.mobilemenu-bar_icons i {
   font-size: 20px;
+  margin-left: 15px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.3s ease;
+}
+
+.mobilemenu-bar_icons i:hover {
+  color: white;
+}
+
+.mobilemenu-bar_icons img {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: 2px solid #4A90E2;
+  object-fit: cover;
+  margin-left: 15px;
   cursor: pointer;
 }
 
-.menu-title {
-  color: #fff;
-  font-size: 18px;
+/* Notificación (si aplica) */
+.mobilemenu-bar_icons #notification {
+  font-size: 10px;
+  color: white;
+  background-color: #ff6b6b;
+  padding: 1px 5px;
+  border-radius: 100px;
+  position: absolute;
+  top: -5px; /* Ajusta la posición si es necesario */
+  right: -5px; /* Ajusta la posición si es necesario */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1001; /* Asegura que esté por encima de todo */
 }
 
-/* Menú desplegable */
+
+/* Menú desplegable lateral */
 .mobilemenu {
-  width: 250px;
-  height: 100%;
-  background-color: #fff;
   position: fixed;
-  top: 50px;
-  left: 0;
-  z-index: 998;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
-  overflow-y: auto;
+  top: 0;
+  left: -280px; /* Oculto por defecto */
+  width: 280px; /* Ancho del menú */
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1002; /* Más alto que la barra superior */
+  transition: left 0.3s ease-in-out;
+  overflow-y: auto; /* Para permitir scroll si el contenido es largo */
 }
 
-/* Mostrar menú cuando está visible */
 .mobilemenu.show {
-  transform: translateX(0);
+  left: 0; /* Visible */
 }
 
-/* Estilos del menú móvil */
-.mobilemenu_profile {
-  padding: 10px;
-  text-align: center;
+/* Fondo oscuro cuando el menú está abierto */
+.mobilemenu.show + .overlay { /* Esto requiere un div overlay en el HTML padre o global */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+}
+
+
+/* Estilos del perfil dentro del menú lateral */
+.mobilemenu_profile_header {
+  position: relative;
+  height: 160px; /* Altura de la sección de la portada y perfil */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  color: white;
+  padding-bottom: 15px; /* Espacio para el texto de abajo */
 }
 
 #mobilemenu_portada {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(0.7); /* Oscurecer un poco la imagen de portada */
+}
+
+.mobilemenu_profile_info {
+  position: relative;
+  z-index: 2; /* Asegura que el texto y la imagen de perfil estén sobre la portada */
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
 }
 
 #mobilemenu_profile_pic {
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  border: 3px solid white; /* Borde blanco alrededor de la foto de perfil */
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.mobilemenu_profile_info span {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.mobilemenu_profile_info p {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5px;
+}
+
+
+/* Estilos de los enlaces del menú lateral */
+.mobilemenu_menu {
+  padding: 20px 0;
+  background-color: #ffffff;
 }
 
 .mobilemenu_menu ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.mobilemenu_menu a {
+.mobilemenu_menu ul li {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.mobilemenu_menu ul li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #34495e; /* Color de texto consistente */
   text-decoration: none;
-  color: #333;
-  display: block;
-  padding: 10px 15px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.primarymenu {
-  font-weight: bold;
-  margin-top: 20px;
-  padding: 10px 15px;
-  background-color: #f1f1f1;
+.mobilemenu_menu ul li a:hover {
+  background-color: #f0f4f8;
+  color: #163953;
 }
 
-.mobilemenu_child {
-  list-style: none;
-  padding-left: 20px;
+.mobilemenu_menu ul li a i {
+  margin-right: 15px;
+  font-size: 18px;
+  width: 25px; /* Ancho fijo para alinear iconos */
+  text-align: center;
+  color: #7f8c8d; /* Color de icono más suave */
+  transition: color 0.2s ease;
 }
 
-hr {
+.mobilemenu_menu ul li a:hover i {
+  color: #163953;
+}
+
+.mobilemenu_menu ul li.primarymenu {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #163953;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #f7f9fc; /* Destacar secciones principales */
+  border-left: 4px solid #4A90E2; /* Borde para indicar sección activa */
+  margin-top: 10px;
+}
+
+.mobilemenu_menu ul li.primarymenu i {
+  margin-right: 15px;
+  font-size: 18px;
+  width: 25px;
+  text-align: center;
+  color: #4A90E2;
+}
+
+.mobilemenu_menu .mobilemenu_child {
+  padding-left: 20px; /* Indentación para sub-elementos */
+  border-left: 1px solid #e0e6ed; /* Línea de indentación */
+  margin: 5px 0 10px 0;
+}
+
+.mobilemenu_menu .mobilemenu_child li a {
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.mobilemenu_menu hr {
+  border: none;
+  border-top: 1px solid #f0f4f8;
   margin: 20px 0;
-  border: 0;
-  border-top: 1px solid #ddd;
 }
 
-/* Mostrar solo en pantallas pequeñas */
-@media (max-width: 800px) {
-  .mobilemenu-bar {
-    display: flex;
-  }
-
-  .mobilemenu {
-    display: block;
-  }
+.mobilemenu-selected {
+  background-color: #e6f7ff !important; /* Fondo para el elemento seleccionado */
+  color: #007bff !important; /* Texto de color primario */
+  border-left: 4px solid #007bff; /* Borde para indicar el elemento seleccionado */
+}
+.mobilemenu-selected i {
+  color: #007bff !important;
 }
 
-/* Ocultar menú en pantallas grandes */
-@media (min-width: 800px) {
-  .mobilemenu-bar {
-    display: none;
-  }
+
+/* Estilos para los modales en móvil (replicando y ajustando los de HeaderComponent) */
+.modal-container {
+  position: relative; /* Para que los modales se posicionen relativos al contenedor */
+}
+
+.modal {
+  position: fixed;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 1px solid #e0e6ed;
+  padding: 0;
+  z-index: 1003; /* Mayor que el menú lateral */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.05);
+  animation: fadeInModal 0.3s ease-out;
+
+  /* Posicionamiento para móvil: centrado y ancho completo */
+  width: 90vw !important;
+  left: 5vw;
+  right: auto !important; /* Anular right del header grande */
+  top: 70px; /* Debajo de la barra superior */
+  max-width: none; /* Sin límite de ancho máximo */
+}
+
+/* Ocultar el triángulo de los modales en móvil */
+.modal-icon-select {
+  display: none;
+}
+
+.modal-title {
+  padding: 15px 25px;
+  border-bottom: 1px solid #e9eff6;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  color: #7f8c8d;
+  background-color: #f7f9fc;
+  border-radius: 15px 15px 0px 0px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.modal-title span {
+  flex-grow: 1;
+}
+
+.modal-title a i {
+  color: #7f8c8d;
+  transition: color 0.2s ease;
+}
+
+.modal-title a i:hover {
+  color: #2c3e50;
+}
+
+.modal-content {
+  width: 100%;
+  background-color: white;
+  border-radius: 0 0 15px 15px;
+}
+
+.modal-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-content ul li {
+  border-bottom: 1px solid #f0f4f8;
+}
+
+.modal-content ul li:last-child {
+  border-bottom: none;
+}
+
+.modal-content ul li a {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s ease;
+}
+
+.modal-content ul li a:hover {
+  background-color: #fcfdff;
+}
+
+.modal-content ul li a img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 2px solid #e0e6ed;
+}
+
+.modal-content i {
+  color: #a7d9ff;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.modal-content ul li a span b {
+  font-size: 15px;
+  color: #2c3e50;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.modal-content ul li a span p {
+  font-size: 11px;
+  color: #95a5a6;
+  margin: 0;
+}
+
+/* Botones de Modales (aceptar/declinar) */
+.modal-content ul li button {
+  padding: 8px 15px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content-accept {
+  background: linear-gradient(135deg, #28a745, #218838);
+}
+
+.modal-content-decline {
+  background-color: #e9eff6;
+  color: #515365;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.modal-content-accept:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.modal-content-decline:hover {
+  background-color: #d1d9e6;
+  color: #333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Animación para modales (si ya existe, puedes omitirla) */
+@keyframes fadeInModal {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
